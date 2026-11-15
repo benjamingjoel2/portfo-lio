@@ -1,18 +1,23 @@
 # benjamin — portfolio
 
-One-page portfolio for Benjamin, designer & developer at Tourground.
+one-page portfolio for benjamin, designer & developer at tourground.
 
-Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from the Inter Tight web font.
+Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from two Google fonts (Inter Tight and Belleza).
 
 ## Design
 
-A white, Swiss-style layout modelled on the look of [bleibtgleich.dev](https://bleibtgleich.dev/): one grotesk at two sizes, an 8-column grid (4 on phones), staggered headlines, a thin vertical rule, ghost corner wordmarks and a black pill menu. The code, mark, copy and content are original.
+A mix of two references, with original code and content:
+
+- [bleibtgleich.dev](https://bleibtgleich.dev/): the long Swiss-grid scroll, one grotesk at two sizes, staggered headlines, a thin vertical rule, ghost corner wordmarks, the clock and contact sections.
+- [huyml.co](https://huyml.co/): the light grey canvas, the vertical rotated logo with tiny meta, the top bar (menu, working globally, for inquiries), the glyphic face for names, and the pinned selected-work index.
+
+Everything is set in lowercase.
 
 ## Features
 
 - Line-by-line headline reveals on scroll
-- "Work" section: brand cards orbit in 3D as you scroll and the title splits to the edges
+- Selected-work index: scroll flips through 12 live sites (real screenshots in `assets/work/`), with a big counter, role / destination / live-at details, a centred project list and colour swatches taken from each screenshot
 - Network table of every live Tourground site, grouped by region, from the Tourground directory
 - Live Lagos (WAT) clock
 - One-click email copy with a toast
-- Respects `prefers-reduced-motion` (the 3D section becomes a plain grid)
+- Respects `prefers-reduced-motion`
