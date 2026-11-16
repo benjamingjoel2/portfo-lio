@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/assets/:path*", "destination": "https://cdn.jsdelivr.net/gh/benjamingjoel2/portfolio@64890cee4bb33b806beac04ecd4e34054b9c3e4a/assets/:path*" }
+    { "source": "/assets/:path*", "destination": "https://cdn.jsdelivr.net/gh/benjamingjoel2/portfolio@d1e0df96cafa18db4a3d6ffc1022235911864540/assets/:path*" }
   ],
   "headers": [
     { "source": "/(.*)", "headers": [
