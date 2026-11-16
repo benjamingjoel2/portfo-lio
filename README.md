@@ -1,6 +1,6 @@
 # benjamin — portfolio
 
-one-page portfolio for benjamin, designer & developer at tourground.
+personal one-page portfolio for benjamin, designer & developer based in lagos (currently working with tourground).
 
 Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from two Google fonts (Inter Tight and Belleza).
 
@@ -16,8 +16,8 @@ Everything is set in lowercase.
 ## Features
 
 - Line-by-line headline reveals on scroll
-- Selected-work index: scroll flips through 12 live sites (real screenshots in `assets/work/`), with a big counter, role / destination / live-at details, a centred project list and colour swatches taken from each screenshot
-- Network table of every live Tourground site, grouped by region, from the Tourground directory
+- Selected-work index: scroll flips through 7 selected projects (real screenshots in `assets/work/`), with a big counter, role / destination / live-at details, a centred project list and colour swatches taken from each screenshot
+- A selected-projects list linking each live site
 - Live Lagos (WAT) clock
 - One-click email copy with a toast
 - Respects `prefers-reduced-motion`
