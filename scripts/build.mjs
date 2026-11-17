@@ -27,7 +27,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/work/${works[0].slug}.webp" />
   <meta name="theme-color" content="#ececec" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ececec'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='700' font-size='40' fill='%23111'%3Eb%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Inter Tight, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -52,7 +52,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   </div>
 
   <header class="bar">
-    <a class="bar-name" href="/"${!current ? ' aria-current="page"' : ''}>benjamin</a>
+    <a class="bar-name" href="/" aria-label="benjamingjoel, home"${!current ? ' aria-current="page"' : ''}><span class="mark" aria-hidden="true">b</span></a>
     <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
     <p class="bar-time">lagos, ng <span data-time>--:--</span></p>
   </header>
@@ -127,7 +127,7 @@ const home = page({
           </dl>
         </div>
       </div>
-      <h1 class="name" id="name" data-fit><span>benjamingjoel</span><span class="reg" aria-hidden="true"><span>c</span></span></h1>
+      <h1 class="name" id="name" data-fit><span>benjamingjoel</span></h1>
     </section>
 
     <section class="work" id="work" aria-labelledby="work-h" data-work>

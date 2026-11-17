@@ -88,7 +88,10 @@ body.menu-open { overflow: hidden; }
 /* top bar (one row) */
 .bar { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); padding: 18px var(--m) 0 var(--ml); align-items: baseline; font-weight: 700; font-size: 14px; letter-spacing: -0.03em; }
 .bar a:hover, .bar a:focus-visible, .bar a[aria-current] { text-decoration: underline; text-underline-offset: 2px; }
-.bar-name { grid-column: 1 / span 2; }
+.bar-name { grid-column: 1 / span 2; justify-self: start; align-self: center; text-decoration: none !important; }
+.mark { display: grid; place-items: center; width: 30px; height: 30px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 24px; line-height: 1; letter-spacing: 0; padding-bottom: 3px; transition: transform .3s var(--ease); }
+.bar-name:hover .mark, .bar-name:focus-visible .mark { transform: rotate(-6deg); }
+@media (max-width: 767px) { .mark { width: 26px; height: 26px; font-size: 20px; } }
 .bar-nav { grid-column: 5 / span 2; display: flex; gap: 0 .3em; }
 .bar-nav .lbl { margin-right: 1.4em; }
 .bar-time { grid-column: 7 / span 2; justify-self: end; margin: 0; font-variant-numeric: tabular-nums; }
@@ -101,7 +104,7 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 767px) { .rule { left: calc(var(--ml) + var(--col) - 8px); } }
 
 /* ---------- home hero: full-width name + statement ---------- */
-.hero { min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); display: flex; flex-direction: column; padding: 0 var(--m) 4px var(--ml); }
+.hero { min-height: calc(100vh - 76px); min-height: calc(100svh - 76px); display: flex; flex-direction: column; padding: 0 var(--m) 4px var(--ml); }
 .name { margin: auto 0 0; padding-top: 2vh; font-weight: 500; line-height: 1.02; letter-spacing: -0.05em; white-space: nowrap; display: flex; width: max-content; align-items: flex-start; font-size: 24.5vw; }
 .name .reg { font-size: .2em; line-height: 1; letter-spacing: 0; margin-left: .06em; margin-top: -.02em; font-weight: 500; border: .06em solid currentColor; border-radius: 50%; width: 1.25em; height: 1.25em; display: grid; place-items: center; flex: none; }
 .name .reg span { font-size: .72em; font-weight: 500; }
