@@ -116,7 +116,7 @@ body.menu-open { overflow: hidden; }
 .now figcaption { color: var(--ink); font-size: 12px; margin-top: 8px; }
 .now .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #f2c400; margin-right: 6px; vertical-align: 0; }
 .ticker { grid-column: 5 / span 4; grid-row: 1; justify-self: end; align-self: start; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin: 0; }
-.state { grid-column: 5 / span 4; grid-row: 2; justify-self: end; margin-top: 18px; display: grid; grid-template-columns: max-content max-content; column-gap: 20px; row-gap: 0; align-items: baseline; }
+.state { grid-column: 5 / span 4; grid-row: 1; justify-self: end; margin-top: 0; display: grid; grid-template-columns: max-content max-content; column-gap: 20px; row-gap: 0; align-items: baseline; }
 .state .k, .state .v { font-weight: 700; letter-spacing: -0.04em; font-size: clamp(22px, 2.15vw, 38px); line-height: 1.02; margin: 0; }
 .state .k { text-align: right; }
 .state .kv { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin: 26px 0 0; row-gap: 4px; }

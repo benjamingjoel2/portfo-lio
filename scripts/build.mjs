@@ -76,7 +76,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <header class="bar">
     <a class="bar-name" href="/" aria-label="benjamingjoel, home"${!current ? ' aria-current="page"' : ''}><span class="mark" aria-hidden="true">b</span></a>
     <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
-    <p class="bar-time">${HERE} ${FLAG} <span data-time>--:--</span></p>
+    <p class="bar-time">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
   </header>
 
   <main id="main">
@@ -136,7 +136,6 @@ const home = page({
       <div class="hero-low">
         <figure class="now">
           <a href="/about/" aria-label="about benjamin">${Array.from({ length: 12 }, (_, i) => `<img src="/assets/me/${pad(i + 1)}.webp" ${i === 0 ? 'alt="portrait of benjamin" class="on" fetchpriority="high"' : 'alt="" loading="lazy"'} width="640" height="800" />`).join('')}</a>        </figure>
-        <p class="ticker" aria-hidden="true"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
         <div class="state">
           <p class="k">benjamin</p><p class="v">is a designer</p>
           <p class="k"></p><p class="v">&amp; developer,</p>
