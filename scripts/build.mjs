@@ -113,8 +113,8 @@ const home = page({
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
         <figure class="now">
-          <a href="/work/" aria-label="see my work">${works.map((w, i) => `<img src="/assets/work/${w.slug}-m1.webp" alt="" width="540" height="919"${i === 0 ? ' class="on"' : ' loading="lazy"'} data-name="${esc(w.name)}" />`).join('')}</a>
-          <figcaption><span class="dot" aria-hidden="true"></span>now showing: <span data-now>${esc(works[0].name)}</span></figcaption>
+          <a href="/about/" aria-label="about benjamin"><img src="/assets/me.webp" alt="portrait of benjamin" width="640" height="800" class="on" fetchpriority="high" /></a>
+          <figcaption><span class="dot" aria-hidden="true"></span>available for selected projects</figcaption>
         </figure>
         <p class="ticker" aria-hidden="true"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
         <div class="state">

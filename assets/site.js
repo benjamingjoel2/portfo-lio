@@ -85,7 +85,7 @@
 
   /* hero: small image cycles through the projects */
   const now = $('.now');
-  if (now && !reduce) {
+  if (now && !reduce && $$('img', now).length > 1 && $('[data-now]', now)) {
     const imgs = $$('img', now), label = $('[data-now]', now);
     let k = 0;
     setInterval(() => {
