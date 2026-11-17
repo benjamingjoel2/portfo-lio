@@ -101,6 +101,28 @@
     }, 2800);
   }
 
+  /* light / dark mode: follows the device until the visitor picks one, then remembers it */
+  const toggle = $('[data-theme-toggle]');
+  if (toggle) {
+    const root = document.documentElement;
+    const sys = matchMedia('(prefers-color-scheme: dark)');
+    const current = () => root.dataset.theme || (sys.matches ? 'dark' : 'light');
+    const paint = () => {
+      const t = current();
+      $$('[data-mode]', toggle).forEach((el) => el.classList.toggle('on', el.dataset.mode === t));
+      toggle.setAttribute('aria-pressed', String(t === 'dark'));
+      $$('meta[name="theme-color"]').forEach((m) => { m.content = t === 'dark' ? '#121212' : '#ececec'; });
+    };
+    toggle.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) { /* private mode: still switches for this visit */ }
+      paint();
+    });
+    sys.addEventListener('change', paint);
+    paint();
+  }
+
   /* reveals */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   $$('.reveal, .fade').forEach((el) => io.observe(el));

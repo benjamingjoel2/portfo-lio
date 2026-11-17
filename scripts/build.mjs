@@ -48,7 +48,9 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/work/${works[0].slug}.webp" />
-  <meta name="theme-color" content="#ececec" />
+  <meta name="theme-color" content="#ececec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+  <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Inter Tight, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,6 +78,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <header class="bar">
     <a class="bar-name" href="/" aria-label="benjamingjoel, home"${!current ? ' aria-current="page"' : ''}><span class="mark" aria-hidden="true">b</span></a>
     <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
+    <button class="theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span data-mode="light">light</span><span class="sep" aria-hidden="true">/</span><span data-mode="dark">dark</span></button>
     <p class="bar-time">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
   </header>
 
@@ -134,6 +137,7 @@ const home = page({
   jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.city}, ${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
+        <p class="here" aria-hidden="true">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
         <figure class="now">
           <a href="/about/" aria-label="about benjamin">${Array.from({ length: 12 }, (_, i) => `<img src="/assets/me/${pad(i + 1)}.webp" ${i === 0 ? 'alt="portrait of benjamin" class="on" fetchpriority="high"' : 'alt="" loading="lazy"'} width="640" height="800" />`).join('')}</a>        </figure>
         <div class="state">
