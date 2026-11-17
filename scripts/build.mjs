@@ -111,7 +111,6 @@ const home = page({
   description: 'benjamin is a designer and developer based in lagos, designing and building websites end to end. currently working with tourground.',
   jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"Lagos, Nigeria"},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
   body: `    <section class="hero" aria-labelledby="name">
-      <h1 class="name" id="name" data-fit><span>benjamin</span><span class="reg" aria-hidden="true"><span>c</span></span></h1>
       <div class="hero-low">
         <figure class="now">
           <a href="/work/" aria-label="see my work">${works.map((w, i) => `<img src="/assets/work/${w.slug}-m1.webp" alt="" width="540" height="919"${i === 0 ? ' class="on"' : ' loading="lazy"'} data-name="${esc(w.name)}" />`).join('')}</a>
@@ -130,6 +129,7 @@ const home = page({
           </dl>
         </div>
       </div>
+      <h1 class="name" id="name" data-fit><span>benjamingjoel</span><span class="reg" aria-hidden="true"><span>c</span></span></h1>
     </section>
 
     <section class="work" id="work" aria-labelledby="work-h" data-work>
