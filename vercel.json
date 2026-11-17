@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/assets/:path*",
-      "destination": "https://cdn.jsdelivr.net/gh/benjamingjoel2/portfolio@accfa084dd9fabb3f898952b160f5a11f4085890/assets/:path*"
+      "destination": "https://cdn.jsdelivr.net/gh/benjamingjoel2/portfolio@53dbd81676adaf9ae3f40455f2239088c4755faf/assets/:path*"
     }
   ],
   "headers": [
