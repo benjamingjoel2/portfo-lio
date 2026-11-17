@@ -105,8 +105,8 @@
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   $$('.reveal, .fade').forEach((el) => io.observe(el));
 
-  /* clock (lagos, wat) */
-  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Lagos', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  /* live clock: time zone comes from LOCATION.timeZone in scripts/build.mjs */
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: document.body.dataset.tz || 'UTC', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
   const tick = () => {
     const [h, m, s] = fmt.format(new Date()).split(':');
     $$('[data-h]').forEach((el) => { el.textContent = h; });

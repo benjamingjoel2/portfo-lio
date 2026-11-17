@@ -1,7 +1,29 @@
 // Builds every page of the portfolio from scripts/works.json.
 // Usage: node scripts/build.mjs   (no dependencies; writes the HTML files into the repo root)
+
+// ─── where i am right now ─────────────────────────────────────────────
+// Change these when you travel, then run `node scripts/build.mjs`.
+const LOCATION = {
+  city: 'kaduna',
+  country: 'nigeria',
+  countryCode: 'ng',          // two letters, used for the flag emoji
+  latitude: 10.5105,
+  longitude: 7.4165,
+  timeZone: 'Africa/Lagos',   // IANA time-zone id for the live clock (all of nigeria uses this id)
+};
+const NEXT = { text: 'packing for indonesia', countryCode: 'id' };  // set to null to hide
+// ──────────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
+
+// two-letter country code -> flag emoji (e.g. 'ng' -> 🇳🇬)
+const flag = (cc) => cc.toUpperCase().replace(/[A-Z]/g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
+// flag as a small twemoji image, so it also shows on windows (which has no flag emoji); alt keeps the emoji
+const flagImg = (cc) => `<img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/${[...flag(cc)].map((c) => c.codePointAt(0).toString(16)).join('-')}.svg" alt="${flag(cc)}" width="16" height="16" />`;
+const FLAG = flagImg(LOCATION.countryCode);
+const HERE = `${LOCATION.city}, ${LOCATION.countryCode}`;               // "kaduna, ng"
+const NEXT_TEXT = NEXT ? `, ${NEXT.text} ${flagImg(NEXT.countryCode)}` : '';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const works = JSON.parse(fs.readFileSync(path.join(root, 'scripts/works.json'), 'utf8'));
@@ -33,7 +55,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />${jsonld}
 </head>
-<body class="no-js">
+<body class="no-js" data-tz="${LOCATION.timeZone}">
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
@@ -44,17 +66,17 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
         ${menuLinks}
       </div>
     </nav>
-    <div class="meta s"><span>lagos, ng · <span data-time>--:--</span> wat</span><a href="mailto:${EMAIL}">${EMAIL}</a></div>
+    <div class="meta s"><span>${HERE} ${FLAG} · <span data-time>--:--</span></span><a href="mailto:${EMAIL}">${EMAIL}</a></div>
   </div>
   <div class="ghost" aria-hidden="true">
     <div class="col"><span class="big">benjamin</span><span class="s">scroll</span></div>
-    <div class="col"><span class="big">builds</span><span class="s">made w/ care in lagos</span></div>
+    <div class="col"><span class="big">builds</span><span class="s">made w/ care in ${LOCATION.city}</span></div>
   </div>
 
   <header class="bar">
     <a class="bar-name" href="/" aria-label="benjamingjoel, home"${!current ? ' aria-current="page"' : ''}><span class="mark" aria-hidden="true">b</span></a>
     <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
-    <p class="bar-time">lagos, ng <span data-time>--:--</span></p>
+    <p class="bar-time">${HERE} ${FLAG} <span data-time>--:--</span></p>
   </header>
 
   <main id="main">
@@ -66,7 +88,7 @@ ${body}
     <div class="foot s">
       <span>’26 © all rights reserved</span>
       <nav aria-label="footer"><a href="/work/">work</a><a href="/gallery/">gallery</a><a href="/about/">about</a><a href="/contact/">contact</a></nav>
-      <span>designer &amp; developer · lagos</span>
+      <span>designer &amp; developer · ${LOCATION.city}</span>
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
@@ -91,7 +113,7 @@ const contactBlock = `    <section class="g contact section" aria-labelledby="co
       <a href="mailto:${EMAIL}">email</a>
     </nav>`;
 
-const clockBlock = (heading) => `    <section aria-label="local time in lagos">
+const clockBlock = (heading) => `    <section aria-label="local time in ${LOCATION.city}">
       <div class="g section">
         <p class="sr">${heading.join(' ')}</p>
         <div class="c3w big reveal" aria-hidden="true">${lines(heading.slice(0, 2))}</div>
@@ -99,17 +121,17 @@ const clockBlock = (heading) => `    <section aria-label="local time in lagos">
       </div>
       <div class="g clock big" aria-hidden="true">
         <span class="lp">(</span><span class="h num" data-h>--</span><span class="co1">:</span>
-        <span class="face"><span class="lbl">lagos · wat</span><span class="orb"></span><span class="sec" data-s>--</span></span>
+        <span class="face"><span class="lbl">${LOCATION.city}</span><span class="orb"></span><span class="sec" data-s>--</span></span>
         <span class="co2">:</span><span class="m num" data-m>--</span><span class="rp">)</span>
       </div>
-      <p class="sr">it is <span data-time>--:--</span> in lagos (wat).</p>
+      <p class="sr">it is <span data-time>--:--</span> in ${LOCATION.city}.</p>
     </section>`;
 
 /* ---------------- home ---------------- */
 const home = page({
-  path: '/', title: 'benjamin — designer & developer, lagos',
-  description: 'benjamin is a designer and developer based in lagos, designing and building websites end to end. currently working with tourground.',
-  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"Lagos, Nigeria"},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
+  path: '/', title: 'benjamin — designer & developer',
+  description: `benjamin is a designer and developer working from everywhere, currently in ${LOCATION.city}, designing and building websites end to end. working at tourground.`,
+  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.city}, ${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
         <figure class="now">
@@ -117,13 +139,12 @@ const home = page({
         <p class="ticker" aria-hidden="true"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
         <div class="state">
           <p class="k">benjamin</p><p class="v">is a designer</p>
-          <p class="k"></p><p class="v">&amp; developer</p>
-          <p class="k">in</p><p class="v">lagos, nigeria</p>
+          <p class="k"></p><p class="v">&amp; developer,</p>
+          <p class="k"></p><p class="v">working from</p>
+          <p class="k"></p><p class="v">everywhere</p>
           <dl class="kv">
-            <div><dt>location</dt><dd>6.5244° n, 3.3792° e</dd></div>
-            <div><dt></dt><dd>lagos / nigeria</dd></div>
-            <div><dt>currently</dt><dd>tourground</dd></div>
-            <div><dt>available</dt><dd>selected projects</dd></div>
+            <div><dt>location</dt><dd>currently ${LOCATION.city} / ${LOCATION.country}${NEXT_TEXT}</dd></div>
+            <div><dt>working at</dt><dd><a class="u" href="https://tourground.com">tourground</a></dd></div>
           </dl>
         </div>
       </div>
@@ -156,7 +177,7 @@ const home = page({
       <div class="c4 big reveal" aria-hidden="true">${lines(['build,'])}</div>
       <div class="c3w big reveal" aria-hidden="true" style="grid-row:2">${lines(['and ship it', 'well.'])}</div>
       <div class="c4 fade" style="grid-row:3">
-        <p class="s intro">i’m benjamin, a designer and developer based in lagos. i design and build websites end to end, from the first sketch to a fast, accessible live site. currently working with tourground.</p>
+        <p class="s intro">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at tourground.</p>
         <a class="s more" href="/about/">more about me</a>
       </div>
     </section>
@@ -264,14 +285,14 @@ ${galleryItems}
 /* ---------------- about ---------------- */
 const about = page({
   path: '/about/', current: 'about', title: 'about — benjamin',
-  description: 'benjamin is a designer and developer based in lagos, currently working with tourground.',
+  description: `benjamin is a designer and developer working from everywhere, currently in ${LOCATION.city}. working at tourground.`,
   body: `    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">designer &amp; developer<br />lagos, ng</p>
+      <p class="s count muted">designer &amp; developer<br />${HERE} ${FLAG}</p>
       <h1 class="c3w big reveal" id="h">${lines(['hi, i’m', { t: 'benjamin.', c: 'ind' }])}</h1>
     </section>
     <div class="g about-body">
       <p class="fade">i design and build websites end to end: the layout and type, the code, and getting it live and fast.</p>
-      <p class="fade">i’m based in lagos and currently working with tourground, where i design, build and deploy travel websites, like the ones in <a class="u" href="/work/">my work</a>.</p>
+      <p class="fade">i work from everywhere, right now from ${LOCATION.city}, and i’m working at tourground, where i design, build and deploy travel websites, like the ones in <a class="u" href="/work/">my work</a>.</p>
       <p class="fade">i care about the quiet details: pages that load quickly, read well on a phone, and work for everyone.</p>
     </div>
     <section class="g caps" aria-labelledby="caps-h">
@@ -282,8 +303,8 @@ const about = page({
     </section>
     <section class="g facts" aria-label="at a glance">
       <dl class="s fade">
-        <div><dt>based in</dt><dd>lagos, nigeria</dd></div>
-        <div><dt>currently</dt><dd>designer &amp; developer at tourground</dd></div>
+        <div><dt>currently in</dt><dd>${LOCATION.city} / ${LOCATION.country}${NEXT_TEXT}</dd></div>
+        <div><dt>working at</dt><dd><a class="u" href="https://tourground.com">tourground</a></dd></div>
         <div><dt>elsewhere</dt><dd><a class="u" href="${GITHUB}">github</a></dd></div>
       </dl>
     </section>
@@ -294,7 +315,7 @@ ${contactBlock}`,
 /* ---------------- contact ---------------- */
 const contact = page({
   path: '/contact/', current: 'contact', title: 'contact — benjamin',
-  description: 'get in touch with benjamin, designer and developer in lagos.',
+  description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
   body: `    <section class="g phead" aria-labelledby="h">
       <p class="s count muted">available for<br />selected projects</p>
       <h1 class="c3w big reveal" id="h">${lines(['say', { t: 'hello.', c: 'ind' }])}</h1>

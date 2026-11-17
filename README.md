@@ -1,6 +1,6 @@
 # benjamin — portfolio
 
-personal one-page portfolio for benjamin, designer & developer based in lagos (currently working with tourground).
+personal one-page portfolio for benjamin, designer & developer working from everywhere (working at tourground).
 
 Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from two Google fonts (Inter Tight and Belleza).
 
@@ -15,12 +15,15 @@ Everything is set in lowercase.
 
 ## Pages
 
-- `/` home: name + reel hero, the pinned selected-work index, a short about, the lagos clock and contact
+- `/` home: name + reel hero, the pinned selected-work index, a short about, the local clock and contact
 - `/work/` all selected projects (hover shows a preview), and `/work/<project>/` one page per project with desktop, full-scroll and phone screenshots
 - `/gallery/` every screen, filterable by project, with a lightbox
 - `/about/` and `/contact/`
 
 ## Editing
+
+Where you are: change `LOCATION` and `NEXT` at the top of `scripts/build.mjs` (city, country, country code, coordinates, time zone, and the "packing for…" line), then rebuild.
+
 
 Pages are generated. Edit `scripts/works.json` (projects) or `scripts/build.mjs` (page copy), then run:
 
