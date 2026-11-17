@@ -113,7 +113,7 @@ const home = page({
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
         <figure class="now">
-          <a href="/about/" aria-label="about benjamin"><img src="/assets/me.webp" alt="portrait of benjamin" width="640" height="800" class="on" fetchpriority="high" /></a>        </figure>
+          <a href="/about/" aria-label="about benjamin">${Array.from({ length: 12 }, (_, i) => `<img src="/assets/me/${pad(i + 1)}.webp" ${i === 0 ? 'alt="portrait of benjamin" class="on" fetchpriority="high"' : 'alt="" loading="lazy"'} width="640" height="800" />`).join('')}</a>        </figure>
         <p class="ticker" aria-hidden="true"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
         <div class="state">
           <p class="k">benjamin</p><p class="v">is a designer</p>

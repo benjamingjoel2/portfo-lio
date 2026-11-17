@@ -85,16 +85,20 @@
 
   /* hero: small image cycles through the projects */
   const now = $('.now');
-  if (now && !reduce && $$('img', now).length > 1 && $('[data-now]', now)) {
+  if (now && !reduce && $$('img', now).length > 1) {
     const imgs = $$('img', now), label = $('[data-now]', now);
     let k = 0;
+    // load the next photo ahead of time so each change is instant
+    const preload = (i) => { imgs[i].loading = 'eager'; };
+    preload(1);
     setInterval(() => {
+      if (document.hidden) return;
       imgs[k].classList.remove('on');
       k = (k + 1) % imgs.length;
-      imgs[k].loading = 'eager';
       imgs[k].classList.add('on');
-      label.textContent = imgs[k].dataset.name;
-    }, 2600);
+      preload((k + 1) % imgs.length);
+      if (label && imgs[k].dataset.name) label.textContent = imgs[k].dataset.name;
+    }, 2800);
   }
 
   /* reveals */
