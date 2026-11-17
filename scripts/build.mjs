@@ -14,7 +14,6 @@ const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' 
 const NAV = [['work', '/work/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
 
 function page({ path: p, title, description, body, current = '', jsonld = '' }) {
-  const nav = (cls) => NAV.map(([n, href]) => `<li><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a></li>`).join('');
   const menuLinks = [['index', '/'], ...NAV].map(([n, href], i) => `<a class="big${i % 2 ? ' ind' : ''}" href="${href}"${current === n || (n === 'index' && !current) ? ' aria-current="page"' : ''}>${n}</a>`).join('\n        ');
   return `<!doctype html>
 <html lang="en">
@@ -31,17 +30,13 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ececec'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='700' font-size='40' fill='%23111'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />${jsonld}
 </head>
 <body class="no-js">
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
-  <div class="logo">
-    <a href="/" aria-label="benjamin, home">benjamin<sup>©</sup></a>
-    <div class="meta" aria-hidden="true"><span>copyright 2026</span><span>lagos, ng</span><span>+234</span></div>
-  </div>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">menu</button>
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="menu">
     <nav class="g" aria-label="main">
@@ -56,15 +51,10 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
     <div class="col"><span class="big">builds</span><span class="s">made w/ care in lagos</span></div>
   </div>
 
-  <header class="g topbar">
-    <span class="rule" aria-hidden="true"></span>
-    <nav class="c3 nav" aria-label="sections">
-      <p class="s muted label">menu</p>
-      <ul>${nav()}</ul>
-    </nav>
-    <div class="based"><p class="s">based in lagos</p><p class="s">working w/ tourground</p></div>
-    <div class="now"><p class="s">working globally</p><p class="s muted">lagos, <span data-time>--:--</span></p></div>
-    <div class="inq s"><span class="muted">for inquiries</span><a href="mailto:${EMAIL}">${EMAIL}</a></div>
+  <header class="bar">
+    <a class="bar-name" href="/"${!current ? ' aria-current="page"' : ''}>benjamin</a>
+    <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
+    <p class="bar-time">lagos, ng <span data-time>--:--</span></p>
   </header>
 
   <main id="main">
@@ -116,19 +106,29 @@ const clockBlock = (heading) => `    <section aria-label="local time in lagos">
     </section>`;
 
 /* ---------------- home ---------------- */
-const reelItems = [...works, ...works].map((w, i) => `<a href="/work/${w.slug}/"${i >= works.length ? ' tabindex="-1" aria-hidden="true"' : ''}><img src="/assets/work/${w.slug}.webp" alt="${i >= works.length ? '' : esc(w.name) + ' website'}" width="960" height="600"${i > 3 ? ' loading="lazy"' : ''} /><span>${esc(w.name)}</span></a>`).join('');
 const home = page({
   path: '/', title: 'benjamin — designer & developer, lagos',
   description: 'benjamin is a designer and developer based in lagos, designing and building websites end to end. currently working with tourground.',
   jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"Lagos, Nigeria"},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
-  body: `    <section class="hero" aria-label="introduction">
-      <h1 class="mega reveal"><span class="line"><span>benjamin</span></span></h1>
-      <div class="reel" aria-label="recent work"><div class="reel-track">${reelItems}</div></div>
-      <div class="g hero-meta">
-        <p class="s a">designer<br />&amp; developer</p>
-        <p class="s b">based in lagos,<br />currently at tourground</p>
-        <p class="s c">selected work<br />’24–’26</p>
-        <a class="s d u" href="#work">scroll ↓</a>
+  body: `    <section class="hero" aria-labelledby="name">
+      <h1 class="name" id="name" data-fit><span>benjamin</span><span class="reg" aria-hidden="true"><span>c</span></span></h1>
+      <div class="hero-low">
+        <figure class="now">
+          <a href="/work/" aria-label="see my work">${works.map((w, i) => `<img src="/assets/work/${w.slug}-m1.webp" alt="" width="540" height="919"${i === 0 ? ' class="on"' : ' loading="lazy"'} data-name="${esc(w.name)}" />`).join('')}</a>
+          <figcaption><span class="dot" aria-hidden="true"></span>now showing: <span data-now>${esc(works[0].name)}</span></figcaption>
+        </figure>
+        <p class="ticker" aria-hidden="true"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+        <div class="state">
+          <p class="k">benjamin</p><p class="v">is a designer</p>
+          <p class="k"></p><p class="v">&amp; developer</p>
+          <p class="k">in</p><p class="v">lagos, nigeria</p>
+          <dl class="kv">
+            <div><dt>location</dt><dd>6.5244° n, 3.3792° e</dd></div>
+            <div><dt></dt><dd>lagos / nigeria</dd></div>
+            <div><dt>currently</dt><dd>tourground</dd></div>
+            <div><dt>available</dt><dd>selected projects</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
 

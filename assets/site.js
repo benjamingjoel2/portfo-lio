@@ -68,6 +68,35 @@
   addEventListener('resize', onScroll);
   onScroll();
 
+  /* hero: make the name fill the width exactly */
+  const fit = $('[data-fit]');
+  if (fit) {
+    const box = fit.parentElement;
+    const size = () => {
+      fit.style.fontSize = '100px';
+      const cs = getComputedStyle(box);
+      const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      fit.style.fontSize = (100 * avail / fit.scrollWidth) + 'px';
+    };
+    size();
+    if (document.fonts) document.fonts.ready.then(size);
+    addEventListener('resize', size);
+  }
+
+  /* hero: small image cycles through the projects */
+  const now = $('.now');
+  if (now && !reduce) {
+    const imgs = $$('img', now), label = $('[data-now]', now);
+    let k = 0;
+    setInterval(() => {
+      imgs[k].classList.remove('on');
+      k = (k + 1) % imgs.length;
+      imgs[k].loading = 'eager';
+      imgs[k].classList.add('on');
+      label.textContent = imgs[k].dataset.name;
+    }, 2600);
+  }
+
   /* reveals */
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   $$('.reveal, .fade').forEach((el) => io.observe(el));
