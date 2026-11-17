@@ -1,26 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": false,
-  "rewrites": [
-    {
-      "source": "/assets/:path*",
-      "destination": "https://cdn.jsdelivr.net/gh/benjamingjoel2/portfolio@4dbcb08a518783632c9c9cabfaff890302bfaf9c/assets/:path*"
-    }
-  ],
+  "trailingSlash": true,
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
-  ],
-  "trailingSlash": true
+  ]
 }

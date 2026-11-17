@@ -16,6 +16,7 @@ const NEXT = { text: 'packing for indonesia', countryCode: 'id' };  // set to nu
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 // two-letter country code -> flag emoji (e.g. 'ng' -> 🇳🇬)
 const flag = (cc) => cc.toUpperCase().replace(/[A-Z]/g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
@@ -27,6 +28,14 @@ const NEXT_TEXT = NEXT ? `, ${NEXT.text} ${flagImg(NEXT.countryCode)}` : '';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const works = JSON.parse(fs.readFileSync(path.join(root, 'scripts/works.json'), 'utf8'));
+const WORKS_JS = `window.WORKS = ${JSON.stringify(works.map(({ slug, name, country, desc, url, host, sw }) => ({ slug, name, country, desc, url, host, sw })))};\n`;
+// version tag per file: changes whenever the file changes, so browsers never keep an old copy
+const ver = (text) => createHash('sha1').update(text).digest('hex').slice(0, 10);
+const V = {
+  css: ver(fs.readFileSync(path.join(root, 'assets/site.css'))),
+  js: ver(fs.readFileSync(path.join(root, 'assets/site.js'))),
+  works: ver(WORKS_JS),
+};
 const EMAIL = 'hello@benjamin.design';
 const GITHUB = 'https://github.com/benjamingjoel2';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -55,7 +64,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/site.css" />${jsonld}
+  <link rel="stylesheet" href="/assets/site.css?v=${V.css}" />${jsonld}
 </head>
 <body class="no-js" data-tz="${LOCATION.timeZone}">
   <script>document.body.classList.remove('no-js');</script>
@@ -95,8 +104,8 @@ ${body}
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
-  <script src="/assets/works.js"></script>
-  <script src="/assets/site.js" defer></script>
+  <script src="/assets/works.js?v=${V.works}"></script>
+  <script src="/assets/site.js?v=${V.js}" defer></script>
 </body>
 </html>
 `;
@@ -342,5 +351,5 @@ for (const [f, html] of out) {
   fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true });
   fs.writeFileSync(path.join(root, f), html);
 }
-fs.writeFileSync(path.join(root, 'assets/works.js'), `window.WORKS = ${JSON.stringify(works.map(({ slug, name, country, desc, url, host, sw }) => ({ slug, name, country, desc, url, host, sw })))};\n`);
+fs.writeFileSync(path.join(root, 'assets/works.js'), WORKS_JS);
 console.log(out.map(([f, h]) => `${f} ${h.length}`).join('\n'));

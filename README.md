@@ -33,4 +33,4 @@ node scripts/build.mjs
 
 Shared styles and behaviour live in `assets/site.css` and `assets/site.js`. Screenshots are in `assets/work/`.
 
-`vercel.json` serves `/assets/*` from this repo through jsDelivr, pinned to a commit, so the HTML can be deployed on its own. Update the commit hash there when assets change.
+The build adds a version tag to the stylesheet and script links (`?v=…`) that changes whenever those files change, so visitors never get a stale copy.
