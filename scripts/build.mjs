@@ -140,10 +140,10 @@ const home = page({
         <div class="state">
           <p class="k">benjamin</p><p class="v">is a designer</p>
           <p class="k"></p><p class="v">&amp; developer,</p>
-          <p class="k"></p><p class="v">working from</p>
-          <p class="k"></p><p class="v">everywhere</p>
+          <p class="k">working</p><p class="v">from everywhere</p>
           <dl class="kv">
-            <div><dt>location</dt><dd>currently ${LOCATION.city} / ${LOCATION.country}${NEXT_TEXT}</dd></div>
+            <div><dt>location</dt><dd>currently ${LOCATION.city} / ${LOCATION.country}${NEXT ? ',' : ''}</dd></div>
+            ${NEXT ? `<div><dt></dt><dd>${NEXT.text} ${flagImg(NEXT.countryCode)}</dd></div>` : ''}
             <div><dt>working at</dt><dd><a class="u" href="https://tourground.com">tourground</a></dd></div>
           </dl>
         </div>
