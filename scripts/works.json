@@ -1,0 +1,100 @@
+[
+ {
+  "slug": "seventhcontinent",
+  "name": "Seventh Continent",
+  "country": "Antarctica",
+  "desc": "Antarctica expeditions, planned by one polar specialist",
+  "url": "https://seventhcontinent.tourground.com/",
+  "host": "seventhcontinent.tourground.com",
+  "sw": [
+   "#142d5a",
+   "#e1e8f2",
+   "#0a132b"
+  ],
+  "about": "Independent Antarctica expedition specialists. We match you with the right IAATO-member ship, route and season, and one polar specialist plans every detail."
+ },
+ {
+  "slug": "outbackandreef",
+  "name": "Outback & Reef",
+  "country": "Australia",
+  "desc": "The red interior and the reef, the two halves of Australia",
+  "url": "https://outbackandreef.tourground.com/",
+  "host": "outbackandreef.tourground.com",
+  "sw": [
+   "#7b5b10",
+   "#e1e6eb",
+   "#141b18"
+  ],
+  "about": "Australia planned as three or four regions in the right season, with the lodges, guides and flights that make the distances worth it."
+ },
+ {
+  "slug": "campaniletravel",
+  "name": "Campanile Travel",
+  "country": "Italy",
+  "desc": "Tailor-made Italy, past the big three",
+  "url": "https://campaniletravel.tourground.com/",
+  "host": "campaniletravel.tourground.com",
+  "sw": [
+   "#583808",
+   "#ecbe83",
+   "#352a18"
+  ],
+  "about": "Tailor-made journeys in Italy beyond Rome, Florence and Venice: small towns, agriturismi, regional food and quieter alternatives to the crowded icons."
+ },
+ {
+  "slug": "edgeofnorth",
+  "name": "Edge of North",
+  "country": "Iceland",
+  "desc": "Private luxury journeys in Iceland",
+  "url": "https://edgeofnorth.tourground.com/",
+  "host": "edgeofnorth.tourground.com",
+  "sw": [
+   "#134945",
+   "#c0dfcd",
+   "#000000"
+  ],
+  "about": "Where the map runs out. Iceland at its most extraordinary, privately guided and planned by one dedicated specialist."
+ },
+ {
+  "slug": "barjeeljourneys",
+  "name": "Barjeel Journeys",
+  "country": "United Arab Emirates",
+  "desc": "The seven emirates, planned properly",
+  "url": "https://barjeeljourneys.tourground.com/",
+  "host": "barjeeljourneys.tourground.com",
+  "sw": [
+   "#41332a",
+   "#afcbd1",
+   "#221913"
+  ],
+  "about": "Private journeys across all seven emirates of the UAE: old creek quarters, oasis towns, the Empty Quarter, the mountains and the east coast, timed to the cool months and Ramadan."
+ },
+ {
+  "slug": "komorebi",
+  "name": "Komorebi",
+  "country": "Japan",
+  "desc": "Japan, in its own time",
+  "url": "https://komorebi.tourground.com/",
+  "host": "komorebi.tourground.com",
+  "sw": [
+   "#aa1904",
+   "#c4b8ad",
+   "#170805"
+  ],
+  "about": "Private, slow journeys in Japan, planned around the seasons and away from the crowds. Ryokan nights, quiet temples at opening time, craft, food and the 72 seasons."
+ },
+ {
+  "slug": "escalevoyages",
+  "name": "Escale Voyages",
+  "country": "Benin",
+  "desc": "Premium journeys through the whole of Benin",
+  "url": "https://escalevoyages.tourground.com/en",
+  "host": "escalevoyages.tourground.com",
+  "sw": [
+   "#22445c",
+   "#a4afac",
+   "#040404"
+  ],
+  "about": "The whole of Benin, at your pace: small-group and private journeys from the Atlantic coast to the Pendjari savannah, planned and run from Cotonou."
+ }
+]

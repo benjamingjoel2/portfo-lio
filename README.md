@@ -13,11 +13,21 @@ A mix of two references, with original code and content:
 
 Everything is set in lowercase.
 
-## Features
+## Pages
 
-- Line-by-line headline reveals on scroll
-- Selected-work index: scroll flips through 7 selected projects (real screenshots in `assets/work/`), with a big counter, role / destination / live-at details, a centred project list and colour swatches taken from each screenshot
-- A selected-projects list linking each live site
-- Live Lagos (WAT) clock
-- One-click email copy with a toast
-- Respects `prefers-reduced-motion`
+- `/` home: name + reel hero, the pinned selected-work index, a short about, the lagos clock and contact
+- `/work/` all selected projects (hover shows a preview), and `/work/<project>/` one page per project with desktop, full-scroll and phone screenshots
+- `/gallery/` every screen, filterable by project, with a lightbox
+- `/about/` and `/contact/`
+
+## Editing
+
+Pages are generated. Edit `scripts/works.json` (projects) or `scripts/build.mjs` (page copy), then run:
+
+```bash
+node scripts/build.mjs
+```
+
+Shared styles and behaviour live in `assets/site.css` and `assets/site.js`. Screenshots are in `assets/work/`.
+
+`vercel.json` serves `/assets/*` from this repo through jsDelivr, pinned to a commit, so the HTML can be deployed on its own. Update the commit hash there when assets change.
