@@ -308,12 +308,6 @@ const tgPage = page({
           <div><dt>about</dt><dd><p>i design, build and ship the websites for tourground’s travel brands. each brand is one destination, planned by specialists, and each site is mine from the first layout to the live page: the design, the front end, the hosting and the speed.</p></dd></div>
           <div><dt>highlights</dt><dd>${works.length} brand sites live<span class="ink">from antarctica to japan</span></dd></div>
         </dl>
-        <div class="tg-xp">
-          <h2 class="tg-h">brands</h2>
-          <ol>
-${works.map((w, k) => `            <li><a href="/work/${w.slug}/"><span class="n">${pad(k + 1)}</span><span class="t">${w.name.toLowerCase()}</span><span class="y">${w.country.toLowerCase()}</span></a></li>`).join('\n')}
-          </ol>
-        </div>
       </div>
       <div class="tg-pics">
 ${shots.map(([f, alt, wd, ht, cls]) => `        <figure class="${cls}"><img src="/assets/about/${f}.webp" alt="${alt}" width="${wd}" height="${ht}" loading="lazy" decoding="async" /></figure>`).join('\n').replace('<figure class="">', '<figure class="">').replace(/(<figure class="wide">[\s\S]*?<\/figure>)/, '$1\n        <figure class="logo-tile" aria-hidden="true"><span>tourground</span></figure>')}
