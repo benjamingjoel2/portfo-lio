@@ -38,11 +38,11 @@ const V = {
 };
 const EMAIL = 'hello@benjamin.design';
 const SERVICES = [
-  { t: 'website design', d: ['layout & typography', 'responsive design', 'design systems'] },
-  { t: 'development', d: ['html, css, javascript', 'fast static sites', 'accessibility'] },
-  { t: 'deployment', d: ['hosting & domains', 'seo basics', 'performance'] },
-  { t: 'ongoing care', d: ['updates & fixes', 'new pages', 'keeping sites running'] },
-];
+  { t: 'brand websites', d: ['one site per destination', 'layout & typography', 'responsive design'] },
+  { t: 'front-end development', d: ['html, css, javascript', 'fast static pages', 'accessibility'] },
+  { t: 'shipping', d: ['deployment & hosting', 'seo basics', 'performance'] },
+  { t: 'keeping them running', d: ['updates & fixes', 'new pages', 'new brands'] },
+]
 const GITHUB = 'https://github.com/benjamingjoel2';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
@@ -101,7 +101,7 @@ ${body}
 
   <footer class="ftr">
     <div class="g ftr-top">
-      <p class="ftr-lead">now that you got here, why not get in touch? if you want to work together or you have a good idea, drop me a message. i’d love to hear it.</p>
+      <p class="ftr-lead">i design and build websites for travel brands, full time at tourground. want to talk travel tech, or just say hello? my inbox is open.</p>
       <ul class="ftr-soc s"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
     </div>
     <div class="ftr-name-wrap"><p class="ftr-name" data-fit aria-hidden="true">benjamingjoel</p></div>
@@ -121,7 +121,7 @@ ${body}
 
 const contactBlock = `    <section class="g contact section" aria-labelledby="contact-h">
       <div class="c3 left">
-        <p class="s">available for</p><p class="s">selected projects</p>
+        <p class="s">travel tech</p><p class="s">at tourground</p>
         <div class="gap"></div>
         <p class="s muted">write directly to:</p>
         <a class="s email" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a>
@@ -150,8 +150,8 @@ const clockBlock = (heading) => `    <section aria-label="local time in ${LOCATI
 /* ---------------- home ---------------- */
 const home = page({
   path: '/', title: 'benjamin — designer & developer',
-  description: `benjamin is a designer and developer working from everywhere, currently in ${LOCATION.city}, designing and building websites end to end. working at tourground.`,
-  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.city}, ${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
+  description: `benjamin is a designer and developer in travel tech, full time at tourground, building the websites for its travel brands. currently in ${LOCATION.city}.`,
+  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer, Travel Tech","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.city}, ${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
         <p class="here" aria-hidden="true">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
@@ -175,7 +175,7 @@ const home = page({
       <div class="g fm-row">
         <h2 class="fm-lbl" id="about-h">about:</h2>
         <div class="fm-body fade">
-          <p class="fm-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a class="u" href="https://tourground.com">tourground</a>.</p>
+          <p class="fm-text">i’m benjamin, a designer and developer in travel tech. i work full time at <a class="u" href="https://tourground.com">tourground</a>, where i design, build and ship the websites for its travel brands, from antarctica to japan. working from everywhere, currently in ${LOCATION.city}.</p>
           <a class="s more" href="/about/">more about me</a>
         </div>
       </div>
@@ -205,15 +205,15 @@ const home = page({
     </section>
 
     <section class="fm-sec" aria-labelledby="svc-h">
-      <div class="g fm-head"><h2 class="fm-lbl" id="svc-h">services:</h2></div>
+      <div class="g fm-head"><h2 class="fm-lbl" id="svc-h">what i do at tourground:</h2></div>
       <ol class="svc">
 ${SERVICES.map((s, k) => `        <li><details><summary><span class="svc-n">${pad(k + 1)}.</span><span class="svc-t">${s.t}</span><span class="svc-i" aria-hidden="true">↘</span></summary><ul class="svc-d">${s.d.map((x) => `<li>${x}</li>`).join('')}</ul></details></li>`).join('\n')}
       </ol>
-      <div class="g fm-row fm-note"><p class="fm-text fade">no hand-offs: the same person draws it, builds it and keeps it running, so the details survive from the first sketch to the live site.</p></div>
+      <div class="g fm-row fm-note"><p class="fm-text fade">every project here is a tourground travel brand. i take each one from the first layout to the live site, then keep it fast and up to date.</p></div>
     </section>
 
     <section class="fm-sec" aria-labelledby="proj-h">
-      <div class="g fm-head"><h2 class="fm-lbl" id="proj-h">projects:</h2></div>
+      <div class="g fm-head"><h2 class="fm-lbl" id="proj-h">tourground brands:</h2></div>
       <div class="marquee"><div class="mq-track">${[0, 1].map((r) => `<ul class="mq-set"${r ? ' aria-hidden="true"' : ''}>${works.map((w) => `<li><a href="/work/${w.slug}/"${r ? ' tabindex="-1"' : ''}>${w.name}</a></li>`).join('')}</ul>`).join('')}</div></div>
     </section>`,
 });
@@ -310,31 +310,38 @@ ${galleryItems}
 });
 
 /* ---------------- about ---------------- */
+const shots = [
+  ['session', 'late work session with the laptops out', 1200, 800, 'wide'],
+  ['setup', 'my desk: code on one screen, a tourground page on the other', 800, 800, ''],
+  ['room', 'a conference room, mid-meeting', 1200, 675, 'wide'],
+  ['couch', 'working from the sofa', 800, 800, ''],
+  ['team', 'three of us, between sessions', 800, 800, ''],
+]
 const about = page({
-  path: '/about/', current: 'about', title: 'about — benjamin',
-  description: `benjamin is a designer and developer working from everywhere, currently in ${LOCATION.city}. working at tourground.`,
-  body: `    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">designer &amp; developer<br />${HERE} ${FLAG}</p>
-      <h1 class="c3w big reveal" id="h">${lines(['hi, i’m', { t: 'benjamin.', c: 'ind' }])}</h1>
-    </section>
-    <div class="g about-body">
-      <p class="fade">i design and build websites end to end: the layout and type, the code, and getting it live and fast.</p>
-      <p class="fade">i work from everywhere, right now from ${LOCATION.city}, and i’m working at tourground, where i design, build and deploy travel websites, like the ones in <a class="u" href="/work/">my work</a>.</p>
-      <p class="fade">i care about the quiet details: pages that load quickly, read well on a phone, and work for everyone.</p>
-    </div>
-    <section class="g caps" aria-labelledby="caps-h">
-      <h2 class="s muted" id="caps-h">what i do</h2>
-      <div class="col fade"><h3>design</h3><ul class="s"><li>website design</li><li>layout &amp; typography</li><li>responsive design</li></ul></div>
-      <div class="col fade"><h3>build</h3><ul class="s"><li>html, css, javascript</li><li>fast static sites</li><li>accessibility</li></ul></div>
-      <div class="col fade"><h3>ship</h3><ul class="s"><li>deployment &amp; hosting</li><li>seo basics</li><li>keeping sites running</li></ul></div>
-    </section>
-    <section class="g facts" aria-label="at a glance">
-      <dl class="s fade">
-        <div><dt>currently in</dt><dd>${LOCATION.city} / ${LOCATION.country}${NEXT_TEXT}</dd></div>
-        <div><dt>working at</dt><dd><a class="u" href="https://tourground.com">tourground</a></dd></div>
-        <div><dt>elsewhere</dt><dd><a class="u" href="${GITHUB}">github</a></dd></div>
-      </dl>
-    </section>`,
+  path: '/about/', current: 'about', title: 'about — benjamin at tourground',
+  description: `benjamin is a designer and developer in travel tech, working full time at tourground on the websites for its travel brands.`,
+  body: `    <div class="tg">
+      <div class="tg-side">
+        <h1 class="tg-title">tourground</h1>
+        <dl class="tg-dl">
+          <div><dt>role</dt><dd>designer<span>developer</span></dd></div>
+          <div><dt>work</dt><dd>full time</dd></div>
+          <div><dt>field</dt><dd>travel tech<span>destination brands</span></dd></div>
+          <div><dt>location</dt><dd>remote<span>currently ${LOCATION.city} / ${LOCATION.country}</span></dd></div>
+          <div><dt>about</dt><dd><p>i design, build and ship the websites for tourground’s travel brands. each brand is one destination, planned by specialists, and each site is mine from the first layout to the live page: the design, the front end, the hosting and the speed.</p></dd></div>
+          <div><dt>highlights</dt><dd>${works.length} brand sites live<span class="ink">from antarctica to japan</span></dd></div>
+        </dl>
+        <div class="tg-xp">
+          <h2 class="tg-h">brands</h2>
+          <ol>
+${works.map((w, k) => `            <li><a href="/work/${w.slug}/"><span class="n">${pad(k + 1)}</span><span class="t">${w.name.toLowerCase()}</span><span class="y">${w.country.toLowerCase()}</span></a></li>`).join('\n')}
+          </ol>
+        </div>
+      </div>
+      <div class="tg-pics">
+${shots.map(([f, alt, wd, ht, cls]) => `        <figure class="${cls}"><img src="/assets/about/${f}.webp" alt="${alt}" width="${wd}" height="${ht}" loading="lazy" decoding="async" /></figure>`).join('\n').replace('<figure class="">', '<figure class="">').replace(/(<figure class="wide">[\s\S]*?<\/figure>)/, '$1\n        <figure class="logo-tile" aria-hidden="true"><span>tourground</span></figure>')}
+      </div>
+    </div>`,
 });
 
 /* ---------------- contact ---------------- */
@@ -342,7 +349,7 @@ const contact = page({
   path: '/contact/', current: 'contact', title: 'contact — benjamin',
   description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
   body: `    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">available for<br />selected projects</p>
+      <p class="s count muted">travel tech<br />at tourground</p>
       <h1 class="c3w big reveal" id="h">${lines(['say', { t: 'hello.', c: 'ind' }])}</h1>
     </section>
 ${clockBlock(['it’s always', 'a good time', 'to start', 'something.'])}
