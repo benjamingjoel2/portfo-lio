@@ -37,19 +37,13 @@ const V = {
   works: ver(WORKS_JS),
 };
 const EMAIL = 'hello@benjamin.design';
-const SERVICES = [
-  { t: 'brand websites', d: ['one site per destination', 'layout & typography', 'responsive design'] },
-  { t: 'front-end development', d: ['html, css, javascript', 'fast static pages', 'accessibility'] },
-  { t: 'shipping', d: ['deployment & hosting', 'seo basics', 'performance'] },
-  { t: 'keeping them running', d: ['updates & fixes', 'new pages', 'new brands'] },
-]
 const GITHUB = 'https://github.com/benjamingjoel2';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
 const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' ? ' ' + t.c : ''}"><span>${typeof t === 'object' ? t.t : t}</span></span>`).join('');
 
-const NAV = [['work', '/work/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
-const PAGES = [['home', '/'], ...NAV];
+const NAV = [['work', '/work/'], ['tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
+const PAGES =[['home', '/'], ...NAV];
 
 function page({ path: p, title, description, body, current = '', jsonld = '', dark = false }) {
   return `<!doctype html>
@@ -179,10 +173,6 @@ const home = page({
           <a class="s more" href="/about/">more about me</a>
         </div>
       </div>
-      <div class="g fm-row">
-        <p class="fm-lbl">elsewhere:</p>
-        <ul class="fm-links fade"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
-      </div>
     </section>
 
     <div class="work-head"><h2 id="work-h">selected work</h2><p class="s">${pad(works.length)} projects</p></div>
@@ -202,19 +192,6 @@ const home = page({
         <span class="s hint muted" aria-hidden="true">scroll</span>
         <a class="s live" href="/work/">all work</a>
       </div>
-    </section>
-
-    <section class="fm-sec" aria-labelledby="svc-h">
-      <div class="g fm-head"><h2 class="fm-lbl" id="svc-h">what i do at tourground:</h2></div>
-      <ol class="svc">
-${SERVICES.map((s, k) => `        <li><details><summary><span class="svc-n">${pad(k + 1)}.</span><span class="svc-t">${s.t}</span><span class="svc-i" aria-hidden="true">↘</span></summary><ul class="svc-d">${s.d.map((x) => `<li>${x}</li>`).join('')}</ul></details></li>`).join('\n')}
-      </ol>
-      <div class="g fm-row fm-note"><p class="fm-text fade">every project here is a tourground travel brand. i take each one from the first layout to the live site, then keep it fast and up to date.</p></div>
-    </section>
-
-    <section class="fm-sec" aria-labelledby="proj-h">
-      <div class="g fm-head"><h2 class="fm-lbl" id="proj-h">tourground brands:</h2></div>
-      <div class="marquee"><div class="mq-track">${[0, 1].map((r) => `<ul class="mq-set"${r ? ' aria-hidden="true"' : ''}>${works.map((w) => `<li><a href="/work/${w.slug}/"${r ? ' tabindex="-1"' : ''}>${w.name}</a></li>`).join('')}</ul>`).join('')}</div></div>
     </section>`,
 });
 
@@ -317,8 +294,8 @@ const shots = [
   ['couch', 'working from the sofa', 800, 800, ''],
   ['team', 'three of us, between sessions', 800, 800, ''],
 ]
-const about = page({
-  path: '/about/', current: 'about', title: 'about — benjamin at tourground',
+const tgPage = page({
+  path: '/tourground/', current: 'tourground', title: 'tourground — benjamin',
   description: `benjamin is a designer and developer in travel tech, working full time at tourground on the websites for its travel brands.`,
   body: `    <div class="tg">
       <div class="tg-side">
@@ -344,6 +321,68 @@ ${shots.map(([f, alt, wd, ht, cls]) => `        <figure class="${cls}"><img src=
     </div>`,
 });
 
+/* ---------------- about (main) ---------------- */
+const mosaic = [
+  ['/assets/me/03.webp', 'a late work session, laptops out', 'big'],
+  ['/assets/me/07.webp', 'three of us at the bar', ''],
+  ['/assets/me/05.webp', 'dressed up for an evening out', 'tall'],
+  ['/assets/me/04.webp', 'clouds from a plane window', ''],
+  ['/assets/me/09.webp', 'resting between sessions', ''],
+  ['/assets/me/12.webp', 'two laptops on the sofa', ''],
+  ['/assets/me/08.webp', 'mirror selfie after tennis', ''],
+];
+const about = page({
+  path: '/about/', current: 'about', title: 'about — benjamin',
+  description: `benjamin is a designer and developer in travel tech, full time at tourground. working from everywhere, currently in ${LOCATION.city}.`,
+  body: `    <section class="ab-top">
+      <div class="ab-l">
+        <h1 class="ab-title">pixels, places<br />&amp; travel tech</h1>
+        <figure class="ab-big"><img src="/assets/about/table.webp" alt="lunch outdoors with friends, under the trees" width="1200" height="900" decoding="async" /></figure>
+      </div>
+      <div class="ab-r">
+        <figure class="ab-small"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /></figure>
+        <div class="ab-copy">
+          <p>hi, i’m benjamin. i’m a designer and developer in travel tech, working full time at <a class="u" href="/tourground/">tourground</a>, where i design, build and ship the websites for its travel brands.</p>
+          <p>the part i like most sits right between design and code: drawing a layout, building it properly, then getting it live, fast and easy to read on a phone.</p>
+          <p>i work from everywhere. right now that’s ${LOCATION.city}, ${LOCATION.country}${NEXT ? `, and i’m ${NEXT.text}` : ''}.</p>
+          <p>and travel. that gets its own section.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ab-sec" aria-labelledby="bt-h">
+      <h2 class="ab-h" id="bt-h">building for travel</h2>
+      <div class="ab-cols">
+        <div><p>every site starts with one destination and the specialists who plan it. my job is to make that place feel worth the trip before anyone reads a word.</p><p>so the photos lead, the type stays quiet, and the trip pages read like a conversation with the planner.</p></div>
+        <div><p>travellers browse on phones, often on slow connections, often far from home. the pages are static, light and quick, and they work for everyone.</p><p>i write the front end by hand and ship it myself, so nothing gets lost between the design and the live site.</p></div>
+        <div><p>so far that’s ${works.length} brands: antarctica, australia, italy, iceland, the uae, japan and benin.</p><p>each one is in <a class="u" href="/work/">my work</a>.</p></div>
+        <a class="ab-box" href="/tourground/">my work at tourground →</a>
+      </div>
+    </section>
+
+    <section class="ab-mosaic" aria-label="photos">
+${mosaic.map(([src, alt, cls]) => `      <figure class="${cls}"><img src="${src}" alt="${alt}" width="640" height="800" loading="lazy" decoding="async" /></figure>`).join('\n')}
+    </section>
+
+    <section class="ab-band" aria-labelledby="band-h">
+      <img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />
+      <p class="ab-band-lbl">travel › places</p>
+      <h2 class="ab-band-t" id="band-h">i build websites for trips to antarctica, iceland and japan, usually from a laptop in ${LOCATION.city}.${NEXT ? ' next stop: ' + NEXT.text.replace('packing for ', '') + '.' : ''}</h2>
+    </section>
+
+    <section class="ab-places" aria-labelledby="pl-h" data-places>
+      <h2 class="ab-lbl" id="pl-h">explore by destination</h2>
+      <div class="ab-places-in">
+        <ol class="pl-list">
+${works.map((w, k) => `          <li><a href="/work/${w.slug}/" data-place="${k}"${k === 0 ? ' class="on"' : ''}>${w.country.toLowerCase() === 'united arab emirates' ? 'the uae' : w.country.toLowerCase()}<sup>${w.name.toLowerCase()}</sup></a></li>`).join('\n')}
+        </ol>
+        <div class="pl-pics">
+${works.map((w, k) => `          <div class="pl-set${k === 0 ? ' on' : ''}" data-set="${k}" aria-hidden="true"><img src="/assets/work/${w.slug}.webp" alt="" width="960" height="600" loading="lazy" /><img src="/assets/work/${w.slug}-m1.webp" alt="" width="540" height="919" loading="lazy" /><img src="/assets/work/${w.slug}-m2.webp" alt="" width="540" height="919" loading="lazy" /><img src="/assets/work/${w.slug}-section.webp" alt="" width="1200" height="750" loading="lazy" /></div>`).join('\n')}
+        </div>
+      </div>
+    </section>`,
+});
+
 /* ---------------- contact ---------------- */
 const contact = page({
   path: '/contact/', current: 'contact', title: 'contact — benjamin',
@@ -366,7 +405,7 @@ const notFound = page({
     <div class="g about-body"><p>try the <a class="u" href="/">home page</a> or <a class="u" href="/work/">my work</a>.</p></div>`,
 });
 
-const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['gallery/index.html', gallery], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound]];
+const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['gallery/index.html', gallery], ['tourground/index.html', tgPage], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound]];
 for (const [f, html] of out) {
   fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true });
   fs.writeFileSync(path.join(root, f), html);

@@ -222,3 +222,12 @@
     });
   }
 })();
+
+/* about: destination list swaps the image set on hover/focus */
+(() => {
+  const root = document.querySelector('[data-places]');
+  if (!root) return;
+  const links = root.querySelectorAll('[data-place]'), sets = root.querySelectorAll('[data-set]');
+  const show = (i) => { links.forEach((a) => a.classList.toggle('on', a.dataset.place === i)); sets.forEach((s) => s.classList.toggle('on', s.dataset.set === i)); };
+  links.forEach((a) => { a.addEventListener('mouseenter', () => show(a.dataset.place)); a.addEventListener('focus', () => show(a.dataset.place)); });
+})();
