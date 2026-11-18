@@ -105,10 +105,7 @@ ${body}
     </div>
     <div class="g ftr-cols s">
       <div><h2>pages</h2><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
-      <div><h2>elsewhere</h2><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li></ul></div>
-      <div><h2>right now</h2><ul><li>${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span></li>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}</ul></div>
-      <div><h2>working at</h2><ul><li><a href="https://tourground.com">tourground</a></li></ul></div>
-    </div>
+      <div><h2>elsewhere</h2><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li></ul></div>    </div>
     <div class="g ftr-base s">
       <span>© ${new Date().getFullYear()} benjamingjoel</span>
       <span class="muted">designed &amp; built by benjamin</span>
@@ -194,19 +191,13 @@ const home = page({
       </div>
     </section>
 
-    <section class="g section statement" aria-labelledby="about-h">
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="sr" id="about-h">about</h2>
-      <div class="c2 big reveal" aria-hidden="true">${lines(['design,'])}</div>
-      <div class="c4 big reveal" aria-hidden="true">${lines(['build,'])}</div>
-      <div class="c3w big reveal" aria-hidden="true" style="grid-row:2">${lines(['and ship it', 'well.'])}</div>
-      <div class="c4 fade" style="grid-row:3">
-        <p class="s intro">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at tourground.</p>
+    <section class="g about-teaser" aria-labelledby="about-h">
+      <h2 class="s muted at-lbl" id="about-h">about</h2>
+      <div class="at-body fade">
+        <p class="at-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a href="https://tourground.com">tourground</a>.</p>
         <a class="s more" href="/about/">more about me</a>
       </div>
-    </section>
-
-${clockBlock(['good work', 'starts with', 'a simple', 'hello.'])}`,
+    </section>`,
 });
 
 /* ---------------- work index ---------------- */

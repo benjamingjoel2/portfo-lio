@@ -468,3 +468,12 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 @media (max-width: 767px) { .chip.here-chip { display: none; } }
 /* bricolage descenders sit lower: give them room so j and g stay on screen */
 .name { line-height: 1.16; }
+
+/* ---------- home: about teaser ---------- */
+.about-teaser { padding-top: 24vh; align-items: start; row-gap: 16px; }
+.at-lbl { grid-column: 1 / span 2; margin: 0; padding-top: .5em; }
+.at-body { grid-column: 3 / span 6; }
+.at-text { margin: 0; max-width: 22em; font-size: clamp(22px, 2.7vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 500; }
+.at-text a { text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .12em; }
+.about-teaser .more { margin-top: 26px; }
+@media (max-width: 767px) { .at-lbl, .at-body { grid-column: 1 / -1; } .at-text { font-size: 24px; } }
