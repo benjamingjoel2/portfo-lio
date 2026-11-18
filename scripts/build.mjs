@@ -316,62 +316,66 @@ ${shots.map(([f, alt, wd, ht, cls]) => `        <figure class="${cls}"><img src=
 });
 
 /* ---------------- about (main) ---------------- */
-const mosaic = [
-  ['/assets/me/03.webp', 'a late work session, laptops out', 'big'],
-  ['/assets/me/07.webp', 'three of us at the bar', ''],
-  ['/assets/me/05.webp', 'dressed up for an evening out', 'tall'],
-  ['/assets/me/04.webp', 'clouds from a plane window', ''],
-  ['/assets/me/09.webp', 'resting between sessions', ''],
-  ['/assets/me/12.webp', 'two laptops on the sofa', ''],
-  ['/assets/me/08.webp', 'mirror selfie after tennis', ''],
+const strip = [
+  ['02', 'long lunch outside with friends'], ['03', 'a late session, laptops out'], ['04', 'clouds from a plane window'],
+  ['07', 'three of us at the bar'], ['05', 'dressed up for a night out'], ['10', 'a meeting in the glass room'],
+  ['12', 'two laptops on the sofa'], ['08', 'mirror selfie after tennis'], ['06', 'photos open on the laptop'],
 ];
 const about = page({
   path: '/about/', current: 'about', title: 'about — benjamin',
-  description: `benjamin is a designer and developer in travel tech, full time at tourground. working from everywhere, currently in ${LOCATION.city}.`,
-  body: `    <section class="ab-top">
-      <div class="ab-l">
-        <h1 class="ab-title">pixels, places<br />&amp; travel tech</h1>
-        <figure class="ab-big"><img src="/assets/about/table.webp" alt="lunch outdoors with friends, under the trees" width="1200" height="900" decoding="async" /></figure>
+  description: `benjamin designs and builds websites for travel brands at tourground. working from everywhere, currently in ${LOCATION.city}.`,
+  body: `    <section class="ap-hero g" aria-labelledby="h">
+      <p class="fm-lbl ap-lbl">about:</p>
+      <h1 class="ap-title" id="h">i make far-off places look worth the flight.</h1>
+      <figure class="ap-card"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /><figcaption class="s">benjamin, ${LOCATION.city}</figcaption></figure>
+      <dl class="ap-kv s">
+        <div><dt>role</dt><dd>designer &amp; developer</dd></div>
+        <div><dt>day job</dt><dd><a class="u" href="/tourground/">tourground</a></dd></div>
+        <div><dt>based</dt><dd>everywhere, now ${LOCATION.city}</dd></div>
+        ${NEXT ? `<div><dt>next</dt><dd>${NEXT.text.replace('packing for ', '')} ${flagImg(NEXT.countryCode)}</dd></div>` : ''}
+      </dl>
+    </section>
+
+    <section class="fm-sec ap-rows">
+      <div class="g fm-row">
+        <h2 class="fm-lbl">the short version:</h2>
+        <p class="fm-text fade">i’m benjamin. i design websites and then build them myself, so the idea in the sketch is usually still there on the live site. most days that’s for tourground, where every brand is one destination: antarctica, iceland, japan, benin and a few more.</p>
       </div>
-      <div class="ab-r">
-        <figure class="ab-small"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /></figure>
-        <div class="ab-copy">
-          <p>hi, i’m benjamin. i’m a designer and developer in travel tech, working full time at <a class="u" href="/tourground/">tourground</a>, where i design, build and ship the websites for its travel brands.</p>
-          <p>the part i like most sits right between design and code: drawing a layout, building it properly, then getting it live, fast and easy to read on a phone.</p>
-          <p>i work from everywhere. right now that’s ${LOCATION.city}, ${LOCATION.country}${NEXT ? `, and i’m ${NEXT.text}` : ''}.</p>
-          <p>and travel. that gets its own section.</p>
-        </div>
+      <div class="g fm-row">
+        <h2 class="fm-lbl">how i work:</h2>
+        <p class="fm-text fade">paper first, then into the browser early. i keep things plain on purpose: static pages, quick loads, type that reads well on a phone. if a page drags on a bad connection, it isn’t finished yet.</p>
+      </div>
+      <div class="g fm-row">
+        <h2 class="fm-lbl">off the clock:</h2>
+        <p class="fm-text fade">tennis when i can find a court, long lunches with friends, and more photos out of plane windows than anyone needs.</p>
       </div>
     </section>
 
-    <section class="ab-sec" aria-labelledby="bt-h">
-      <h2 class="ab-h" id="bt-h">building for travel</h2>
-      <div class="ab-cols">
-        <div><p>every site starts with one destination and the specialists who plan it. my job is to make that place feel worth the trip before anyone reads a word.</p><p>so the photos lead, the type stays quiet, and the trip pages read like a conversation with the planner.</p></div>
-        <div><p>travellers browse on phones, often on slow connections, often far from home. the pages are static, light and quick, and they work for everyone.</p><p>i write the front end by hand and ship it myself, so nothing gets lost between the design and the live site.</p></div>
-        <div><p>so far that’s ${works.length} brands: antarctica, australia, italy, iceland, the uae, japan and benin.</p><p>each one is in <a class="u" href="/work/">my work</a>.</p></div>
-        <a class="ab-box" href="/tourground/">my work at tourground →</a>
-      </div>
+    <section class="ap-strip" aria-labelledby="strip-h">
+      <div class="g ap-strip-head"><h2 class="fm-lbl" id="strip-h">camera roll:</h2><p class="s muted">drag or scroll sideways</p></div>
+      <ul class="ap-reel" tabindex="0" aria-label="photos, scroll sideways">
+${strip.map(([n, alt], k) => `        <li><figure><img src="/assets/me/${n}.webp" alt="${alt}" width="640" height="800" loading="lazy" decoding="async" /><figcaption class="s"><span>${pad(k + 1)}</span>${alt}</figcaption></figure></li>`).join('\n')}
+      </ul>
     </section>
 
-    <section class="ab-mosaic" aria-label="photos">
-${mosaic.map(([src, alt, cls]) => `      <figure class="${cls}"><img src="${src}" alt="${alt}" width="640" height="800" loading="lazy" decoding="async" /></figure>`).join('\n')}
-    </section>
-
-    <section class="ab-band" aria-labelledby="band-h">
-      <img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />
-      <p class="ab-band-lbl">travel › places</p>
-      <h2 class="ab-band-t" id="band-h">i build websites for trips to antarctica, iceland and japan, usually from a laptop in ${LOCATION.city}.${NEXT ? ' next stop: ' + NEXT.text.replace('packing for ', '') + '.' : ''}</h2>
-    </section>
-
-    <section class="ab-places" aria-labelledby="pl-h" data-places>
-      <h2 class="ab-lbl" id="pl-h">explore by destination</h2>
+    <section class="ap-dark" aria-labelledby="pl-h" data-places>
+      <div class="ap-dark-head"><h2 id="pl-h">places i’ve built for</h2><p class="s">${pad(works.length)} destinations</p></div>
       <div class="ab-places-in">
         <ol class="pl-list">
 ${works.map((w, k) => `          <li><a href="/work/${w.slug}/" data-place="${k}"${k === 0 ? ' class="on"' : ''}>${w.country.toLowerCase() === 'united arab emirates' ? 'the uae' : w.country.toLowerCase()}<sup>${w.name.toLowerCase()}</sup></a></li>`).join('\n')}
         </ol>
         <div class="pl-pics">
 ${works.map((w, k) => `          <div class="pl-set${k === 0 ? ' on' : ''}" data-set="${k}" aria-hidden="true"><img src="/assets/work/${w.slug}.webp" alt="" width="960" height="600" loading="lazy" /><img src="/assets/work/${w.slug}-m1.webp" alt="" width="540" height="919" loading="lazy" /><img src="/assets/work/${w.slug}-m2.webp" alt="" width="540" height="919" loading="lazy" /><img src="/assets/work/${w.slug}-section.webp" alt="" width="1200" height="750" loading="lazy" /></div>`).join('\n')}
+        </div>
+      </div>
+    </section>
+
+    <section class="fm-sec">
+      <div class="g fm-row ap-now">
+        <h2 class="fm-lbl">right now:</h2>
+        <div class="fade">
+          <p class="ap-clock">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+          <p class="fm-text">${NEXT ? `${NEXT.text}. ` : ''}still building for <a class="u" href="/tourground/">tourground</a>, still happy to talk travel tech: <a class="u" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a>.</p>
         </div>
       </div>
     </section>`,
