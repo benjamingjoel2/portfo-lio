@@ -57,7 +57,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '', da
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/work/${works[0].slug}.webp" />
-  <meta name="theme-color" content="#ececec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
   <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Bricolage Grotesque, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
@@ -172,9 +172,17 @@ const home = page({
       <h1 class="name" id="name" data-fit><span>benjamingjoel</span></h1>
     </section>
 
+    <section class="g about-teaser" aria-labelledby="about-h">
+      <h2 class="s muted at-lbl" id="about-h">about</h2>
+      <div class="at-body fade">
+        <p class="at-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a href="https://tourground.com">tourground</a>.</p>
+        <a class="s more" href="/about/">more about me</a>
+      </div>
+    </section>
+
+    <div class="work-head"><h2 id="work-h">selected work</h2><p class="s">${pad(works.length)} projects</p></div>
     <section class="work" id="work" aria-labelledby="work-h" data-work>
       <div class="stage">
-        <h2 class="sr" id="work-h">selected work</h2>
         <dl class="info" aria-live="polite">
           <div class="pair role"><dt class="s">role</dt><dd class="s">design<br />development<br />deployment</dd></div>
           <div class="pair"><dt class="s">destination</dt><dd class="s" data-f="country">—</dd></div>
@@ -188,14 +196,6 @@ const home = page({
         <div class="sw" aria-hidden="true"><i></i><i></i><i></i></div>
         <span class="s hint muted" aria-hidden="true">scroll</span>
         <a class="s live" href="/work/">all work</a>
-      </div>
-    </section>
-
-    <section class="g about-teaser" aria-labelledby="about-h">
-      <h2 class="s muted at-lbl" id="about-h">about</h2>
-      <div class="at-body fade">
-        <p class="at-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a href="https://tourground.com">tourground</a>.</p>
-        <a class="s more" href="/about/">more about me</a>
       </div>
     </section>`,
 });

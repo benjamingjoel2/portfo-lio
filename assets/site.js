@@ -116,7 +116,7 @@
       const t = current();
       $$('[data-mode]', toggle).forEach((el) => el.classList.toggle('on', el.dataset.mode === t));
       toggle.setAttribute('aria-pressed', String(t === 'dark'));
-      $$('meta[name="theme-color"]').forEach((m) => { m.content = t === 'dark' ? '#121212' : '#ececec'; });
+      $$('meta[name="theme-color"]').forEach((m) => { m.content = t === 'dark' ? '#121212' : '#ffffff'; });
     };
     toggle.addEventListener('click', () => {
       const next = current() === 'dark' ? 'light' : 'dark';
