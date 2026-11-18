@@ -610,3 +610,18 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 :root[data-theme='dark'] .work-head, :root[data-theme='dark'] .work { --band: #1c1c1c; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .work-head, :root:not([data-theme='light']) .work { --band: #1c1c1c; } }
 .work .wcard { box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+
+/* selected work: inset frame with room around and inside it */
+.work-head, .work { --frame-gap: 24px; --ml: 32px; --m: 32px; --col: calc((100vw - var(--frame-gap) * 2 - var(--ml) - var(--m)) / var(--cols)); }
+.work-head { margin: 18vh var(--frame-gap) 0; padding: 34px var(--m) 0 var(--ml); border-radius: 22px 22px 0 0; }
+.work { margin: 0 var(--frame-gap) 0; border-radius: 0 0 22px 22px; }
+.work .stage { border-radius: 0 0 22px 22px; }
+.stage .hint { left: var(--ml); bottom: 22px; }
+.stage .live { bottom: 22px; }
+@media (max-width: 767px) {
+  .work-head, .work { --frame-gap: 10px; --ml: 18px; --m: 18px; }
+  .work-head { margin-top: 7vh; padding-top: 22px; border-radius: 16px 16px 0 0; }
+  .work { border-radius: 0 0 16px 16px; }
+  .info { left: var(--ml); right: var(--m); }
+  .counter { left: var(--ml); }
+}
