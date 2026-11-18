@@ -12,39 +12,38 @@
   <meta name="theme-color" content="#ececec" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
   <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Inter Tight, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Bricolage Grotesque, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/site.css?v=2694f96847" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=3284958aa1" />
 </head>
 <body class="no-js" data-tz="Africa/Lagos">
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">menu</button>
-  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="menu">
-    <nav class="g" aria-label="main">
-      <div class="c3w">
-        <a class="big" href="/">index</a>
-        <a class="big ind" href="/work/">work</a>
-        <a class="big" href="/gallery/">gallery</a>
-        <a class="big ind" href="/about/">about</a>
-        <a class="big" href="/contact/" aria-current="page">contact</a>
-      </div>
-    </nav>
-    <div class="meta s"><span>kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> · <span data-time>--:--</span></span><a href="mailto:hello@benjamin.design">hello@benjamin.design</a></div>
-  </div>
   <div class="ghost" aria-hidden="true">
     <div class="col"><span class="big">benjamin</span><span class="s">scroll</span></div>
     <div class="col"><span class="big">builds</span><span class="s">made w/ care in kaduna</span></div>
   </div>
 
-  <header class="bar">
-    <a class="bar-name" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
-    <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span><span><a href="/work/">work</a>,</span><span><a href="/gallery/">gallery</a>,</span><span><a href="/about/">about</a>,</span><span><a href="/contact/" aria-current="page">contact</a></span></nav>
-    <button class="theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span data-mode="light">light</span><span class="sep" aria-hidden="true">/</span><span data-mode="dark">dark</span></button>
-    <p class="bar-time">kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+  <header class="hdr" id="top">
+    <a class="chip logo" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
+    <div class="chip pages" data-pages>
+      <button class="pages-btn" type="button" aria-expanded="false" aria-controls="pages-panel"><span class="cur">contact</span><span class="sr">, open menu</span><span class="ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      <div class="pages-panel" id="pages-panel">
+        <div class="pages-inner">
+          <nav aria-label="main"><ul class="plist"><li><a href="/"><span>home</span></a></li><li><a href="/work/"><span>work</span></a></li><li><a href="/gallery/"><span>gallery</span></a></li><li><a href="/about/"><span>about</span></a></li><li><a href="/contact/" aria-current="page"><span>contact</span><i class="live" aria-hidden="true"></i></a></li></ul></nav>
+          <p class="follow">follow me</p>
+          <ul class="frow"><li><a href="https://github.com/benjamingjoel2">github</a></li><li><a href="mailto:hello@benjamin.design">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <p class="chip here-chip">kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+      <button class="chip theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span class="half" aria-hidden="true"></span></button>
+      <a class="chip cta" href="/contact/">contact me <span aria-hidden="true">›</span></a>
+    </div>
   </header>
 
   <main id="main">
@@ -81,16 +80,25 @@
     </nav>
   </main>
 
-  <footer>
-    <p class="wordmark">benjamin</p>
-    <div class="foot s">
-      <span>’26 © all rights reserved</span>
-      <nav aria-label="footer"><a href="/work/">work</a><a href="/gallery/">gallery</a><a href="/about/">about</a><a href="/contact/">contact</a></nav>
-      <span>designer &amp; developer · kaduna</span>
+  <footer class="ftr">
+    <div class="g ftr-top">
+      <p class="s muted ftr-lead">have a project in mind?</p>
+      <a class="ftr-mail" href="mailto:hello@benjamin.design" data-copy="hello@benjamin.design">hello@benjamin.design</a>
+    </div>
+    <div class="g ftr-cols s">
+      <div><h2>pages</h2><ul><li><a href="/">home</a></li><li><a href="/work/">work</a></li><li><a href="/gallery/">gallery</a></li><li><a href="/about/">about</a></li><li><a href="/contact/">contact</a></li></ul></div>
+      <div><h2>elsewhere</h2><ul><li><a href="https://github.com/benjamingjoel2">github</a></li><li><a href="mailto:hello@benjamin.design">email</a></li></ul></div>
+      <div><h2>right now</h2><ul><li>kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span></li><li>packing for indonesia <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1ee-1f1e9.svg" alt="🇮🇩" width="16" height="16" /></li></ul></div>
+      <div><h2>working at</h2><ul><li><a href="https://tourground.com">tourground</a></li></ul></div>
+    </div>
+    <div class="g ftr-base s">
+      <span>© 2026 benjamingjoel</span>
+      <span class="muted">designed &amp; built by benjamin</span>
+      <a href="#top">back to top ↑</a>
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
   <script src="/assets/works.js?v=e14980572b"></script>
-  <script src="/assets/site.js?v=ca4215bfec" defer></script>
+  <script src="/assets/site.js?v=0ec7e70cad" defer></script>
 </body>
 </html>

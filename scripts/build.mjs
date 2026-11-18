@@ -43,11 +43,11 @@ const pad = (n) => String(n).padStart(2, '0');
 const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' ? ' ' + t.c : ''}"><span>${typeof t === 'object' ? t.t : t}</span></span>`).join('');
 
 const NAV = [['work', '/work/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
+const PAGES = [['home', '/'], ...NAV];
 
-function page({ path: p, title, description, body, current = '', jsonld = '' }) {
-  const menuLinks = [['index', '/'], ...NAV].map(([n, href], i) => `<a class="big${i % 2 ? ' ind' : ''}" href="${href}"${current === n || (n === 'index' && !current) ? ' aria-current="page"' : ''}>${n}</a>`).join('\n        ');
+function page({ path: p, title, description, body, current = '', jsonld = '', dark = false }) {
   return `<!doctype html>
-<html lang="en">
+<html lang="en"${dark ? ' data-force="dark"' : ''}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,47 +60,59 @@ function page({ path: p, title, description, body, current = '', jsonld = '' }) 
   <meta name="theme-color" content="#ececec" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
   <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Inter Tight, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Bricolage Grotesque, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css?v=${V.css}" />${jsonld}
 </head>
 <body class="no-js" data-tz="${LOCATION.timeZone}">
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">menu</button>
-  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="menu">
-    <nav class="g" aria-label="main">
-      <div class="c3w">
-        ${menuLinks}
-      </div>
-    </nav>
-    <div class="meta s"><span>${HERE} ${FLAG} · <span data-time>--:--</span></span><a href="mailto:${EMAIL}">${EMAIL}</a></div>
-  </div>
   <div class="ghost" aria-hidden="true">
     <div class="col"><span class="big">benjamin</span><span class="s">scroll</span></div>
     <div class="col"><span class="big">builds</span><span class="s">made w/ care in ${LOCATION.city}</span></div>
   </div>
 
-  <header class="bar">
-    <a class="bar-name" href="/" aria-label="benjamingjoel, home"${!current ? ' aria-current="page"' : ''}><span class="mark" aria-hidden="true">b</span></a>
-    <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span>${NAV.map(([n, href], i) => `<span><a href="${href}"${current === n ? ' aria-current="page"' : ''}>${n}</a>${i < NAV.length - 1 ? ',' : ''}</span>`).join('')}</nav>
-    <button class="theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span data-mode="light">light</span><span class="sep" aria-hidden="true">/</span><span data-mode="dark">dark</span></button>
-    <p class="bar-time">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+  <header class="hdr" id="top">
+    <a class="chip logo" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
+    <div class="chip pages" data-pages>
+      <button class="pages-btn" type="button" aria-expanded="false" aria-controls="pages-panel"><span class="cur">${current || 'home'}</span><span class="sr">, open menu</span><span class="ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      <div class="pages-panel" id="pages-panel">
+        <div class="pages-inner">
+          <nav aria-label="main"><ul class="plist">${PAGES.map(([n, href]) => `<li><a href="${href}"${(current || 'home') === n ? ' aria-current="page"' : ''}><span>${n}</span>${(current || 'home') === n ? '<i class="live" aria-hidden="true"></i>' : ''}</a></li>`).join('')}</ul></nav>
+          <p class="follow">follow me</p>
+          <ul class="frow"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <p class="chip here-chip">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+      <button class="chip theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span class="half" aria-hidden="true"></span></button>
+      <a class="chip cta" href="/contact/">contact me <span aria-hidden="true">›</span></a>
+    </div>
   </header>
 
   <main id="main">
 ${body}
   </main>
 
-  <footer>
-    <p class="wordmark">benjamin</p>
-    <div class="foot s">
-      <span>’26 © all rights reserved</span>
-      <nav aria-label="footer"><a href="/work/">work</a><a href="/gallery/">gallery</a><a href="/about/">about</a><a href="/contact/">contact</a></nav>
-      <span>designer &amp; developer · ${LOCATION.city}</span>
+  <footer class="ftr">
+    <div class="g ftr-top">
+      <p class="s muted ftr-lead">have a project in mind?</p>
+      <a class="ftr-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a>
+    </div>
+    <div class="g ftr-cols s">
+      <div><h2>pages</h2><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
+      <div><h2>elsewhere</h2><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li></ul></div>
+      <div><h2>right now</h2><ul><li>${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span></li>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}</ul></div>
+      <div><h2>working at</h2><ul><li><a href="https://tourground.com">tourground</a></li></ul></div>
+    </div>
+    <div class="g ftr-base s">
+      <span>© ${new Date().getFullYear()} benjamingjoel</span>
+      <span class="muted">designed &amp; built by benjamin</span>
+      <a href="#top">back to top ↑</a>
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
@@ -194,9 +206,7 @@ const home = page({
       </div>
     </section>
 
-${clockBlock(['good work', 'starts with', 'a simple', 'hello.'])}
-
-${contactBlock}`,
+${clockBlock(['good work', 'starts with', 'a simple', 'hello.'])}`,
 });
 
 /* ---------------- work index ---------------- */
@@ -213,9 +223,7 @@ ${works.map((w, i) => `      <li><a class="wrow" href="/work/${w.slug}/" data-pe
         <span class="s no">${pad(i + 1)}</span><span class="nm">${esc(w.name)}</span><span class="s ct">${esc(w.country)}</span><span class="s ro">design, build</span><span class="s go">view →</span>
       </a></li>`).join('\n')}
     </ol>
-    <div class="peek" aria-hidden="true"><img src="/assets/work/${works[0].slug}.webp" alt="" width="960" height="600" /></div>
-
-${contactBlock}`,
+    <div class="peek" aria-hidden="true"><img src="/assets/work/${works[0].slug}.webp" alt="" width="960" height="600" /></div>`,
 });
 
 /* ---------------- project pages ---------------- */
@@ -266,27 +274,25 @@ const projectPages = works.map((w, i) => {
 });
 
 /* ---------------- gallery ---------------- */
-const views = [['', 'homepage', 960, 600], ['-section', 'section', 1200, 750], ['-m1', 'phone', 540, 919], ['-m2', 'phone, scrolled', 540, 919]];
-const shots = [];
-views.forEach(([suf, label, wd, ht]) => works.forEach((w) => shots.push({ w, suf, label, wd, ht })));
-// interleave so neighbours differ
-const galleryItems = shots.map(({ w, suf, label, wd, ht }, k) => `      <figure data-p="${w.slug}"><button type="button" aria-label="open ${esc(w.name)}, ${label}"><img src="/assets/work/${w.slug}${suf}.webp" alt="${esc(w.name)}, ${label}" width="${wd}" height="${ht}"${k > 5 ? ' loading="lazy"' : ''} /></button><figcaption>${esc(w.name)} · ${label}</figcaption></figure>`).join('\n');
+// my photos and the website screens, mixed so neighbours differ
+const views = [['', 'homepage', 960, 600], ['-m1', 'phone', 540, 919], ['-section', 'section', 1200, 750], ['-m2', 'phone, scrolled', 540, 919]];
+const screens = [];
+views.forEach(([suf, label, wd, ht]) => works.forEach((w) => screens.push({ src: `/assets/work/${w.slug}${suf}.webp`, alt: `${w.name}, ${label}`, wd, ht })));
+const photos = Array.from({ length: 12 }, (_, i) => ({ src: `/assets/me/${pad(i + 1)}.webp`, alt: i === 0 ? 'portrait of benjamin' : `photo ${pad(i + 1)} from benjamin’s camera roll`, wd: 640, ht: 800 }));
+const archive = [];
+for (let i = 0, a = 0, b = 0; a < screens.length || b < photos.length; i++) {
+  if (i % 10 === 0 || i % 10 === 4 || i % 10 === 7) { if (b < photos.length) archive.push(photos[b++]); else archive.push(screens[a++]); }
+  else if (a < screens.length) archive.push(screens[a++]); else archive.push(photos[b++]);
+}
+const galleryItems = archive.map((it, k) => `      <figure><button type="button" aria-label="open ${esc(it.alt)}"><img src="${it.src}" alt="${esc(it.alt)}" width="${it.wd}" height="${it.ht}"${k > 13 ? ' loading="lazy"' : ''} decoding="async" /></button><figcaption class="sr">${esc(it.alt)}</figcaption></figure>`).join('\n');
 const gallery = page({
-  path: '/gallery/', current: 'gallery', title: 'gallery — benjamin',
-  description: 'screens from websites designed and built by benjamin, on desktop and phone.',
-  body: `    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">${shots.length} screens<br />desktop &amp; phone</p>
-      <h1 class="c3w big reveal" id="h">${lines(['gallery'])}</h1>
-    </section>
-    <div class="g filters" role="group" aria-label="filter by project">
-      <div class="full" style="display:flex;flex-wrap:wrap;gap:6px">
-        <button type="button" data-filter="all" aria-pressed="true">all</button>
-${works.map((w) => `        <button type="button" data-filter="${w.slug}" aria-pressed="false">${esc(w.name)}</button>`).join('\n')}
-      </div>
-    </div>
-    <div class="masonry" data-gallery>
+  path: '/gallery/', current: 'gallery', dark: true, title: 'gallery — benjamin',
+  description: 'photos and screens from websites designed and built by benjamin.',
+  body: `    <h1 class="sr">gallery</h1>
+    <div class="archive" data-gallery>
 ${galleryItems}
     </div>
+    <p class="archive-note s">${archive.length} images · hover for colour, click to open</p>
     <div class="lightbox" role="dialog" aria-modal="true" aria-label="image viewer">
       <button class="close" type="button">close</button>
       <img src="" alt="" />
@@ -319,9 +325,7 @@ const about = page({
         <div><dt>working at</dt><dd><a class="u" href="https://tourground.com">tourground</a></dd></div>
         <div><dt>elsewhere</dt><dd><a class="u" href="${GITHUB}">github</a></dd></div>
       </dl>
-    </section>
-
-${contactBlock}`,
+    </section>`,
 });
 
 /* ---------------- contact ---------------- */

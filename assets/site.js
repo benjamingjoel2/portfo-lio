@@ -77,6 +77,11 @@
       const cs = getComputedStyle(box);
       const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       fit.style.fontSize = (100 * avail / fit.scrollWidth) + 'px';
+      // refine: letter widths are not perfectly proportional to size, so settle in a couple of passes
+      for (let i = 0; i < 3; i++) {
+        const fs = parseFloat(fit.style.fontSize);
+        fit.style.fontSize = (fs * avail / fit.scrollWidth) + 'px';
+      }
     };
     size();
     if (document.fonts) document.fonts.ready.then(size);
@@ -121,6 +126,23 @@
     });
     sys.addEventListener('change', paint);
     paint();
+  }
+
+  /* page menu chip: expands into a panel with every page */
+  const pages = $('[data-pages]');
+  if (pages) {
+    const pbtn = $('.pages-btn', pages), sr = $('.sr', pbtn);
+    const setOpen = (open, focusBack) => {
+      pages.classList.toggle('open', open);
+      pbtn.setAttribute('aria-expanded', String(open));
+      if (sr) sr.textContent = open ? ', close menu' : ', open menu';
+      if (open) setTimeout(() => { const a = $('.plist a', pages); if (a) a.focus({ preventScroll: true }); }, 60);
+      else if (focusBack) pbtn.focus({ preventScroll: true });
+    };
+    pbtn.addEventListener('click', () => setOpen(!pages.classList.contains('open')));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && pages.classList.contains('open')) setOpen(false, true); });
+    document.addEventListener('click', (e) => { if (pages.classList.contains('open') && !pages.contains(e.target)) setOpen(false); });
+    pages.addEventListener('focusout', (e) => { if (pages.classList.contains('open') && e.relatedTarget && !pages.contains(e.relatedTarget)) setOpen(false); });
   }
 
   /* reveals */

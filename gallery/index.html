@@ -1,99 +1,96 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-force="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>gallery — benjamin</title>
-  <meta name="description" content="screens from websites designed and built by benjamin, on desktop and phone." />
+  <meta name="description" content="photos and screens from websites designed and built by benjamin." />
   <meta property="og:title" content="gallery — benjamin" />
-  <meta property="og:description" content="screens from websites designed and built by benjamin, on desktop and phone." />
+  <meta property="og:description" content="photos and screens from websites designed and built by benjamin." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/assets/work/seventhcontinent.webp" />
   <meta name="theme-color" content="#ececec" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
   <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Inter Tight, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Bricolage Grotesque, Helvetica, Arial, sans-serif' font-weight='700' font-size='46' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/site.css?v=2694f96847" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=3284958aa1" />
 </head>
 <body class="no-js" data-tz="Africa/Lagos">
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">menu</button>
-  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="menu">
-    <nav class="g" aria-label="main">
-      <div class="c3w">
-        <a class="big" href="/">index</a>
-        <a class="big ind" href="/work/">work</a>
-        <a class="big" href="/gallery/" aria-current="page">gallery</a>
-        <a class="big ind" href="/about/">about</a>
-        <a class="big" href="/contact/">contact</a>
-      </div>
-    </nav>
-    <div class="meta s"><span>kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> · <span data-time>--:--</span></span><a href="mailto:hello@benjamin.design">hello@benjamin.design</a></div>
-  </div>
   <div class="ghost" aria-hidden="true">
     <div class="col"><span class="big">benjamin</span><span class="s">scroll</span></div>
     <div class="col"><span class="big">builds</span><span class="s">made w/ care in kaduna</span></div>
   </div>
 
-  <header class="bar">
-    <a class="bar-name" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
-    <nav class="bar-nav" aria-label="sections"><span class="lbl">menu</span><span><a href="/work/">work</a>,</span><span><a href="/gallery/" aria-current="page">gallery</a>,</span><span><a href="/about/">about</a>,</span><span><a href="/contact/">contact</a></span></nav>
-    <button class="theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span data-mode="light">light</span><span class="sep" aria-hidden="true">/</span><span data-mode="dark">dark</span></button>
-    <p class="bar-time">kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+  <header class="hdr" id="top">
+    <a class="chip logo" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
+    <div class="chip pages" data-pages>
+      <button class="pages-btn" type="button" aria-expanded="false" aria-controls="pages-panel"><span class="cur">gallery</span><span class="sr">, open menu</span><span class="ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      <div class="pages-panel" id="pages-panel">
+        <div class="pages-inner">
+          <nav aria-label="main"><ul class="plist"><li><a href="/"><span>home</span></a></li><li><a href="/work/"><span>work</span></a></li><li><a href="/gallery/" aria-current="page"><span>gallery</span><i class="live" aria-hidden="true"></i></a></li><li><a href="/about/"><span>about</span></a></li><li><a href="/contact/"><span>contact</span></a></li></ul></nav>
+          <p class="follow">follow me</p>
+          <ul class="frow"><li><a href="https://github.com/benjamingjoel2">github</a></li><li><a href="mailto:hello@benjamin.design">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <p class="chip here-chip">kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
+      <button class="chip theme" type="button" data-theme-toggle aria-label="switch between light and dark mode"><span class="half" aria-hidden="true"></span></button>
+      <a class="chip cta" href="/contact/">contact me <span aria-hidden="true">›</span></a>
+    </div>
   </header>
 
   <main id="main">
-    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">28 screens<br />desktop &amp; phone</p>
-      <h1 class="c3w big reveal" id="h"><span class="line"><span>gallery</span></span></h1>
-    </section>
-    <div class="g filters" role="group" aria-label="filter by project">
-      <div class="full" style="display:flex;flex-wrap:wrap;gap:6px">
-        <button type="button" data-filter="all" aria-pressed="true">all</button>
-        <button type="button" data-filter="seventhcontinent" aria-pressed="false">Seventh Continent</button>
-        <button type="button" data-filter="outbackandreef" aria-pressed="false">Outback &amp; Reef</button>
-        <button type="button" data-filter="campaniletravel" aria-pressed="false">Campanile Travel</button>
-        <button type="button" data-filter="edgeofnorth" aria-pressed="false">Edge of North</button>
-        <button type="button" data-filter="barjeeljourneys" aria-pressed="false">Barjeel Journeys</button>
-        <button type="button" data-filter="komorebi" aria-pressed="false">Komorebi</button>
-        <button type="button" data-filter="escalevoyages" aria-pressed="false">Escale Voyages</button>
-      </div>
+    <h1 class="sr">gallery</h1>
+    <div class="archive" data-gallery>
+      <figure><button type="button" aria-label="open portrait of benjamin"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /></button><figcaption class="sr">portrait of benjamin</figcaption></figure>
+      <figure><button type="button" aria-label="open Seventh Continent, homepage"><img src="/assets/work/seventhcontinent.webp" alt="Seventh Continent, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Seventh Continent, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open Outback &amp; Reef, homepage"><img src="/assets/work/outbackandreef.webp" alt="Outback &amp; Reef, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Outback &amp; Reef, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open Campanile Travel, homepage"><img src="/assets/work/campaniletravel.webp" alt="Campanile Travel, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Campanile Travel, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 02 from benjamin’s camera roll"><img src="/assets/me/02.webp" alt="photo 02 from benjamin’s camera roll" width="640" height="800" decoding="async" /></button><figcaption class="sr">photo 02 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Edge of North, homepage"><img src="/assets/work/edgeofnorth.webp" alt="Edge of North, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Edge of North, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open Barjeel Journeys, homepage"><img src="/assets/work/barjeeljourneys.webp" alt="Barjeel Journeys, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Barjeel Journeys, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 03 from benjamin’s camera roll"><img src="/assets/me/03.webp" alt="photo 03 from benjamin’s camera roll" width="640" height="800" decoding="async" /></button><figcaption class="sr">photo 03 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Komorebi, homepage"><img src="/assets/work/komorebi.webp" alt="Komorebi, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Komorebi, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open Escale Voyages, homepage"><img src="/assets/work/escalevoyages.webp" alt="Escale Voyages, homepage" width="960" height="600" decoding="async" /></button><figcaption class="sr">Escale Voyages, homepage</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 04 from benjamin’s camera roll"><img src="/assets/me/04.webp" alt="photo 04 from benjamin’s camera roll" width="640" height="800" decoding="async" /></button><figcaption class="sr">photo 04 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Seventh Continent, phone"><img src="/assets/work/seventhcontinent-m1.webp" alt="Seventh Continent, phone" width="540" height="919" decoding="async" /></button><figcaption class="sr">Seventh Continent, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open Outback &amp; Reef, phone"><img src="/assets/work/outbackandreef-m1.webp" alt="Outback &amp; Reef, phone" width="540" height="919" decoding="async" /></button><figcaption class="sr">Outback &amp; Reef, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open Campanile Travel, phone"><img src="/assets/work/campaniletravel-m1.webp" alt="Campanile Travel, phone" width="540" height="919" decoding="async" /></button><figcaption class="sr">Campanile Travel, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 05 from benjamin’s camera roll"><img src="/assets/me/05.webp" alt="photo 05 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 05 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Edge of North, phone"><img src="/assets/work/edgeofnorth-m1.webp" alt="Edge of North, phone" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Edge of North, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open Barjeel Journeys, phone"><img src="/assets/work/barjeeljourneys-m1.webp" alt="Barjeel Journeys, phone" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Barjeel Journeys, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 06 from benjamin’s camera roll"><img src="/assets/me/06.webp" alt="photo 06 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 06 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Komorebi, phone"><img src="/assets/work/komorebi-m1.webp" alt="Komorebi, phone" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Komorebi, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open Escale Voyages, phone"><img src="/assets/work/escalevoyages-m1.webp" alt="Escale Voyages, phone" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Escale Voyages, phone</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 07 from benjamin’s camera roll"><img src="/assets/me/07.webp" alt="photo 07 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 07 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Seventh Continent, section"><img src="/assets/work/seventhcontinent-section.webp" alt="Seventh Continent, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Seventh Continent, section</figcaption></figure>
+      <figure><button type="button" aria-label="open Outback &amp; Reef, section"><img src="/assets/work/outbackandreef-section.webp" alt="Outback &amp; Reef, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Outback &amp; Reef, section</figcaption></figure>
+      <figure><button type="button" aria-label="open Campanile Travel, section"><img src="/assets/work/campaniletravel-section.webp" alt="Campanile Travel, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Campanile Travel, section</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 08 from benjamin’s camera roll"><img src="/assets/me/08.webp" alt="photo 08 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 08 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Edge of North, section"><img src="/assets/work/edgeofnorth-section.webp" alt="Edge of North, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Edge of North, section</figcaption></figure>
+      <figure><button type="button" aria-label="open Barjeel Journeys, section"><img src="/assets/work/barjeeljourneys-section.webp" alt="Barjeel Journeys, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Barjeel Journeys, section</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 09 from benjamin’s camera roll"><img src="/assets/me/09.webp" alt="photo 09 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 09 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Komorebi, section"><img src="/assets/work/komorebi-section.webp" alt="Komorebi, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Komorebi, section</figcaption></figure>
+      <figure><button type="button" aria-label="open Escale Voyages, section"><img src="/assets/work/escalevoyages-section.webp" alt="Escale Voyages, section" width="1200" height="750" loading="lazy" decoding="async" /></button><figcaption class="sr">Escale Voyages, section</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 10 from benjamin’s camera roll"><img src="/assets/me/10.webp" alt="photo 10 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 10 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Seventh Continent, phone, scrolled"><img src="/assets/work/seventhcontinent-m2.webp" alt="Seventh Continent, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Seventh Continent, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open Outback &amp; Reef, phone, scrolled"><img src="/assets/work/outbackandreef-m2.webp" alt="Outback &amp; Reef, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Outback &amp; Reef, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open Campanile Travel, phone, scrolled"><img src="/assets/work/campaniletravel-m2.webp" alt="Campanile Travel, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Campanile Travel, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 11 from benjamin’s camera roll"><img src="/assets/me/11.webp" alt="photo 11 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 11 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Edge of North, phone, scrolled"><img src="/assets/work/edgeofnorth-m2.webp" alt="Edge of North, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Edge of North, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open Barjeel Journeys, phone, scrolled"><img src="/assets/work/barjeeljourneys-m2.webp" alt="Barjeel Journeys, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Barjeel Journeys, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open photo 12 from benjamin’s camera roll"><img src="/assets/me/12.webp" alt="photo 12 from benjamin’s camera roll" width="640" height="800" loading="lazy" decoding="async" /></button><figcaption class="sr">photo 12 from benjamin’s camera roll</figcaption></figure>
+      <figure><button type="button" aria-label="open Komorebi, phone, scrolled"><img src="/assets/work/komorebi-m2.webp" alt="Komorebi, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Komorebi, phone, scrolled</figcaption></figure>
+      <figure><button type="button" aria-label="open Escale Voyages, phone, scrolled"><img src="/assets/work/escalevoyages-m2.webp" alt="Escale Voyages, phone, scrolled" width="540" height="919" loading="lazy" decoding="async" /></button><figcaption class="sr">Escale Voyages, phone, scrolled</figcaption></figure>
     </div>
-    <div class="masonry" data-gallery>
-      <figure data-p="seventhcontinent"><button type="button" aria-label="open Seventh Continent, homepage"><img src="/assets/work/seventhcontinent.webp" alt="Seventh Continent, homepage" width="960" height="600" /></button><figcaption>Seventh Continent · homepage</figcaption></figure>
-      <figure data-p="outbackandreef"><button type="button" aria-label="open Outback &amp; Reef, homepage"><img src="/assets/work/outbackandreef.webp" alt="Outback &amp; Reef, homepage" width="960" height="600" /></button><figcaption>Outback &amp; Reef · homepage</figcaption></figure>
-      <figure data-p="campaniletravel"><button type="button" aria-label="open Campanile Travel, homepage"><img src="/assets/work/campaniletravel.webp" alt="Campanile Travel, homepage" width="960" height="600" /></button><figcaption>Campanile Travel · homepage</figcaption></figure>
-      <figure data-p="edgeofnorth"><button type="button" aria-label="open Edge of North, homepage"><img src="/assets/work/edgeofnorth.webp" alt="Edge of North, homepage" width="960" height="600" /></button><figcaption>Edge of North · homepage</figcaption></figure>
-      <figure data-p="barjeeljourneys"><button type="button" aria-label="open Barjeel Journeys, homepage"><img src="/assets/work/barjeeljourneys.webp" alt="Barjeel Journeys, homepage" width="960" height="600" /></button><figcaption>Barjeel Journeys · homepage</figcaption></figure>
-      <figure data-p="komorebi"><button type="button" aria-label="open Komorebi, homepage"><img src="/assets/work/komorebi.webp" alt="Komorebi, homepage" width="960" height="600" /></button><figcaption>Komorebi · homepage</figcaption></figure>
-      <figure data-p="escalevoyages"><button type="button" aria-label="open Escale Voyages, homepage"><img src="/assets/work/escalevoyages.webp" alt="Escale Voyages, homepage" width="960" height="600" loading="lazy" /></button><figcaption>Escale Voyages · homepage</figcaption></figure>
-      <figure data-p="seventhcontinent"><button type="button" aria-label="open Seventh Continent, section"><img src="/assets/work/seventhcontinent-section.webp" alt="Seventh Continent, section" width="1200" height="750" loading="lazy" /></button><figcaption>Seventh Continent · section</figcaption></figure>
-      <figure data-p="outbackandreef"><button type="button" aria-label="open Outback &amp; Reef, section"><img src="/assets/work/outbackandreef-section.webp" alt="Outback &amp; Reef, section" width="1200" height="750" loading="lazy" /></button><figcaption>Outback &amp; Reef · section</figcaption></figure>
-      <figure data-p="campaniletravel"><button type="button" aria-label="open Campanile Travel, section"><img src="/assets/work/campaniletravel-section.webp" alt="Campanile Travel, section" width="1200" height="750" loading="lazy" /></button><figcaption>Campanile Travel · section</figcaption></figure>
-      <figure data-p="edgeofnorth"><button type="button" aria-label="open Edge of North, section"><img src="/assets/work/edgeofnorth-section.webp" alt="Edge of North, section" width="1200" height="750" loading="lazy" /></button><figcaption>Edge of North · section</figcaption></figure>
-      <figure data-p="barjeeljourneys"><button type="button" aria-label="open Barjeel Journeys, section"><img src="/assets/work/barjeeljourneys-section.webp" alt="Barjeel Journeys, section" width="1200" height="750" loading="lazy" /></button><figcaption>Barjeel Journeys · section</figcaption></figure>
-      <figure data-p="komorebi"><button type="button" aria-label="open Komorebi, section"><img src="/assets/work/komorebi-section.webp" alt="Komorebi, section" width="1200" height="750" loading="lazy" /></button><figcaption>Komorebi · section</figcaption></figure>
-      <figure data-p="escalevoyages"><button type="button" aria-label="open Escale Voyages, section"><img src="/assets/work/escalevoyages-section.webp" alt="Escale Voyages, section" width="1200" height="750" loading="lazy" /></button><figcaption>Escale Voyages · section</figcaption></figure>
-      <figure data-p="seventhcontinent"><button type="button" aria-label="open Seventh Continent, phone"><img src="/assets/work/seventhcontinent-m1.webp" alt="Seventh Continent, phone" width="540" height="919" loading="lazy" /></button><figcaption>Seventh Continent · phone</figcaption></figure>
-      <figure data-p="outbackandreef"><button type="button" aria-label="open Outback &amp; Reef, phone"><img src="/assets/work/outbackandreef-m1.webp" alt="Outback &amp; Reef, phone" width="540" height="919" loading="lazy" /></button><figcaption>Outback &amp; Reef · phone</figcaption></figure>
-      <figure data-p="campaniletravel"><button type="button" aria-label="open Campanile Travel, phone"><img src="/assets/work/campaniletravel-m1.webp" alt="Campanile Travel, phone" width="540" height="919" loading="lazy" /></button><figcaption>Campanile Travel · phone</figcaption></figure>
-      <figure data-p="edgeofnorth"><button type="button" aria-label="open Edge of North, phone"><img src="/assets/work/edgeofnorth-m1.webp" alt="Edge of North, phone" width="540" height="919" loading="lazy" /></button><figcaption>Edge of North · phone</figcaption></figure>
-      <figure data-p="barjeeljourneys"><button type="button" aria-label="open Barjeel Journeys, phone"><img src="/assets/work/barjeeljourneys-m1.webp" alt="Barjeel Journeys, phone" width="540" height="919" loading="lazy" /></button><figcaption>Barjeel Journeys · phone</figcaption></figure>
-      <figure data-p="komorebi"><button type="button" aria-label="open Komorebi, phone"><img src="/assets/work/komorebi-m1.webp" alt="Komorebi, phone" width="540" height="919" loading="lazy" /></button><figcaption>Komorebi · phone</figcaption></figure>
-      <figure data-p="escalevoyages"><button type="button" aria-label="open Escale Voyages, phone"><img src="/assets/work/escalevoyages-m1.webp" alt="Escale Voyages, phone" width="540" height="919" loading="lazy" /></button><figcaption>Escale Voyages · phone</figcaption></figure>
-      <figure data-p="seventhcontinent"><button type="button" aria-label="open Seventh Continent, phone, scrolled"><img src="/assets/work/seventhcontinent-m2.webp" alt="Seventh Continent, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Seventh Continent · phone, scrolled</figcaption></figure>
-      <figure data-p="outbackandreef"><button type="button" aria-label="open Outback &amp; Reef, phone, scrolled"><img src="/assets/work/outbackandreef-m2.webp" alt="Outback &amp; Reef, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Outback &amp; Reef · phone, scrolled</figcaption></figure>
-      <figure data-p="campaniletravel"><button type="button" aria-label="open Campanile Travel, phone, scrolled"><img src="/assets/work/campaniletravel-m2.webp" alt="Campanile Travel, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Campanile Travel · phone, scrolled</figcaption></figure>
-      <figure data-p="edgeofnorth"><button type="button" aria-label="open Edge of North, phone, scrolled"><img src="/assets/work/edgeofnorth-m2.webp" alt="Edge of North, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Edge of North · phone, scrolled</figcaption></figure>
-      <figure data-p="barjeeljourneys"><button type="button" aria-label="open Barjeel Journeys, phone, scrolled"><img src="/assets/work/barjeeljourneys-m2.webp" alt="Barjeel Journeys, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Barjeel Journeys · phone, scrolled</figcaption></figure>
-      <figure data-p="komorebi"><button type="button" aria-label="open Komorebi, phone, scrolled"><img src="/assets/work/komorebi-m2.webp" alt="Komorebi, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Komorebi · phone, scrolled</figcaption></figure>
-      <figure data-p="escalevoyages"><button type="button" aria-label="open Escale Voyages, phone, scrolled"><img src="/assets/work/escalevoyages-m2.webp" alt="Escale Voyages, phone, scrolled" width="540" height="919" loading="lazy" /></button><figcaption>Escale Voyages · phone, scrolled</figcaption></figure>
-    </div>
+    <p class="archive-note s">40 images · hover for colour, click to open</p>
     <div class="lightbox" role="dialog" aria-modal="true" aria-label="image viewer">
       <button class="close" type="button">close</button>
       <img src="" alt="" />
@@ -101,16 +98,25 @@
     </div>
   </main>
 
-  <footer>
-    <p class="wordmark">benjamin</p>
-    <div class="foot s">
-      <span>’26 © all rights reserved</span>
-      <nav aria-label="footer"><a href="/work/">work</a><a href="/gallery/">gallery</a><a href="/about/">about</a><a href="/contact/">contact</a></nav>
-      <span>designer &amp; developer · kaduna</span>
+  <footer class="ftr">
+    <div class="g ftr-top">
+      <p class="s muted ftr-lead">have a project in mind?</p>
+      <a class="ftr-mail" href="mailto:hello@benjamin.design" data-copy="hello@benjamin.design">hello@benjamin.design</a>
+    </div>
+    <div class="g ftr-cols s">
+      <div><h2>pages</h2><ul><li><a href="/">home</a></li><li><a href="/work/">work</a></li><li><a href="/gallery/">gallery</a></li><li><a href="/about/">about</a></li><li><a href="/contact/">contact</a></li></ul></div>
+      <div><h2>elsewhere</h2><ul><li><a href="https://github.com/benjamingjoel2">github</a></li><li><a href="mailto:hello@benjamin.design">email</a></li></ul></div>
+      <div><h2>right now</h2><ul><li>kaduna, ng <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1f3-1f1ec.svg" alt="🇳🇬" width="16" height="16" /> <span data-h>--</span>:<span data-m>--</span></li><li>packing for indonesia <img class="flag" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f1ee-1f1e9.svg" alt="🇮🇩" width="16" height="16" /></li></ul></div>
+      <div><h2>working at</h2><ul><li><a href="https://tourground.com">tourground</a></li></ul></div>
+    </div>
+    <div class="g ftr-base s">
+      <span>© 2026 benjamingjoel</span>
+      <span class="muted">designed &amp; built by benjamin</span>
+      <a href="#top">back to top ↑</a>
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
   <script src="/assets/works.js?v=e14980572b"></script>
-  <script src="/assets/site.js?v=ca4215bfec" defer></script>
+  <script src="/assets/site.js?v=0ec7e70cad" defer></script>
 </body>
 </html>

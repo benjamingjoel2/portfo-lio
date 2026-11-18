@@ -2,7 +2,7 @@
 
 personal one-page portfolio for benjamin, designer & developer working from everywhere (working at tourground).
 
-Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from two Google fonts (Inter Tight and Belleza).
+Vanilla HTML, CSS and JavaScript in a single `index.html`, no build step and no dependencies apart from one Google font (Bricolage Grotesque).
 
 ## Design
 
@@ -17,7 +17,7 @@ Everything is set in lowercase.
 
 - `/` home: name + reel hero, the pinned selected-work index, a short about, the local clock and contact
 - `/work/` all selected projects (hover shows a preview), and `/work/<project>/` one page per project with desktop, full-scroll and phone screenshots
-- `/gallery/` every screen, filterable by project, with a lightbox
+- `/gallery/` a dark black-and-white archive of photos and screens; colour shows on hover, click opens a lightbox
 - `/about/` and `/contact/`
 
 ## Editing
