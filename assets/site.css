@@ -714,3 +714,4 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
   .note, .note:nth-of-type(1) { grid-column: 1 / -1; }
   .pc-list { grid-template-columns: 1fr 1fr; gap: 16px; }
 }
+.bp-wrap, .pc { overflow-x: clip; }
