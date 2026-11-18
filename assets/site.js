@@ -69,8 +69,7 @@
   onScroll();
 
   /* hero: make the name fill the width exactly */
-  const fit = $('[data-fit]');
-  if (fit) {
+  $$('[data-fit]').forEach((fit) => {
     const box = fit.parentElement;
     const size = () => {
       fit.style.fontSize = '100px';
@@ -86,7 +85,7 @@
     size();
     if (document.fonts) document.fonts.ready.then(size);
     addEventListener('resize', size);
-  }
+  });
 
   /* hero: small image cycles through the projects */
   const now = $('.now');

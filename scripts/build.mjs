@@ -37,6 +37,12 @@ const V = {
   works: ver(WORKS_JS),
 };
 const EMAIL = 'hello@benjamin.design';
+const SERVICES = [
+  { t: 'website design', d: ['layout & typography', 'responsive design', 'design systems'] },
+  { t: 'development', d: ['html, css, javascript', 'fast static sites', 'accessibility'] },
+  { t: 'deployment', d: ['hosting & domains', 'seo basics', 'performance'] },
+  { t: 'ongoing care', d: ['updates & fixes', 'new pages', 'keeping sites running'] },
+];
 const GITHUB = 'https://github.com/benjamingjoel2';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
@@ -70,11 +76,6 @@ function page({ path: p, title, description, body, current = '', jsonld = '', da
   <script>document.body.classList.remove('no-js');</script>
   <a class="sr" href="#main">skip to content</a>
 
-  <div class="ghost" aria-hidden="true">
-    <div class="col"><span class="big">benjamin</span><span class="s">scroll</span></div>
-    <div class="col"><span class="big">builds</span><span class="s">made w/ care in ${LOCATION.city}</span></div>
-  </div>
-
   <header class="hdr" id="top">
     <a class="chip logo" href="/" aria-label="benjamingjoel, home"><span class="mark" aria-hidden="true">b</span></a>
     <div class="chip pages" data-pages>
@@ -100,16 +101,14 @@ ${body}
 
   <footer class="ftr">
     <div class="g ftr-top">
-      <p class="s muted ftr-lead">have a project in mind?</p>
-      <a class="ftr-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a>
+      <p class="ftr-lead">now that you got here, why not get in touch? if you want to work together or you have a good idea, drop me a message. i’d love to hear it.</p>
+      <ul class="ftr-soc s"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
     </div>
-    <div class="g ftr-cols s">
-      <div><h2>pages</h2><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
-      <div><h2>elsewhere</h2><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li></ul></div>    </div>
+    <div class="ftr-name-wrap"><p class="ftr-name" data-fit aria-hidden="true">benjamingjoel</p></div>
     <div class="g ftr-base s">
       <span>© ${new Date().getFullYear()} benjamingjoel</span>
-      <span class="muted">designed &amp; built by benjamin</span>
-      <a href="#top">back to top ↑</a>
+      <a class="ftr-top-link" href="#top">↑ back to top</a>
+      <a class="ftr-m" href="mailto:${EMAIL}" data-copy="${EMAIL}">→ ${EMAIL}</a>
     </div>
   </footer>
   <div class="toast" role="status" aria-live="polite"></div>
@@ -172,11 +171,17 @@ const home = page({
       <h1 class="name" id="name" data-fit><span>benjamingjoel</span></h1>
     </section>
 
-    <section class="g about-teaser" aria-labelledby="about-h">
-      <h2 class="s muted at-lbl" id="about-h">about</h2>
-      <div class="at-body fade">
-        <p class="at-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a href="https://tourground.com">tourground</a>.</p>
-        <a class="s more" href="/about/">more about me</a>
+    <section class="fm-sec" aria-labelledby="about-h">
+      <div class="g fm-row">
+        <h2 class="fm-lbl" id="about-h">about:</h2>
+        <div class="fm-body fade">
+          <p class="fm-text">i’m benjamin, a designer and developer working from everywhere, currently in ${LOCATION.city}. i design and build websites end to end, from the first sketch to a fast, accessible live site. working at <a class="u" href="https://tourground.com">tourground</a>.</p>
+          <a class="s more" href="/about/">more about me</a>
+        </div>
+      </div>
+      <div class="g fm-row">
+        <p class="fm-lbl">elsewhere:</p>
+        <ul class="fm-links fade"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
       </div>
     </section>
 
@@ -197,6 +202,19 @@ const home = page({
         <span class="s hint muted" aria-hidden="true">scroll</span>
         <a class="s live" href="/work/">all work</a>
       </div>
+    </section>
+
+    <section class="fm-sec" aria-labelledby="svc-h">
+      <div class="g fm-head"><h2 class="fm-lbl" id="svc-h">services:</h2></div>
+      <ol class="svc">
+${SERVICES.map((s, k) => `        <li><details><summary><span class="svc-n">${pad(k + 1)}.</span><span class="svc-t">${s.t}</span><span class="svc-i" aria-hidden="true">↘</span></summary><ul class="svc-d">${s.d.map((x) => `<li>${x}</li>`).join('')}</ul></details></li>`).join('\n')}
+      </ol>
+      <div class="g fm-row fm-note"><p class="fm-text fade">no hand-offs: the same person draws it, builds it and keeps it running, so the details survive from the first sketch to the live site.</p></div>
+    </section>
+
+    <section class="fm-sec" aria-labelledby="proj-h">
+      <div class="g fm-head"><h2 class="fm-lbl" id="proj-h">projects:</h2></div>
+      <div class="marquee"><div class="mq-track">${[0, 1].map((r) => `<ul class="mq-set"${r ? ' aria-hidden="true"' : ''}>${works.map((w) => `<li><a href="/work/${w.slug}/"${r ? ' tabindex="-1"' : ''}>${w.name}</a></li>`).join('')}</ul>`).join('')}</div></div>
     </section>`,
 });
 
