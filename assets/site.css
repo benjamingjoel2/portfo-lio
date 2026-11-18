@@ -626,3 +626,4 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
   .counter { left: var(--ml); }
 }
 .tg { padding-bottom: 20px; }
+.fm-more { margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px 28px; } .fm-more .more { margin: 0; }

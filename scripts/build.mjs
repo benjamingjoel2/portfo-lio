@@ -42,7 +42,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const pad = (n) => String(n).padStart(2, '0');
 const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' ? ' ' + t.c : ''}"><span>${typeof t === 'object' ? t.t : t}</span></span>`).join('');
 
-const NAV = [['work', '/work/'], ['tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
+const NAV = [['work', '/work/'], ['at tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
 const PAGES =[['home', '/'], ...NAV];
 
 function page({ path: p, title, description, body, current = '', jsonld = '', dark = false, footer = true }) {
@@ -170,7 +170,7 @@ const home = page({
         <h2 class="fm-lbl" id="about-h">about:</h2>
         <div class="fm-body fade">
           <p class="fm-text">i spend my days making far-off places look worth the flight. seven of them so far, antarctica to japan, all for <a class="u" href="https://tourground.com">tourground</a>. usually from a laptop in ${LOCATION.city}, sometimes from wherever the wifi is.</p>
-          <a class="s more" href="/about/">more about me</a>
+          <p class="fm-more"><a class="s more" href="/about/">more about me</a><a class="s more" href="/tourground/">my work at tourground</a></p>
         </div>
       </div>
     </section>
@@ -295,7 +295,7 @@ const shots = [
   ['team', 'three of us, between sessions', 800, 800, ''],
 ]
 const tgPage = page({
-  path: '/tourground/', current: 'tourground', footer: false, title: 'tourground — benjamin',
+  path: '/tourground/', current: 'at tourground', footer: false, title: 'tourground — benjamin',
   description: `benjamin is a designer and developer in travel tech, working full time at tourground on the websites for its travel brands.`,
   body: `    <div class="tg">
       <div class="tg-side">
