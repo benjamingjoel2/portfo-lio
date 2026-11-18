@@ -625,3 +625,4 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
   .info { left: var(--ml); right: var(--m); }
   .counter { left: var(--ml); }
 }
+.tg { padding-bottom: 20px; }

@@ -45,7 +45,7 @@ const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' 
 const NAV = [['work', '/work/'], ['tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
 const PAGES =[['home', '/'], ...NAV];
 
-function page({ path: p, title, description, body, current = '', jsonld = '', dark = false }) {
+function page({ path: p, title, description, body, current = '', jsonld = '', dark = false, footer = true }) {
   return `<!doctype html>
 <html lang="en"${dark ? ' data-force="dark"' : ''}>
 <head>
@@ -93,7 +93,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '', da
 ${body}
   </main>
 
-  <footer class="ftr">
+${footer ? `  <footer class="ftr">
     <div class="g ftr-top">
       <p class="ftr-lead">i design and build websites for travel brands, full time at tourground. want to talk travel tech, or just say hello? my inbox is open.</p>
       <ul class="ftr-soc s"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
@@ -104,7 +104,7 @@ ${body}
       <a class="ftr-top-link" href="#top">↑ back to top</a>
       <a class="ftr-m" href="mailto:${EMAIL}" data-copy="${EMAIL}">→ ${EMAIL}</a>
     </div>
-  </footer>
+  </footer>` : ''}
   <div class="toast" role="status" aria-live="polite"></div>
   <script src="/assets/works.js?v=${V.works}"></script>
   <script src="/assets/site.js?v=${V.js}" defer></script>
@@ -295,7 +295,7 @@ const shots = [
   ['team', 'three of us, between sessions', 800, 800, ''],
 ]
 const tgPage = page({
-  path: '/tourground/', current: 'tourground', title: 'tourground — benjamin',
+  path: '/tourground/', current: 'tourground', footer: false, title: 'tourground — benjamin',
   description: `benjamin is a designer and developer in travel tech, working full time at tourground on the websites for its travel brands.`,
   body: `    <div class="tg">
       <div class="tg-side">
