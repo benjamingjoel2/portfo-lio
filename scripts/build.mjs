@@ -393,13 +393,16 @@ ${postcards.map(([n, cap, r]) => `        <li style="--r:${r}deg"><figure><img s
 const contact = page({
   path: '/contact/', current: 'contact', title: 'contact — benjamin',
   description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
-  body: `    <section class="g phead" aria-labelledby="h">
-      <p class="s count muted">travel tech<br />at tourground</p>
-      <h1 class="c3w big reveal" id="h">${lines(['say', { t: 'hello.', c: 'ind' }])}</h1>
-      <p class="ct-coffee fade">if you’re around ${LOCATION.city}, coffee’s on me. <a class="u" href="mailto:${EMAIL}">let me know</a>.</p>
-      <figure class="ct-pic fade"><img src="/assets/me/08.webp" alt="benjamin, phone in hand" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
-    </section>
-${contactBlock}`,
+  body: `    <section class="cx" aria-labelledby="h">
+      <figure class="cx-pic fade"><img src="/assets/me/08.webp" alt="benjamin, phone in hand" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
+      <div class="cx-side s fade">
+        <p>travel tech<br />at tourground</p>
+        <p class="muted cx-gap">write directly to:</p>
+        <p><a class="cx-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a></p>
+        <p class="cx-gap">around ${LOCATION.city}?<br />the coffee’s on me.</p>
+      </div>
+      <h1 class="cx-big" id="h"><span class="ln a"><span>say</span></span><span class="ln b"><span>hello.</span></span><span class="ln c"><span>coffee’s</span></span><span class="ln d"><span>on me.</span></span></h1>
+    </section>`,
 });
 
 const notFound = page({

@@ -784,3 +784,29 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 /* contact: coffee line under the heading */
 .ct-coffee { grid-column: 3 / span 4; grid-row: 2; margin: 5vh 0 0; font-size: clamp(20px, 2vw, 32px); line-height: 1.2; letter-spacing: -0.025em; max-width: 16em; }
 @media (max-width: 767px) { .ct-coffee { grid-column: 1 / -1; grid-row: auto; font-size: 22px; margin-top: 4vh; } }
+
+/* ---------- contact: staggered statement with a photo ---------- */
+.cx { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); column-gap: 20px; align-items: end; padding: 12vh var(--m) 10vh var(--ml); min-height: calc(100svh - 76px); }
+.cx-pic { grid-column: 1 / span 2; grid-row: 1; align-self: start; margin: 0; }
+.cx-pic > img { width: 100%; max-width: 260px; aspect-ratio: 4 / 5; object-fit: cover; background: var(--img-bg); }
+.cx-pic figcaption { margin-top: 8px; }
+.cx-side { grid-column: 3 / span 2; grid-row: 1; align-self: end; padding-bottom: .9vw; }
+.cx-side p { margin: 0; font-weight: 500; line-height: 1.25; }
+.cx-side .cx-gap { margin-top: 26px; }
+.cx-mail { display: inline-block; margin-top: 6px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease); }
+.cx-mail:hover, .cx-mail:focus-visible { background-size: 100% 1px; }
+.cx-big { grid-column: 5 / span 4; grid-row: 1; margin: 0; font-size: clamp(56px, 7.6vw, 140px); font-weight: 600; letter-spacing: -0.055em; line-height: .9; }
+.cx-big .ln { display: block; overflow: hidden; padding-bottom: .05em; }
+.cx-big .ln > span { display: inline-block; transform: translateY(110%); animation: cx-up 1.1s var(--ease) forwards; }
+.cx-big .b { padding-left: .9em; } .cx-big .c { padding-left: 2.6em; margin-top: .45em; } .cx-big .d { padding-left: 1.3em; }
+.cx-big .b > span { animation-delay: .08s; } .cx-big .c > span { animation-delay: .16s; } .cx-big .d > span { animation-delay: .24s; }
+@keyframes cx-up { to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cx-big .ln > span { animation: none; transform: none; } }
+@media (max-width: 1023px) { .cx-pic { grid-column: 1 / span 3; } .cx-side { grid-column: 4 / span 2; } .cx-big { grid-column: 1 / -1; grid-row: 2; margin-top: 8vh; } }
+@media (max-width: 767px) {
+  .cx { display: flex; flex-direction: column; align-items: stretch; gap: 6vh; padding-top: 6vh; min-height: 0; }
+  .cx-big { order: 1; font-size: 17vw; margin: 0; }
+  .cx-side { order: 2; padding: 0; }
+  .cx-pic { order: 3; } .cx-pic > img { max-width: 70%; }
+}
+@media (max-width: 767px) { .cx > * { align-self: stretch; } .cx-big { font-size: 15vw; } .cx-big .b { padding-left: .7em; } .cx-big .c { padding-left: 1.1em; } .cx-big .d { padding-left: .5em; } }
