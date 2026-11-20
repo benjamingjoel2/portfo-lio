@@ -93,16 +93,20 @@ function page({ path: p, title, description, body, current = '', jsonld = '', da
 ${body}
   </main>
 
-${footer ? `  <footer class="ftr">
-    <div class="g ftr-top">
-      <p class="ftr-lead">i design and build websites for travel brands, full time at tourground. want to talk travel tech, or just say hello? my inbox is open.</p>
-      <ul class="ftr-soc s"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
-    </div>
-    <div class="ftr-name-wrap"><p class="ftr-name" data-fit aria-hidden="true">benjamingjoel</p></div>
-    <div class="g ftr-base s">
-      <span>© ${new Date().getFullYear()} benjamingjoel</span>
-      <a class="ftr-top-link" href="#top">↑ back to top</a>
-      <a class="ftr-m" href="mailto:${EMAIL}" data-copy="${EMAIL}">→ ${EMAIL}</a>
+${footer ? `  <footer class="fx" aria-label="footer">
+    <div class="fx-in">
+      <div class="fx-top">
+        <p class="fx-lbl s">say hello</p>
+        <a class="fx-up" href="#top" aria-label="back to top">↑</a>
+      </div>
+      <p class="fx-ask">have an idea, or just want to talk travel tech?</p>
+      <a class="fx-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}"><span>${EMAIL}</span><i aria-hidden="true">→</i></a>
+      <div class="fx-cols s">
+        <div><p class="fx-h">pages</p><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
+        <div><p class="fx-h">elsewhere</p><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul></div>
+        <div><p class="fx-h">right now</p><ul><li>${HERE} ${FLAG} <span class="fx-t"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></span></li>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}<li>© ${new Date().getFullYear()} benjamingjoel</li></ul></div>
+      </div>
+      <div class="fx-name-wrap" aria-hidden="true"><p class="fx-name" data-fit>benjamingjoel</p></div>
     </div>
   </footer>` : ''}
   <div class="toast" role="status" aria-live="polite"></div>
