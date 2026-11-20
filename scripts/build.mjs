@@ -396,6 +396,7 @@ const contact = page({
   body: `    <section class="g phead" aria-labelledby="h">
       <p class="s count muted">travel tech<br />at tourground</p>
       <h1 class="c3w big reveal" id="h">${lines(['say', { t: 'hello.', c: 'ind' }])}</h1>
+      <p class="ct-coffee fade">if you’re around ${LOCATION.city}, coffee’s on me. <a class="u" href="mailto:${EMAIL}">let me know</a>.</p>
       <figure class="ct-pic fade"><img src="/assets/me/08.webp" alt="benjamin, phone in hand" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
     </section>
 ${contactBlock}`,

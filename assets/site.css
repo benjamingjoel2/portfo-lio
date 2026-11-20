@@ -780,3 +780,7 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .ct-pic > img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--img-bg); }
 .ct-pic figcaption { margin-top: 8px; }
 @media (max-width: 767px) { .ct-pic { grid-column: 1 / span 5; grid-row: auto; justify-self: start; width: 70%; margin-top: 5vh; } }
+
+/* contact: coffee line under the heading */
+.ct-coffee { grid-column: 3 / span 4; grid-row: 2; margin: 5vh 0 0; font-size: clamp(20px, 2vw, 32px); line-height: 1.2; letter-spacing: -0.025em; max-width: 16em; }
+@media (max-width: 767px) { .ct-coffee { grid-column: 1 / -1; grid-row: auto; font-size: 22px; margin-top: 4vh; } }
