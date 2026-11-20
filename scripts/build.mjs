@@ -104,7 +104,7 @@ ${footer ? `  <footer class="fx" aria-label="footer">
       <div class="fx-cols s">
         <div><p class="fx-h">pages</p><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
         <div><p class="fx-h">elsewhere</p><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul></div>
-        <div><p class="fx-h">right now</p><ul><li>${HERE} ${FLAG} <span class="fx-t"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></span></li>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}<li>© ${new Date().getFullYear()} benjamingjoel</li></ul></div>
+        <div><p class="fx-h">right now</p><ul>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}<li>© ${new Date().getFullYear()} benjamingjoel</li></ul></div>
       </div>
       <div class="fx-name-wrap" aria-hidden="true"><p class="fx-name" data-fit>benjamingjoel</p></div>
     </div>
@@ -148,8 +148,8 @@ const clockBlock = (heading) => `    <section aria-label="local time in ${LOCATI
 /* ---------------- home ---------------- */
 const home = page({
   path: '/', title: 'benjamin — designer & developer',
-  description: `benjamin is a designer and developer in travel tech, full time at tourground, building the websites for its travel brands. currently in ${LOCATION.city}.`,
-  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer, Travel Tech","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.city}, ${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
+  description: `benjamin is a designer and developer in travel tech, full time at tourground, building the websites for its travel brands.`,
+  jsonld: `\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Benjamin","jobTitle":"Designer & Developer, Travel Tech","worksFor":{"@type":"Organization","name":"Tourground","url":"https://tourground.com"},"homeLocation":{"@type":"Place","name":"${LOCATION.country}","geo":{"@type":"GeoCoordinates","latitude":${LOCATION.latitude},"longitude":${LOCATION.longitude}}},"email":"mailto:${EMAIL}","sameAs":["${GITHUB}"]}</script>`,
   body: `    <section class="hero" aria-labelledby="name">
       <div class="hero-low">
         <p class="here" aria-hidden="true">${HERE} ${FLAG} <span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></p>
@@ -173,7 +173,7 @@ const home = page({
       <div class="g fm-row">
         <h2 class="fm-lbl" id="about-h">about:</h2>
         <div class="fm-body fade">
-          <p class="fm-text">i spend my days making far-off places look worth the flight. seven of them so far, antarctica to japan, all for <a class="u" href="https://tourground.com">tourground</a>. usually from a laptop in ${LOCATION.city}, sometimes from wherever the wifi is.</p>
+          <p class="fm-text">i spend my days making far-off places look worth the flight. seven of them so far, antarctica to japan, all for <a class="u" href="https://tourground.com">tourground</a>. usually from a laptop, sometimes from wherever the wifi is.</p>
           <p class="fm-more"><a class="s more" href="/about/">more about me</a><a class="s more" href="/tourground/">my work at tourground</a></p>
         </div>
       </div>
@@ -186,7 +186,7 @@ const home = page({
         <span class="st-r"><span class="ln"><span>details</span></span><span class="ln"><span>are the whole</span></span><span class="ln"><span>job.</span></span></span>
       </p>
       <div class="st-foot">
-        <p class="s st-c">© ’${String(new Date().getFullYear()).slice(2)} · ${LOCATION.city}</p>
+        <p class="s st-c">© ’${String(new Date().getFullYear()).slice(2)}</p>
         <p class="s st-small">i design and build websites for tourground’s travel brands, with a focus on clear layouts, fast pages and type that reads well on a phone.</p>
       </div>
     </section>
@@ -320,7 +320,7 @@ const tgPage = page({
           <div><dt>role</dt><dd>designer<span>developer</span></dd></div>
           <div><dt>work</dt><dd>full time</dd></div>
           <div><dt>field</dt><dd>travel tech<span>tour commerce infrastructure</span></dd></div>
-          <div><dt>location</dt><dd>remote<span>currently ${LOCATION.city} / ${LOCATION.country}</span></dd></div>
+          <div><dt>location</dt><dd>remote<span>working from everywhere</span></dd></div>
           <div><dt>about</dt><dd><p>tourground is the modern infrastructure for travel agents, dmcs and tour operators. it gives them the network, the technology and the distribution to run a tour operation: a verified profile, one inbox for every inquiry, quotes and payments in a link, and reach across websites, ai chats and whatsapp.</p><p>for travellers it works the other way round: tourground matches you with a trusted local agent, and your agent plans the trip.</p></dd></div>
           <div><dt>highlights</dt><dd>150+ destinations<span class="ink">thousands of agents and suppliers listed</span><span class="ink">tourground os, ai and pay</span></dd></div>
         </dl>
@@ -340,14 +340,14 @@ const postcards = [
 ];
 const about = page({
   path: '/about/', current: 'about', title: 'about — benjamin',
-  description: `benjamin designs and builds websites for travel brands at tourground. working from everywhere, currently in ${LOCATION.city}.`,
+  description: `benjamin designs and builds websites for travel brands at tourground. working from everywhere.`,
   body: `    <section class="bp-wrap" aria-labelledby="h">
       <h1 class="sr" id="h">about benjamin</h1>
       <div class="bp">
         <div class="bp-main">
           <div class="bp-top"><span class="s">boarding pass</span><span class="s">carrier: <a class="u" href="/tourground/">tourground</a></span></div>
           <div class="bp-route">
-            <div><p class="bp-code">kad</p><p class="s">${LOCATION.city}, ${LOCATION.country}</p></div>
+            <div><p class="bp-code">nga</p><p class="s">${LOCATION.country}</p></div>
             <div class="bp-plane" aria-hidden="true"><i></i><span>✈</span><i></i></div>
             <div class="bp-to"><p class="bp-code">${NEXT ? NEXT.countryCode === 'id' ? 'idn' : NEXT.countryCode : 'any'}</p><p class="s">${NEXT ? NEXT.text.replace('packing for ', '') : 'anywhere'}</p></div>
           </div>
@@ -357,7 +357,7 @@ const about = page({
             <div><dt>seat</dt><dd>designer &amp; developer</dd></div>
             <div><dt>local time</dt><dd class="tab"><span data-h>--</span>:<span data-m>--</span>:<span data-s>--</span></dd></div>
           </dl>
-          <p class="bp-note">i make far-off places look worth the flight. seven so far, antarctica to japan, all for tourground, usually from a laptop in ${LOCATION.city}.</p>
+          <p class="bp-note">i make far-off places look worth the flight. seven so far, antarctica to japan, all for tourground, usually from a laptop.</p>
         </div>
         <div class="bp-stub">
           <img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" />
@@ -392,11 +392,11 @@ ${postcards.map(([n, cap, r]) => `        <li style="--r:${r}deg"><figure><img s
 /* ---------------- contact ---------------- */
 const contact = page({
   path: '/contact/', current: 'contact', footer: false, title: 'contact — benjamin',
-  description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
+  description: `get in touch with benjamin, designer and developer in travel tech.`,
   body: `    <section class="cx" aria-labelledby="h">
-      <figure class="cx-pic fade"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
+      <figure class="cx-pic fade"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /></figure>
       <div class="cx-info fade">
-        <p class="cx-coffee">around ${LOCATION.city}?<br />the coffee’s on me.</p>
+        <p class="cx-coffee">in town?<br />the coffee’s on me.</p>
         <p class="s muted cx-lab">write directly to:</p>
         <p class="cx-em"><a class="cx-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a></p>
       </div>
