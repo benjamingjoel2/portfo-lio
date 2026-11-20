@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>concept b — cinema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.cbar a{padding:7px 12px;border-radius:99px}
+.cbar a[aria-current]{background:#fff;color:#111}
+
+body{background:#0b0b0b;color:#eee}
+.top{position:fixed;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;z-index:5;font-size:14px;mix-blend-mode:difference;color:#fff}
+.top nav{display:flex;gap:24px}
+.reel{position:relative;height:100svh;overflow:hidden}
+.reel img{position:absolute;inset:0;width:100%;height:100% !important;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s,transform 6s linear}
+.reel img.on{opacity:1;transform:scale(1)}
+.reel::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 35%,rgba(0,0,0,.75))}
+.cap{position:absolute;left:28px;right:28px;bottom:28px;z-index:2;display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px}
+.cap h1{margin:0;font-size:clamp(56px,12vw,220px);line-height:.85;letter-spacing:-.06em;font-weight:500}
+.cap .meta{font-size:14px;line-height:1.5;text-align:right;color:#bbb}
+.cap .meta b{display:block;font-size:clamp(28px,3vw,48px);color:#fff;font-weight:500;letter-spacing:-.03em}
+.dots{position:absolute;top:50%;right:28px;z-index:2;display:grid;gap:8px;transform:translateY(-50%)}
+.dots i{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.3;transition:opacity .3s}
+.dots i.on{opacity:1}
+.intro{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding:16vh 28px;align-items:start}
+.intro img{width:180px;aspect-ratio:4/5;object-fit:cover;border-radius:6px}
+.intro p{margin:0;font-size:clamp(26px,3.2vw,54px);line-height:1.08;letter-spacing:-.035em}
+.intro p span{color:#777}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:0 28px}
+.card{display:block;position:relative;overflow:hidden;border-radius:8px;background:#151515}
+.card:nth-child(3n+1){grid-column:1/-1}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s;filter:brightness(.8)}
+.card:hover img{transform:scale(1.04);filter:none}
+.card .l{position:absolute;left:20px;bottom:18px;right:20px;display:flex;justify-content:space-between;align-items:end}
+.card .l b{font-size:clamp(24px,2.6vw,44px);font-weight:500;letter-spacing:-.04em}
+.card .l span{font-size:13px;color:#ccc}
+.end{padding:20vh 28px 90px;text-align:center}
+.end a{font-size:clamp(34px,7vw,120px);letter-spacing:-.05em;border-bottom:2px solid #333}
+.end p{color:#777;font-size:14px;margin-top:40px}
+@media(max-width:800px){.top nav{display:none}.cap{grid-template-columns:1fr}.cap .meta{text-align:left}.intro{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="top"><a href="/">benjamingjoel</a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span data-clock>--:--:--</span></header>
+<section class="reel" aria-label="projects">
+<img src="/assets/work/seventhcontinent.webp" alt="seventh continent" class="on" />
+<img src="/assets/work/outbackandreef-section.webp" alt="outback & reef" />
+<img src="/assets/work/campaniletravel.webp" alt="campanile travel" />
+<img src="/assets/work/edgeofnorth-section.webp" alt="edge of north" />
+<img src="/assets/work/barjeeljourneys.webp" alt="barjeel journeys" />
+<img src="/assets/work/komorebi-section.webp" alt="komorebi" />
+<img src="/assets/work/escalevoyages.webp" alt="escale voyages" />
+<div class="cap"><h1>benjamin<br />gjoel</h1><div class="meta">now showing <b data-name>seventh continent</b><span data-n>01</span> / 07 · <span data-c>antarctica</span></div></div>
+<div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</section>
+<section class="intro"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" /><p>benjamin sketches, codes ships websites places you’d fly to. <span>seven brands for tourground, from antarctica to japan, mostly from a laptop in kaduna.</span></p></section>
+<section class="grid"><a class="card" href="/work/seventhcontinent/"><img src="/assets/work/seventhcontinent.webp" alt="" loading="lazy" /><span class="l"><b>seventh continent</b><span>antarctica</span></span></a><a class="card" href="/work/outbackandreef/"><img src="/assets/work/outbackandreef.webp" alt="" loading="lazy" /><span class="l"><b>outback & reef</b><span>australia</span></span></a><a class="card" href="/work/campaniletravel/"><img src="/assets/work/campaniletravel.webp" alt="" loading="lazy" /><span class="l"><b>campanile travel</b><span>italy</span></span></a><a class="card" href="/work/edgeofnorth/"><img src="/assets/work/edgeofnorth.webp" alt="" loading="lazy" /><span class="l"><b>edge of north</b><span>iceland</span></span></a><a class="card" href="/work/barjeeljourneys/"><img src="/assets/work/barjeeljourneys.webp" alt="" loading="lazy" /><span class="l"><b>barjeel journeys</b><span>united arab emirates</span></span></a><a class="card" href="/work/komorebi/"><img src="/assets/work/komorebi.webp" alt="" loading="lazy" /><span class="l"><b>komorebi</b><span>japan</span></span></a><a class="card" href="/work/escalevoyages/"><img src="/assets/work/escalevoyages.webp" alt="" loading="lazy" /><span class="l"><b>escale voyages</b><span>benin</span></span></a></section>
+<footer class="end"><a href="mailto:hello@benjamin.design">say hello</a><p>hello@benjamin.design · kaduna, ng · © 2026</p></footer>
+<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/">a</a><a href="/concepts/b/" aria-current="page">b</a><a href="/concepts/c/">c</a><a href="/concepts/d/">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>
+<script>(()=>{const W=[["seventh continent","antarctica"],["outback & reef","australia"],["campanile travel","italy"],["edge of north","iceland"],["barjeel journeys","united arab emirates"],["komorebi","japan"],["escale voyages","benin"]];const im=[...document.querySelectorAll('.reel img')],d=[...document.querySelectorAll('.dots i')];let i=0;setInterval(()=>{im[i].classList.remove('on');d[i].classList.remove('on');i=(i+1)%im.length;im[i].classList.add('on');d[i].classList.add('on');document.querySelector('[data-name]').textContent=W[i][0];document.querySelector('[data-c]').textContent=W[i][1];document.querySelector('[data-n]').textContent=String(i+1).padStart(2,'0')},3800)})()</script>
+</body></html>

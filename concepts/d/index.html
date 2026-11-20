@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>concept d — colour cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.cbar a{padding:7px 12px;border-radius:99px}
+.cbar a[aria-current]{background:#fff;color:#111}
+
+body{background:#fafafa;color:#111}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-size:14px}
+.top nav{display:flex;gap:6px}
+.top nav a{padding:8px 14px;border-radius:99px;background:#ececec}
+.top nav a:hover{background:#111;color:#fff}
+.hero{padding:8vh 20px 10vh}
+.hero h1{margin:0;font-size:clamp(46px,8.4vw,150px);line-height:.95;letter-spacing:-.055em;font-weight:500;max-width:12em}
+.hero h1 .pill{display:inline-flex;align-items:center;vertical-align:middle;height:.78em;padding:0 .3em;border-radius:99px;font-size:.55em;margin:0 .08em;letter-spacing:-.02em;transform:translateY(-.08em)}
+.hero h1 img{display:inline-block;vertical-align:middle;height:.8em;width:.8em;border-radius:50%;object-fit:cover;transform:translateY(-.06em)}
+.hero p{margin:30px 0 0;font-size:15px;color:#666}
+.stack{padding:0 20px}
+.cardx{position:sticky;top:20px;height:min(86vh,780px);border-radius:28px;padding:30px;display:grid;grid-template-columns:1fr 1.3fr;gap:30px;align-items:end;margin-bottom:24px;overflow:hidden;box-shadow:0 -20px 50px -30px rgba(0,0,0,.35)}
+.cardx .txt .n{font-size:14px;opacity:.7}
+.cardx h2{margin:10px 0 14px;font-size:clamp(44px,6.4vw,112px);line-height:.88;letter-spacing:-.055em;font-weight:600}
+.cardx p{margin:0 0 22px;font-size:17px;line-height:1.4;max-width:24em;opacity:.85}
+.cardx .go{display:inline-flex;padding:12px 18px;border-radius:99px;font-size:14px}
+.cardx .shot{align-self:center;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);transform:rotate(2deg)}
+.cardx .shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.bye{padding:18vh 20px 100px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
+.bye img{width:120px;height:120px;border-radius:50%;object-fit:cover}
+.bye a{font-size:clamp(36px,6vw,100px);letter-spacing:-.05em;font-weight:500}
+.bye p{grid-column:1/-1;font-size:14px;color:#777;margin:0}
+@media(max-width:800px){.top nav{display:none}.cardx{grid-template-columns:1fr;align-items:start;padding:22px;height:auto;min-height:80vh}.cardx .shot{order:-1}.bye{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="top"><a href="/"><b>benjamingjoel</b></a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span>kaduna · <span data-clock>--:--:--</span></span></header>
+<section class="hero"><h1><img src="/assets/me/01.webp" alt="" /> benjamin sketches, codes &amp; ships websites for places like <span class="pill" style="background:#142d5a;color:#e1e8f2">antarctica</span> <span class="pill" style="background:#aa1904;color:#c4b8ad">japan</span> and <span class="pill" style="background:#134945;color:#c0dfcd">iceland</span>.</h1><p>designer &amp; developer at tourground · scroll for the seven brands ↓</p></section>
+<section class="stack"><article class="cardx" style="background:#142d5a;color:#e1e8f2;top:20px"><div class="txt"><span class="n">01 / 07 · antarctica</span><h2>seventh continent</h2><p>antarctica expeditions, planned by one polar specialist.</p><a class="go" style="background:#e1e8f2;color:#142d5a" href="/work/seventhcontinent/">see the project →</a></div><a class="shot" href="/work/seventhcontinent/"><img src="/assets/work/seventhcontinent.webp" alt="seventh continent homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#7b5b10;color:#e1e6eb;top:34px"><div class="txt"><span class="n">02 / 07 · australia</span><h2>outback & reef</h2><p>the red interior and the reef, the two halves of australia.</p><a class="go" style="background:#e1e6eb;color:#7b5b10" href="/work/outbackandreef/">see the project →</a></div><a class="shot" href="/work/outbackandreef/"><img src="/assets/work/outbackandreef.webp" alt="outback & reef homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#583808;color:#ecbe83;top:48px"><div class="txt"><span class="n">03 / 07 · italy</span><h2>campanile travel</h2><p>tailor-made italy, past the big three.</p><a class="go" style="background:#ecbe83;color:#583808" href="/work/campaniletravel/">see the project →</a></div><a class="shot" href="/work/campaniletravel/"><img src="/assets/work/campaniletravel.webp" alt="campanile travel homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#134945;color:#c0dfcd;top:62px"><div class="txt"><span class="n">04 / 07 · iceland</span><h2>edge of north</h2><p>private luxury journeys in iceland.</p><a class="go" style="background:#c0dfcd;color:#134945" href="/work/edgeofnorth/">see the project →</a></div><a class="shot" href="/work/edgeofnorth/"><img src="/assets/work/edgeofnorth.webp" alt="edge of north homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#41332a;color:#afcbd1;top:76px"><div class="txt"><span class="n">05 / 07 · united arab emirates</span><h2>barjeel journeys</h2><p>the seven emirates, planned properly.</p><a class="go" style="background:#afcbd1;color:#41332a" href="/work/barjeeljourneys/">see the project →</a></div><a class="shot" href="/work/barjeeljourneys/"><img src="/assets/work/barjeeljourneys.webp" alt="barjeel journeys homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#aa1904;color:#c4b8ad;top:90px"><div class="txt"><span class="n">06 / 07 · japan</span><h2>komorebi</h2><p>japan, in its own time.</p><a class="go" style="background:#c4b8ad;color:#aa1904" href="/work/komorebi/">see the project →</a></div><a class="shot" href="/work/komorebi/"><img src="/assets/work/komorebi.webp" alt="komorebi homepage" loading="lazy" /></a></article>
+<article class="cardx" style="background:#22445c;color:#a4afac;top:104px"><div class="txt"><span class="n">07 / 07 · benin</span><h2>escale voyages</h2><p>premium journeys through the whole of benin.</p><a class="go" style="background:#a4afac;color:#22445c" href="/work/escalevoyages/">see the project →</a></div><a class="shot" href="/work/escalevoyages/"><img src="/assets/work/escalevoyages.webp" alt="escale voyages homepage" loading="lazy" /></a></article></section>
+<section class="bye"><img src="/assets/me/01.webp" alt="portrait of benjamin" /><a href="mailto:hello@benjamin.design">say hello →</a><p>hello@benjamin.design · © 2026 benjamingjoel</p></section>
+<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/">a</a><a href="/concepts/b/">b</a><a href="/concepts/c/">c</a><a href="/concepts/d/" aria-current="page">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>
+</body></html>

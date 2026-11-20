@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>concept c — the magazine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.cbar a{padding:7px 12px;border-radius:99px}
+.cbar a[aria-current]{background:#fff;color:#111}
+
+body{background:#f1ece2;color:#1d1a16}
+.mast{display:flex;justify-content:space-between;padding:16px 26px;font-size:13px;border-bottom:1px solid #1d1a16}
+.mast nav{display:flex;gap:20px}
+.cover{padding:16px 26px 0;position:relative}
+.cover h1{margin:0;font-size:22vw;line-height:.8;letter-spacing:-.07em;font-weight:700;text-align:center;color:#c2410c}
+.cover .issue{display:flex;justify-content:space-between;font-size:13px;padding:12px 0;border-bottom:1px solid #1d1a16}
+.spread{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:26px;padding:26px 0 0;align-items:start}
+.spread img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.lines p{margin:0 0 22px;font-size:15px;line-height:1.35}
+.lines p b{display:block;font-size:clamp(22px,2.2vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin-bottom:6px}
+.lines.r{text-align:right}
+.inside{padding:16vh 26px 0}
+.inside h2{font-size:13px;font-weight:500;border-bottom:1px solid #1d1a16;padding-bottom:10px;margin:0 0 40px;display:flex;justify-content:space-between}
+.art{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:0 0 14vh}
+.art:nth-child(even) .pic{order:2}
+.art .pic img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.art .no{font-size:clamp(80px,12vw,200px);line-height:.8;letter-spacing:-.06em;color:#c2410c;font-weight:700}
+.art h3{margin:12px 0 10px;font-size:clamp(32px,4vw,64px);letter-spacing:-.045em;line-height:.95;font-weight:600}
+.art p{margin:0 0 16px;font-size:17px;line-height:1.45;max-width:30em}
+.art a.more{font-size:14px;border-bottom:1px solid}
+.letter{margin:0 26px;padding:12vh 0;border-top:1px solid #1d1a16;display:grid;grid-template-columns:1fr 2fr;gap:40px}
+.letter p{margin:0;font-size:clamp(22px,2.4vw,38px);line-height:1.2;letter-spacing:-.02em}
+.letter p::first-letter{font-size:3.2em;float:left;line-height:.8;margin:6px 10px 0 0;color:#c2410c;font-weight:700}
+.end{margin:0 26px;padding:20px 0 90px;border-top:1px solid #1d1a16;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+@media(max-width:800px){.mast nav{display:none}.spread{grid-template-columns:1fr}.lines.r{text-align:left}.art{grid-template-columns:1fr;gap:16px}.art:nth-child(even) .pic{order:0}.letter{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="mast"><span>the benjamin review</span><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span data-clock>--:--:--</span></header>
+<section class="cover">
+<div class="issue"><span>issue no. 07</span><span>the travel tech issue</span><span>kaduna, 2026</span></div>
+<h1>benjamin</h1>
+<div class="spread">
+<div class="lines"><p><b>sketches, codes</b>&amp; ships websites for places you’d fly to.</p><p><b>seven brands</b>antarctica to japan, all built for tourground.</p></div>
+<img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" />
+<div class="lines r"><p><b>now in kaduna</b>packing for indonesia, laptop first.</p><p><b>inside →</b>antarctica, australia, italy and more.</p></div>
+</div>
+</section>
+<section class="inside"><h2><span>inside this issue</span><span>07 features</span></h2>
+<article class="art"><a class="pic" href="/work/seventhcontinent/"><img src="/assets/work/seventhcontinent.webp" alt="seventh continent homepage" loading="lazy" /></a><div><div class="no">01</div><h3>seventh continent</h3><p>independent antarctica expedition specialists. we match you with the right iaato-member ship, route and season, and one polar specialist plans every detail.</p><a class="more" href="/work/seventhcontinent/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/outbackandreef/"><img src="/assets/work/outbackandreef.webp" alt="outback & reef homepage" loading="lazy" /></a><div><div class="no">02</div><h3>outback & reef</h3><p>australia planned as three or four regions in the right season, with the lodges, guides and flights that make the distances worth it.</p><a class="more" href="/work/outbackandreef/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/campaniletravel/"><img src="/assets/work/campaniletravel.webp" alt="campanile travel homepage" loading="lazy" /></a><div><div class="no">03</div><h3>campanile travel</h3><p>tailor-made journeys in italy beyond rome, florence and venice: small towns, agriturismi, regional food and quieter alternatives to the crowded icons.</p><a class="more" href="/work/campaniletravel/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/edgeofnorth/"><img src="/assets/work/edgeofnorth.webp" alt="edge of north homepage" loading="lazy" /></a><div><div class="no">04</div><h3>edge of north</h3><p>where the map runs out. iceland at its most extraordinary, privately guided and planned by one dedicated specialist.</p><a class="more" href="/work/edgeofnorth/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/barjeeljourneys/"><img src="/assets/work/barjeeljourneys.webp" alt="barjeel journeys homepage" loading="lazy" /></a><div><div class="no">05</div><h3>barjeel journeys</h3><p>private journeys across all seven emirates of the uae: old creek quarters, oasis towns, the empty quarter, the mountains and the east coast, timed to the cool months and ramadan.</p><a class="more" href="/work/barjeeljourneys/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/komorebi/"><img src="/assets/work/komorebi.webp" alt="komorebi homepage" loading="lazy" /></a><div><div class="no">06</div><h3>komorebi</h3><p>private, slow journeys in japan, planned around the seasons and away from the crowds. ryokan nights, quiet temples at opening time, craft, food and the 72 seasons.</p><a class="more" href="/work/komorebi/">read the feature →</a></div></article>
+<article class="art"><a class="pic" href="/work/escalevoyages/"><img src="/assets/work/escalevoyages.webp" alt="escale voyages homepage" loading="lazy" /></a><div><div class="no">07</div><h3>escale voyages</h3><p>the whole of benin, at your pace: small-group and private journeys from the atlantic coast to the pendjari savannah, planned and run from cotonou.</p><a class="more" href="/work/escalevoyages/">read the feature →</a></div></article>
+</section>
+<section class="letter"><span style="font-size:13px">a note from the editor</span><p>i spend my days making far-off places look worth the flight. most of it happens on a laptop in kaduna, and sometimes from wherever the wifi is.</p></section>
+<footer class="end"><a href="mailto:hello@benjamin.design">hello@benjamin.design</a><span>© 2026 benjamingjoel</span><a href="#">back to the cover ↑</a></footer>
+<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/">a</a><a href="/concepts/b/">b</a><a href="/concepts/c/" aria-current="page">c</a><a href="/concepts/d/">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>
+</body></html>

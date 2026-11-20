@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>concept a — the index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.cbar a{padding:7px 12px;border-radius:99px}
+.cbar a[aria-current]{background:#fff;color:#111}
+
+body{background:#f4f4f2;color:#111}
+.top{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;padding:18px 24px;font-size:14px;position:sticky;top:0;background:rgba(244,244,242,.9);backdrop-filter:blur(10px);z-index:5}
+.top .logo{display:grid;place-items:center;width:28px;height:28px;background:#111;color:#f4f4f2;font-weight:700;font-size:20px;padding-bottom:3px}
+.top nav{display:flex;gap:22px}
+.top nav a:hover{text-decoration:underline;text-underline-offset:3px}
+.hero{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;padding:10vh 24px 6vh;align-items:end}
+.hero h1{grid-column:1/span 8;margin:0;font-size:clamp(44px,7vw,120px);line-height:.92;letter-spacing:-.055em;font-weight:500}
+.hero h1 span{display:block}
+.hero h1 span:nth-child(2){padding-left:1.2em}
+.hero .side{grid-column:10/span 3;font-size:14px;line-height:1.45;color:#555}
+.hero .side img{width:110px;aspect-ratio:4/5;object-fit:cover;margin-bottom:14px;filter:grayscale(1)}
+.lbl{display:flex;justify-content:space-between;padding:0 24px 10px;font-size:13px;color:#666;border-bottom:1px solid #111;margin:0 24px;padding-left:0;padding-right:0}
+.idx{list-style:none;margin:0 24px;padding:0}
+.idx a{display:grid;grid-template-columns:60px 1fr 220px 40px;align-items:baseline;gap:16px;padding:14px 0 10px;border-bottom:1px solid #d6d6d2;transition:padding .4s cubic-bezier(.2,.8,.2,1),color .3s}
+.idx .n{font-size:13px;color:#888}
+.idx .t{font-size:clamp(34px,5.6vw,96px);letter-spacing:-.05em;line-height:.95;font-weight:500}
+.idx .c{font-size:14px;color:#666}
+.idx .ar{justify-self:end;font-size:22px;transition:transform .4s}
+.idx:hover a{color:#b5b5b0}
+.idx a:hover{color:#111;padding-left:18px}
+.idx a:hover .ar{transform:rotate(-45deg)}
+.peek{position:fixed;left:0;top:0;width:340px;aspect-ratio:16/10;pointer-events:none;z-index:4;opacity:0;transition:opacity .25s;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.peek img{width:100%;height:100%;object-fit:cover;object-position:top}
+.peek.on{opacity:1}
+.about{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:18vh 24px}
+.about p{grid-column:4/span 7;margin:0;font-size:clamp(22px,2.6vw,42px);line-height:1.15;letter-spacing:-.03em}
+.about small{grid-column:1/span 3;font-size:13px;color:#666}
+.end{padding:0 24px 80px;border-top:1px solid #111;margin:0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px 0 90px;font-size:14px}
+.end .mail{font-size:clamp(28px,5vw,80px);letter-spacing:-.05em;flex-basis:100%;margin-bottom:30px}
+@media(max-width:800px){.top nav{display:none}.hero{display:block}.hero .side{margin-top:30px}.idx a{grid-template-columns:30px 1fr 24px}.idx .c{display:none}.peek{display:none}.about{display:block}.about small{display:block;margin-bottom:16px}}
+
+</style>
+</head>
+<body>
+<header class="top"><a class="logo" href="/">b</a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span>kaduna, ng · <span data-clock>--:--:--</span></span></header>
+<section class="hero"><h1><span>sketches, codes</span><span>ships websites</span><span>places you’d fly to</span></h1><div class="side"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" />benjamin, designer &amp; developer in travel tech. working at tourground, currently in kaduna, packing for indonesia.</div></section>
+<p class="lbl"><span>index of work</span><span>07 brands</span></p>
+<ol class="idx"><li><a href="/work/seventhcontinent/" data-img="/assets/work/seventhcontinent.webp"><span class="n">01</span><span class="t">seventh continent</span><span class="c">antarctica</span><span class="ar">→</span></a></li><li><a href="/work/outbackandreef/" data-img="/assets/work/outbackandreef.webp"><span class="n">02</span><span class="t">outback & reef</span><span class="c">australia</span><span class="ar">→</span></a></li><li><a href="/work/campaniletravel/" data-img="/assets/work/campaniletravel.webp"><span class="n">03</span><span class="t">campanile travel</span><span class="c">italy</span><span class="ar">→</span></a></li><li><a href="/work/edgeofnorth/" data-img="/assets/work/edgeofnorth.webp"><span class="n">04</span><span class="t">edge of north</span><span class="c">iceland</span><span class="ar">→</span></a></li><li><a href="/work/barjeeljourneys/" data-img="/assets/work/barjeeljourneys.webp"><span class="n">05</span><span class="t">barjeel journeys</span><span class="c">united arab emirates</span><span class="ar">→</span></a></li><li><a href="/work/komorebi/" data-img="/assets/work/komorebi.webp"><span class="n">06</span><span class="t">komorebi</span><span class="c">japan</span><span class="ar">→</span></a></li><li><a href="/work/escalevoyages/" data-img="/assets/work/escalevoyages.webp"><span class="n">07</span><span class="t">escale voyages</span><span class="c">benin</span><span class="ar">→</span></a></li></ol>
+<div class="peek" aria-hidden="true"><img alt="" src="/assets/work/seventhcontinent.webp" /></div>
+<section class="about"><small>about</small><p>i spend my days making far-off places look worth the flight. seven so far, antarctica to japan, all for tourground.</p></section>
+<footer class="end"><a class="mail" href="mailto:hello@benjamin.design">hello@benjamin.design</a><span>© 2026 benjamingjoel</span><a href="https://github.com/benjamingjoel2">github</a><a href="#">back to top ↑</a></footer>
+<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/" aria-current="page">a</a><a href="/concepts/b/">b</a><a href="/concepts/c/">c</a><a href="/concepts/d/">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>
+<script>(()=>{const pk=document.querySelector('.peek'),im=pk.querySelector('img');document.querySelectorAll('.idx a').forEach(a=>{a.addEventListener('mouseenter',()=>{im.src=a.dataset.img;pk.classList.add('on')});a.addEventListener('mouseleave',()=>pk.classList.remove('on'))});addEventListener('mousemove',e=>{pk.style.transform='translate('+(e.clientX+24)+'px,'+(e.clientY-110)+'px)'})})()</script>
+</body></html>
