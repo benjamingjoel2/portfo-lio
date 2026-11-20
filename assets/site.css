@@ -834,3 +834,15 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .cx-pic { grid-column: 7 / span 2; width: min(100%, 340px); }
 @media (max-width: 1023px) { .cx-pic { grid-column: 6 / span 3; } }
 @media (max-width: 767px) { .cx-pic { width: 72%; } }
+
+/* contact details: email on the left, coffee note on the right */
+.cx-side p:nth-child(1) { grid-column: 1; grid-row: 1; align-self: start; }
+.cx-side p:nth-child(2) { grid-column: 1; grid-row: 2; align-self: start; margin-top: -12px; }
+.cx-side p:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; align-self: start; margin-top: 0; }
+@media (max-width: 767px) { .cx-side p:nth-child(2) { margin-top: 6px; } .cx-side p:nth-child(3) { margin-top: 22px; } }
+
+/* contact: bigger coffee note and email */
+.cx-side p:nth-child(3) { font-size: clamp(22px, 2.1vw, 34px); line-height: 1.1; letter-spacing: -0.03em; }
+.cx-side p:nth-child(2) { font-size: clamp(17px, 1.35vw, 22px); letter-spacing: -0.01em; }
+.cx-side { grid-column: 3 / span 4; }
+@media (max-width: 767px) { .cx-side p:nth-child(3) { font-size: 26px; } .cx-side p:nth-child(2) { font-size: 18px; } }
