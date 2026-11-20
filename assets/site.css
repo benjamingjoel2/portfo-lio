@@ -770,7 +770,6 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
   .fx-name-wrap { margin: 6vh -18px 0; padding: 0 10px; height: 16vw; }
 }
 
-/* the big name, in orange */
-.name { color: #F57C00; }
-.fx-name, .fx-in:hover .fx-name { color: #F57C00; }
+/* footer name: same light ink as the rest of the panel */
+.fx-name, .fx-in:hover .fx-name { color: var(--ink); }
 @media (max-width: 767px) { .fx-mail { font-size: 7.6vw; } .fx-mail span { white-space: nowrap; overflow-wrap: normal; } }
