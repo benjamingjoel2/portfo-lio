@@ -1033,3 +1033,33 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
   .sv-b { grid-row: 1; padding-left: 0; } .sv-go { grid-row: 2; align-self: start; margin-top: 24px; }
   .sv-b img { aspect-ratio: 16 / 9; }
 }
+
+/* ---------- about: sizes matched to the reference (measured at 1440px, scaled with the screen) ---------- */
+.mw { height: auto; padding: 26vh 0 22vh; }
+.mw-pin { position: relative; top: auto; height: auto; overflow: visible; display: block; }
+.mw-l { position: static; margin: 0 0 13.9vw; font-size: clamp(14px, 1.285vw, 20px); font-weight: 500; letter-spacing: -0.03em; color: #ececec; }
+.mw-stage { display: grid; place-items: center; }
+.mw-stage img { width: 31.1vw; max-width: none; aspect-ratio: 448 / 688; filter: grayscale(1) brightness(.55) contrast(1.2); }
+.mw-h { font-size: 8.61vw; font-weight: 400; letter-spacing: -0.03em; line-height: .9; }
+
+.sv-c { top: 0; min-height: 100vh; min-height: 100svh; padding: 64px 0 0; display: block; position: sticky; transform-origin: 50% 0; transition: background .5s, transform .6s var(--ease); }
+.sv-c + .sv-c { top: 0; }
+.sv-c.under { background: var(--tile); transform: scale(.985); }
+.sv-b { padding: 0 0 0 27.15vw; }
+.sv-b h3 { font-size: 7.42vw; font-weight: 400; letter-spacing: -0.03em; line-height: .9; margin: 0 0 2.8vw; white-space: nowrap; }
+.sv-b sup { font-size: 13.2px; top: .25em; margin-left: .2em; }
+.sv-b img { width: 60vw; max-width: none; aspect-ratio: 864 / 346; }
+.sv-b p { margin: 18px 0 0; max-width: 46em; font-size: 13.2px; }
+.sv-go { position: absolute; left: 2.3vw; top: calc(64px + 7.42vw * .9 + 2.8vw + 60vw * 346 / 864); transform: translateY(-100%); font-size: 6.5vw; font-weight: 300; line-height: 1; letter-spacing: 0; }
+.sv-go:hover, .sv-go:focus-visible { transform: translate(8px, -100%); }
+@media (max-width: 767px) {
+  .mw { padding: 14vh 0; } .mw-l { margin-bottom: 18vw; }
+  .mw-stage img { width: 56vw; } .mw-h { font-size: 15vw; }
+  .sv-c { top: 0; padding-top: 70px; min-height: 100svh; }
+  .sv-b { padding: 0 var(--m) 0 var(--ml); }
+  .sv-b h3 { font-size: 13vw; margin-bottom: 18px; }
+  .sv-b img { width: 100%; aspect-ratio: 16 / 9; }
+  .sv-go { position: static; transform: none; display: block; margin: 22px 0 0 var(--ml); font-size: 14vw; }
+  .sv-go:hover, .sv-go:focus-visible { transform: translateX(6px); }
+}
+.sv-go { letter-spacing: .14em; font-weight: 200; }
