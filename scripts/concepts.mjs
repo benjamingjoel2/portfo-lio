@@ -1,4 +1,4 @@
-// four design concepts for the home page, built from the same content.
+// four home-page concepts, each led by one of the portfolio references.
 // run: node scripts/concepts.mjs  -> writes concepts/{index,a,b,c,d}/index.html
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,15 +9,17 @@ const works = JSON.parse(fs.readFileSync(path.join(root, 'scripts/works.json'), 
 const lc = (s) => s.toLowerCase();
 const pad = (n) => String(n).padStart(2, '0');
 const EMAIL = 'hello@benjamin.design';
-const STATEMENT = ['sketches, codes', 'ships websites', 'places you’d fly to'];
+const GH = 'https://github.com/benjamingjoel2';
+const YEAR = new Date().getFullYear();
+const NAVL = [['work', '/work/'], ['at tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
 const CONCEPTS = [
-  ['a', 'the index', 'swiss and light. your projects are the hero, as a big list with a floating preview.'],
-  ['b', 'cinema', 'dark and full-screen. your sites play like film stills, one after another.'],
-  ['c', 'the magazine', 'warm paper, a cover, and each project laid out as a spread.'],
-  ['d', 'colour cards', 'each brand in its own colours, cards that stack as you scroll.'],
+  ['a', 'swiss rule', 'after bleibtgleich. white, one hairline down the page, big staggered type, a rotating ring of work.'],
+  ['b', 'card stack', 'after huyml. grey, a fanned 3d stack of your screens, then a work viewer with meta on the left and the list on the right.'],
+  ['c', 'chip grid', 'after fmportfolio. chip header, the name full width, labelled rows, a featured-project grid, giant name footer.'],
+  ['d', 'dark showcase', 'black, a custom cursor, a pinned sideways reel of projects and a word-by-word reveal.'],
 ];
 
-const head = (title, extra = '') => `<!doctype html>
+const head = (title, css) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -26,212 +28,356 @@ const head = (title, extra = '') => `<!doctype html>
 <title>${title}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
-.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:999;display:flex;gap:2px;padding:4px;border-radius:99px;background:rgba(20,20,20,.9);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);backdrop-filter:blur(8px)}
 .cbar a{padding:7px 12px;border-radius:99px}
 .cbar a[aria-current]{background:#fff;color:#111}
-${extra}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1.2s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+${css}
 </style>
 </head>`;
 const cbar = (cur) => `<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a>${CONCEPTS.map(([k]) => `<a href="/concepts/${k}/"${k === cur ? ' aria-current="page"' : ''}>${k}</a>`).join('')}</nav>`;
-const clock = `<script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>`;
+const common = `<script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000);const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));document.querySelectorAll('[data-fit]').forEach(el=>{const fit=()=>{el.style.fontSize='100px';const w=el.parentElement.clientWidth-parseFloat(getComputedStyle(el.parentElement).paddingLeft)-parseFloat(getComputedStyle(el.parentElement).paddingRight);for(let i=0;i<4;i++){el.style.fontSize=(parseFloat(el.style.fontSize)*w/el.scrollWidth)+'px'}};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener('resize',fit)})})()</script>`;
 const write = (rel, html) => { const f = path.join(root, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); };
 
-/* ---------------- a: the index ---------------- */
-write('concepts/a/index.html', `${head('concept a — the index', `
-body{background:#f4f4f2;color:#111}
-.top{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;padding:18px 24px;font-size:14px;position:sticky;top:0;background:rgba(244,244,242,.9);backdrop-filter:blur(10px);z-index:5}
-.top .logo{display:grid;place-items:center;width:28px;height:28px;background:#111;color:#f4f4f2;font-weight:700;font-size:20px;padding-bottom:3px}
-.top nav{display:flex;gap:22px}
-.top nav a:hover{text-decoration:underline;text-underline-offset:3px}
-.hero{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;padding:10vh 24px 6vh;align-items:end}
-.hero h1{grid-column:1/span 8;margin:0;font-size:clamp(44px,7vw,120px);line-height:.92;letter-spacing:-.055em;font-weight:500}
-.hero h1 span{display:block}
-.hero h1 span:nth-child(2){padding-left:1.2em}
-.hero .side{grid-column:10/span 3;font-size:14px;line-height:1.45;color:#555}
-.hero .side img{width:110px;aspect-ratio:4/5;object-fit:cover;margin-bottom:14px;filter:grayscale(1)}
-.lbl{display:flex;justify-content:space-between;padding:0 24px 10px;font-size:13px;color:#666;border-bottom:1px solid #111;margin:0 24px;padding-left:0;padding-right:0}
-.idx{list-style:none;margin:0 24px;padding:0}
-.idx a{display:grid;grid-template-columns:60px 1fr 220px 40px;align-items:baseline;gap:16px;padding:14px 0 10px;border-bottom:1px solid #d6d6d2;transition:padding .4s cubic-bezier(.2,.8,.2,1),color .3s}
-.idx .n{font-size:13px;color:#888}
-.idx .t{font-size:clamp(34px,5.6vw,96px);letter-spacing:-.05em;line-height:.95;font-weight:500}
-.idx .c{font-size:14px;color:#666}
-.idx .ar{justify-self:end;font-size:22px;transition:transform .4s}
-.idx:hover a{color:#b5b5b0}
-.idx a:hover{color:#111;padding-left:18px}
-.idx a:hover .ar{transform:rotate(-45deg)}
-.peek{position:fixed;left:0;top:0;width:340px;aspect-ratio:16/10;pointer-events:none;z-index:4;opacity:0;transition:opacity .25s;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
-.peek img{width:100%;height:100%;object-fit:cover;object-position:top}
-.peek.on{opacity:1}
-.about{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:18vh 24px}
-.about p{grid-column:4/span 7;margin:0;font-size:clamp(22px,2.6vw,42px);line-height:1.15;letter-spacing:-.03em}
-.about small{grid-column:1/span 3;font-size:13px;color:#666}
-.end{padding:0 24px 80px;border-top:1px solid #111;margin:0 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px 0 90px;font-size:14px}
-.end .mail{font-size:clamp(28px,5vw,80px);letter-spacing:-.05em;flex-basis:100%;margin-bottom:30px}
-@media(max-width:800px){.top nav{display:none}.hero{display:block}.hero .side{margin-top:30px}.idx a{grid-template-columns:30px 1fr 24px}.idx .c{display:none}.peek{display:none}.about{display:block}.about small{display:block;margin-bottom:16px}}
+/* =========================================================
+   a — swiss rule (bleibtgleich)
+   ========================================================= */
+const ringCards = works.flatMap((w) => [`/assets/work/${w.slug}.webp`, `/assets/work/${w.slug}-m1.webp`]);
+write('concepts/a/index.html', `${head('concept a — swiss rule', `
+html,body{overflow-x:clip}
+body{background:#fff;color:#0d0d0d}
+.ghost{position:fixed;bottom:-.12em;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;font-size:9vw;font-weight:600;letter-spacing:-.05em;color:#ebebeb;pointer-events:none;z-index:0;line-height:1}
+.sq{position:fixed;top:16px;left:16px;width:12px;height:12px;background:#e3e3e3;z-index:5}
+.menu{position:fixed;top:14px;right:16px;z-index:20;background:#0d0d0d;color:#fff;border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600}
+.panel{position:fixed;inset:0;background:#0d0d0d;color:#fff;z-index:15;display:grid;place-items:center;clip-path:circle(0 at calc(100% - 40px) 26px);transition:clip-path .9s cubic-bezier(.77,0,.18,1)}
+.panel.open{clip-path:circle(150% at calc(100% - 40px) 26px)}
+.panel ul{list-style:none;margin:0;padding:0;text-align:center}
+.panel a{display:block;font-size:clamp(40px,7vw,110px);font-weight:600;letter-spacing:-.05em;line-height:1.02}
+.panel a:hover{color:#777}
+main{position:relative;z-index:1}
+.rule{position:absolute;top:0;bottom:0;left:37%;width:1px;background:#bdbdbd}
+.blk{position:relative;padding-left:calc(37% + 10px)}
+.hero{min-height:100svh;padding-top:12px}
+.hero .mk{position:absolute;left:calc(37% - 96px);top:10px;width:76px;height:76px;background:#0d0d0d;color:#fff;display:grid;place-items:center;font-weight:700;font-size:58px;border-radius:44% 56% 52% 48%/58% 44% 56% 42%;padding-bottom:8px}
+.hero .meta{font-size:11px;font-weight:600;line-height:1.3}
+.hero .who{position:absolute;bottom:22vh;left:calc(37% + 10px)}
+.hero .who h1{margin:0;font-size:clamp(34px,3.6vw,58px);font-weight:600;letter-spacing:-.045em;line-height:.98}
+.hero .role{position:absolute;bottom:22vh;left:calc(37% - 110px);font-size:10px;font-weight:600;line-height:1.25}
+.big{font-weight:600;letter-spacing:-.05em;line-height:.96;font-size:clamp(40px,4.4vw,72px);margin:0}
+.big span{display:block}
+.big .l{margin-left:calc(-37vw + 18vw)}
+.big .r1{padding-left:0}
+.big .r2{padding-left:1.4em}
+.stack{padding-bottom:14vh}
+.stack p.small{max-width:21em;font-size:12px;font-weight:600;line-height:1.35;margin:6vh 0 0}
+.tiles{display:flex;gap:10px;margin:8vh 0 0 calc(-37vw + 0px);padding-left:16px;overflow:hidden}
+.tiles div{flex:none;width:112px;height:112px;background:#f0f0f0;display:grid;place-items:center}
+.tiles i{width:14px;height:14px;border-radius:50%;border:1.5px solid}
+.quote{padding-top:18vh;padding-bottom:18vh}
+.quote .big .l{margin-left:calc(-37vw + 7vw)}
+.quote .c{font-size:10px;font-weight:600;margin-top:16vh}
+.work{position:relative;height:300vh}
+.work .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.work h2{position:absolute;top:30vh;left:0;right:0;display:flex;justify-content:center;gap:16vw;margin:0;font-size:clamp(40px,4.4vw,72px);font-weight:600;letter-spacing:-.05em;z-index:2;pointer-events:none}
+.scene{position:absolute;top:56%;left:50%;width:0;height:0;perspective:1400px}
+.ring{position:absolute;transform-style:preserve-3d;transform:rotateX(-12deg) rotateY(0deg)}
+.ring a{position:absolute;left:-60px;top:-45px;width:120px;height:90px;transform-style:preserve-3d;backface-visibility:visible}
+.ring img{width:100%;height:100%;object-fit:cover;object-position:top;border:5px solid #0d0d0d;background:#0d0d0d}
+.ring a:nth-child(even){width:70px;height:110px;left:-35px;top:-55px}
+.ring a:hover img{border-color:#888}
+.list{padding-top:10vh;padding-bottom:22vh}
+.list h2{margin:0 0 6vh}
+.list table{width:min(980px,92vw);margin-left:calc(-37vw + 18vw);border-collapse:collapse;font-size:12px;font-weight:600}
+.list td{padding:7px 10px 7px 0;border-bottom:1px solid #e6e6e6;vertical-align:top}
+.list tr:hover td{color:#888}
+.list td:first-child{width:10%}
+.end{padding-top:8vh;padding-bottom:24vh}
+.end a.mail{font-size:clamp(34px,4.4vw,72px);font-weight:600;letter-spacing:-.05em;border-bottom:3px solid}
+.end p{font-size:11px;font-weight:600;margin-top:20px}
+@media(max-width:800px){
+ .rule{left:24px}.blk{padding-left:36px;padding-right:16px}
+ .hero .mk{position:relative;left:auto;top:auto;margin:40px 0 20px}.hero .who,.hero .role{left:36px}.hero .role{bottom:calc(22vh + 70px)}
+ .big .l,.quote .big .l,.tiles,.list table{margin-left:0}
+ .work h2{gap:20vw}.list table{width:100%}.ghost{font-size:14vw}.list td:nth-child(4),.list td:nth-child(5){display:none}
+}
 `)}
 <body>
-<header class="top"><a class="logo" href="/">b</a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span>kaduna, ng · <span data-clock>--:--:--</span></span></header>
-<section class="hero"><h1>${STATEMENT.map((l) => `<span>${l}</span>`).join('')}</h1><div class="side"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" />benjamin, designer &amp; developer in travel tech. working at tourground, currently in kaduna, packing for indonesia.</div></section>
-<p class="lbl"><span>index of work</span><span>${pad(works.length)} brands</span></p>
-<ol class="idx">${works.map((w, i) => `<li><a href="/work/${w.slug}/" data-img="/assets/work/${w.slug}.webp"><span class="n">${pad(i + 1)}</span><span class="t">${lc(w.name)}</span><span class="c">${lc(w.country)}</span><span class="ar">→</span></a></li>`).join('')}</ol>
-<div class="peek" aria-hidden="true"><img alt="" src="/assets/work/${works[0].slug}.webp" /></div>
-<section class="about"><small>about</small><p>i spend my days making far-off places look worth the flight. seven so far, antarctica to japan, all for tourground.</p></section>
-<footer class="end"><a class="mail" href="mailto:${EMAIL}">${EMAIL}</a><span>© ${new Date().getFullYear()} benjamingjoel</span><a href="https://github.com/benjamingjoel2">github</a><a href="#">back to top ↑</a></footer>
-${cbar('a')}${clock}
-<script>(()=>{const pk=document.querySelector('.peek'),im=pk.querySelector('img');document.querySelectorAll('.idx a').forEach(a=>{a.addEventListener('mouseenter',()=>{im.src=a.dataset.img;pk.classList.add('on')});a.addEventListener('mouseleave',()=>pk.classList.remove('on'))});addEventListener('mousemove',e=>{pk.style.transform='translate('+(e.clientX+24)+'px,'+(e.clientY-110)+'px)'})})()</script>
+<div class="ghost" aria-hidden="true"><span>benjamin</span><span>gjoel</span></div>
+<span class="sq" aria-hidden="true"></span>
+<button class="menu" type="button" aria-expanded="false" data-menu>menu</button>
+<div class="panel" data-panel><ul>${NAVL.map(([n, h]) => `<li><a href="${h}">${n}</a></li>`).join('')}</ul></div>
+<main>
+<div class="rule" aria-hidden="true"></div>
+<section class="blk hero">
+<div class="mk" aria-hidden="true">b</div>
+<p class="meta">based in kaduna<br />working w/ tourground<br /><span data-clock>--:--:--</span></p>
+<p class="role">designer<br />&amp; developer</p>
+<div class="who"><h1>benjamin<br />gjoel</h1></div>
+</section>
+<section class="blk stack">
+<p class="big rv"><span class="l">sketches,</span><span>codes</span><span>&amp; ships</span><span class="r2">websites</span><span class="l">for places</span><span>you’d fly to.</span></p>
+<p class="small rv">designs and builds websites for tourground’s travel brands, with a focus on clear layouts, fast pages and type that reads well on a phone.</p>
+<div class="tiles rv" aria-hidden="true"><div><i style="color:#bbb"></i></div><div></div><div><i style="color:#b69c4c"></i></div><div><i style="color:#e2603b"></i></div><div></div><div><i style="color:#111;background:#111"></i></div><div><i style="color:#e2603b"></i></div></div>
+</section>
+<section class="blk quote">
+<p class="big rv"><span class="l" style="display:inline">the</span> <span style="display:inline;margin-left:8vw">details</span><span>are the whole</span><span>job.</span></p>
+<p class="c">© ’${String(YEAR).slice(2)}</p>
+</section>
+</main>
+<section class="work" data-work aria-label="work">
+<div class="pin"><h2><span>work</span><span>24–26</span></h2>
+<div class="scene"><div class="ring" data-ring>${ringCards.map((src, i) => `<a href="/work/${works[Math.floor(i / 2)].slug}/" aria-label="${lc(works[Math.floor(i / 2)].name)}"><img src="${src}" alt="" loading="lazy" /></a>`).join('')}</div></div></div>
+</section>
+<main>
+<div class="rule" aria-hidden="true"></div>
+<section class="blk list">
+<h2 class="big rv"><span class="l" style="display:inline">&amp;</span> <span style="display:inline">the</span><span>brands</span></h2>
+<table class="rv">${works.map((w, i) => `<tr><td>’${pad(i + 1)}</td><td><a href="/work/${w.slug}/">${lc(w.name)}</a></td><td>${lc(w.country)}</td><td>design, build, deploy</td><td><a href="${w.url}">${w.host}</a></td></tr>`).join('')}</table>
+</section>
+<section class="blk end"><a class="mail rv" href="mailto:${EMAIL}">${EMAIL}</a><p>© ${YEAR} benjamingjoel · <a href="${GH}">github</a></p></section>
+</main>
+${cbar('a')}${common}
+<script>(()=>{const b=document.querySelector('[data-menu]'),p=document.querySelector('[data-panel]');b.onclick=()=>{const o=p.classList.toggle('open');b.textContent=o?'close':'menu';b.setAttribute('aria-expanded',o)};
+const ring=document.querySelector('[data-ring]'),cards=[...ring.children],N=cards.length,R=Math.min(innerWidth*.34,420);cards.forEach((c,i)=>{const a=i/N*360,y=((i%3)-1)*70;c.style.transform='rotateY('+a+'deg) translateZ('+R+'px) translateY('+y+'px)'});
+const sec=document.querySelector('[data-work]');let rot=0,auto=0;const tick=()=>{const r=sec.getBoundingClientRect(),pr=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));auto+=.08;rot=pr*360+auto;ring.style.transform='rotateX(-10deg) rotateY('+rot+'deg)';requestAnimationFrame(tick)};tick()})()</script>
 </body></html>`);
 
-/* ---------------- b: cinema ---------------- */
-write('concepts/b/index.html', `${head('concept b — cinema', `
-body{background:#0b0b0b;color:#eee}
-.top{position:fixed;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;z-index:5;font-size:14px;mix-blend-mode:difference;color:#fff}
-.top nav{display:flex;gap:24px}
-.reel{position:relative;height:100svh;overflow:hidden}
-.reel img{position:absolute;inset:0;width:100%;height:100% !important;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s,transform 6s linear}
-.reel img.on{opacity:1;transform:scale(1)}
-.reel::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 35%,rgba(0,0,0,.75))}
-.cap{position:absolute;left:28px;right:28px;bottom:28px;z-index:2;display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px}
-.cap h1{margin:0;font-size:clamp(56px,12vw,220px);line-height:.85;letter-spacing:-.06em;font-weight:500}
-.cap .meta{font-size:14px;line-height:1.5;text-align:right;color:#bbb}
-.cap .meta b{display:block;font-size:clamp(28px,3vw,48px);color:#fff;font-weight:500;letter-spacing:-.03em}
-.dots{position:absolute;top:50%;right:28px;z-index:2;display:grid;gap:8px;transform:translateY(-50%)}
-.dots i{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.3;transition:opacity .3s}
-.dots i.on{opacity:1}
-.intro{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding:16vh 28px;align-items:start}
-.intro img{width:180px;aspect-ratio:4/5;object-fit:cover;border-radius:6px}
-.intro p{margin:0;font-size:clamp(26px,3.2vw,54px);line-height:1.08;letter-spacing:-.035em}
-.intro p span{color:#777}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:0 28px}
-.card{display:block;position:relative;overflow:hidden;border-radius:8px;background:#151515}
-.card:nth-child(3n+1){grid-column:1/-1}
-.card img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;transition:transform 1s cubic-bezier(.2,.8,.2,1),filter .6s;filter:brightness(.8)}
-.card:hover img{transform:scale(1.04);filter:none}
-.card .l{position:absolute;left:20px;bottom:18px;right:20px;display:flex;justify-content:space-between;align-items:end}
-.card .l b{font-size:clamp(24px,2.6vw,44px);font-weight:500;letter-spacing:-.04em}
-.card .l span{font-size:13px;color:#ccc}
-.end{padding:20vh 28px 90px;text-align:center}
-.end a{font-size:clamp(34px,7vw,120px);letter-spacing:-.05em;border-bottom:2px solid #333}
-.end p{color:#777;font-size:14px;margin-top:40px}
-@media(max-width:800px){.top nav{display:none}.cap{grid-template-columns:1fr}.cap .meta{text-align:left}.intro{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+/* =========================================================
+   b — card stack (huyml)
+   ========================================================= */
+const stackImgs = [...works.map((w) => `/assets/work/${w.slug}.webp`), ...works.map((w) => `/assets/work/${w.slug}-section.webp`), '/assets/me/03.webp', '/assets/me/10.webp'];
+write('concepts/b/index.html', `${head('concept b — card stack', `
+body{background:#ebebeb;color:#111}
+.side{position:fixed;left:16px;top:16px;bottom:16px;width:40px;z-index:6;display:flex;flex-direction:column;align-items:center;gap:14px}
+.side .logo{writing-mode:vertical-rl;transform:rotate(180deg);font-size:30px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.side .logo sup{font-size:.35em}
+.side small{writing-mode:vertical-rl;transform:rotate(180deg);font-size:9px;font-weight:600;line-height:1.2}
+.side .mk{width:34px;height:34px;border:1.5px solid #111;display:grid;place-items:center;font-weight:700;font-size:20px}
+.bar{position:absolute;top:14px;left:96px;right:16px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;font-size:10px;z-index:6;font-weight:500}
+.bar b{font-weight:600}
+.bar span:last-child{text-align:right}
+.nav{position:absolute;top:44px;left:96px;z-index:6;list-style:none;margin:0;padding:0;font-size:19px;font-weight:600;line-height:1.02;letter-spacing:-.01em}
+.nav a{display:inline-block;transition:transform .35s}
+.nav li:first-child a::before{content:'→ ';font-weight:400}
+.nav a:hover{transform:translateX(6px)}
+.hero{height:220vh;position:relative}
+.hero .pin{position:sticky;top:0;height:100svh;overflow:hidden;perspective:1600px}
+.deck{position:absolute;left:46%;top:48%;transform-style:preserve-3d}
+.deck figure{position:absolute;margin:0;width:340px;height:210px;left:-170px;top:-105px;transform-origin:50% 100%;box-shadow:0 30px 60px -30px rgba(0,0,0,.4);background:#ddd;border-radius:2px;overflow:hidden;transition:transform 1.4s cubic-bezier(.19,1,.22,1)}
+.deck img{width:100%;height:100%;object-fit:cover;object-position:top}
+.hero .cap{position:absolute;right:28px;bottom:26px;font-size:10px;font-weight:500;text-align:right}
+.hero .cap b{display:block;font-size:clamp(40px,6vw,96px);font-weight:500;letter-spacing:-.05em;line-height:.9;margin-top:6px}
+.scroll{position:absolute;left:96px;bottom:22px;font-size:10px}
+.view{min-height:100svh;display:grid;grid-template-columns:96px 1fr 1.2fr 1fr;gap:20px;align-items:center;padding:12vh 24px 12vh 0}
+.view dl{grid-column:2;margin:0;display:grid;grid-template-columns:auto 1fr;gap:16px 26px;font-size:10px}
+.view dt{color:#777}
+.view dd{margin:0;font-weight:500}
+.view dd a{text-decoration:underline;text-underline-offset:2px}
+.view .stage{grid-column:3;position:relative;aspect-ratio:4/5;perspective:1200px}
+.view .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:rotateY(-14deg) rotateX(6deg) scale(.94);transition:opacity .6s,transform 1s cubic-bezier(.19,1,.22,1);box-shadow:0 40px 80px -40px rgba(0,0,0,.5)}
+.view .stage img.on{opacity:1;transform:rotateY(-6deg) rotateX(2deg)}
+.view .num{position:absolute;left:-36%;bottom:-6%;font-size:clamp(90px,13vw,210px);font-weight:400;letter-spacing:-.06em;line-height:.8;mix-blend-mode:difference;color:#fff;z-index:3;pointer-events:none}
+.view .num small{font-size:10px;letter-spacing:0;vertical-align:top;margin-left:6px;color:#fff}
+.view ol{grid-column:4;list-style:none;margin:0;padding:0;text-align:center}
+.view li button{display:block;width:100%;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.06);opacity:.25;transition:opacity .4s}
+.view li button.on,.view li button:hover{opacity:1}
+.view li .c{display:block;font-size:10px;color:#666}
+.view li .n{display:block;font-size:17px;letter-spacing:.01em;margin:4px 0}
+.view li .d{display:block;font-size:10px;max-width:210px;margin:0 auto;line-height:1.3}
+.end{padding:12vh 24px 90px 96px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.end > a{font-size:clamp(34px,5vw,84px);font-weight:500;letter-spacing:-.05em;line-height:.95}
+.end p{font-size:10px}
+@media(max-width:800px){.bar{grid-template-columns:1fr 1fr;left:70px}.bar span:nth-child(2),.bar span:nth-child(3){display:none}.nav{left:70px;font-size:16px}.side{width:30px}.side .logo{font-size:22px}.deck figure{width:220px;height:136px;left:-110px;top:-68px}.deck{left:55%}
+ .view{grid-template-columns:1fr;padding:10vh 16px 10vh 64px}.view dl,.view .stage,.view ol{grid-column:1}.view .num{left:0}.end{padding-left:64px}.scroll{left:70px}}
 `)}
 <body>
-<header class="top"><a href="/">benjamingjoel</a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span data-clock>--:--:--</span></header>
-<section class="reel" aria-label="projects">
-${works.map((w, i) => `<img src="/assets/work/${w.slug}${i % 2 ? '-section' : ''}.webp" alt="${lc(w.name)}"${i === 0 ? ' class="on"' : ''} />`).join('\n')}
-<div class="cap"><h1>benjamin<br />gjoel</h1><div class="meta">now showing <b data-name>${lc(works[0].name)}</b><span data-n>01</span> / ${pad(works.length)} · <span data-c>${lc(works[0].country)}</span></div></div>
-<div class="dots" aria-hidden="true">${works.map((_, i) => `<i${i === 0 ? ' class="on"' : ''}></i>`).join('')}</div>
+<aside class="side"><span class="logo">benjamingjoel<sup>®</sup></span><small>©${YEAR} kaduna, ng</small><span class="mk">b</span></aside>
+<header class="bar"><span>menu</span><span>audio <b>off</b> —</span><span>working globally<br /><b>kaduna, <span data-clock>--:--:--</span></b></span><span>for inquiries <a href="mailto:${EMAIL}" style="text-decoration:underline">${EMAIL}</a></span></header>
+<ul class="nav">${NAVL.map(([n, h]) => `<li><a href="${h}">${n}</a></li>`).join('')}</ul>
+<section class="hero" data-hero><div class="pin"><div class="deck" data-deck>${stackImgs.map((s) => `<figure><img src="${s}" alt="" /></figure>`).join('')}</div>
+<p class="cap">designer &amp; developer · travel tech<b>sketches, codes<br />&amp; ships websites</b></p><span class="scroll">scroll</span></div></section>
+<section class="view" data-view aria-label="selected work">
+<dl><dt>role</dt><dd>design<br />development<br />deployment</dd><dt>destination</dt><dd data-f="c">${lc(works[0].country)}</dd><dt>live at</dt><dd><a data-f="u" href="${works[0].url}">${works[0].host}</a></dd><dt>case</dt><dd><a data-f="p" href="/work/${works[0].slug}/">view project →</a></dd></dl>
+<div class="stage">${works.map((w, i) => `<img src="/assets/work/${w.slug}-m1.webp" alt="${lc(w.name)}"${i === 0 ? ' class="on"' : ''} />`).join('')}<span class="num" data-f="n">01<small>/${pad(works.length)}</small></span></div>
+<ol>${works.map((w, i) => `<li><button type="button" data-i="${i}"${i === 0 ? ' class="on"' : ''}><span class="c">${lc(w.country)}</span><span class="n">${lc(w.name)}</span><span class="d">${lc(w.desc)}</span></button></li>`).join('')}</ol>
 </section>
-<section class="intro"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" /><p>benjamin ${STATEMENT.join(' ')}. <span>seven brands for tourground, from antarctica to japan, mostly from a laptop in kaduna.</span></p></section>
-<section class="grid">${works.map((w) => `<a class="card" href="/work/${w.slug}/"><img src="/assets/work/${w.slug}.webp" alt="" loading="lazy" /><span class="l"><b>${lc(w.name)}</b><span>${lc(w.country)}</span></span></a>`).join('')}</section>
-<footer class="end"><a href="mailto:${EMAIL}">say hello</a><p>${EMAIL} · kaduna, ng · © ${new Date().getFullYear()}</p></footer>
-${cbar('b')}${clock}
-<script>(()=>{const W=${JSON.stringify(works.map((w) => [lc(w.name), lc(w.country)]))};const im=[...document.querySelectorAll('.reel img')],d=[...document.querySelectorAll('.dots i')];let i=0;setInterval(()=>{im[i].classList.remove('on');d[i].classList.remove('on');i=(i+1)%im.length;im[i].classList.add('on');d[i].classList.add('on');document.querySelector('[data-name]').textContent=W[i][0];document.querySelector('[data-c]').textContent=W[i][1];document.querySelector('[data-n]').textContent=String(i+1).padStart(2,'0')},3800)})()</script>
+<footer class="end"><a href="mailto:${EMAIL}">let’s make<br />something good.</a><p>© ${YEAR} benjamingjoel · <a href="${GH}">github</a> · <a href="/about/">about</a></p></footer>
+${cbar('b')}${common}
+<script>(()=>{const W=${JSON.stringify(works.map((w) => ({ c: lc(w.country), u: w.url, h: w.host, s: w.slug })))};
+const figs=[...document.querySelectorAll('[data-deck] figure')],hero=document.querySelector('[data-hero]');const lay=p=>figs.forEach((f,i)=>{const k=i-figs.length/2,curl=40+p*25;f.style.transform='translate3d('+(k*(34+p*30))+'px,'+(k*(-30-p*20))+'px,'+(k*-14)+'px) rotateX('+curl+'deg) rotateZ('+(-28+p*14)+'deg) skewY('+(-6)+'deg)'});lay(0);
+addEventListener('scroll',()=>{const r=hero.getBoundingClientRect();lay(Math.min(1,Math.max(0,-r.top/(r.height-innerHeight))))},{passive:true});
+const imgs=[...document.querySelectorAll('.stage img')],btns=[...document.querySelectorAll('[data-i]')];const set=i=>{imgs.forEach((m,j)=>m.classList.toggle('on',j===i));btns.forEach((b,j)=>b.classList.toggle('on',j===i));const w=W[i];document.querySelector('[data-f=c]').textContent=w.c;const u=document.querySelector('[data-f=u]');u.href=w.u;u.textContent=w.h;document.querySelector('[data-f=p]').href='/work/'+w.s+'/';document.querySelector('[data-f=n]').firstChild.textContent=String(i+1).padStart(2,'0')};
+btns.forEach(b=>{b.addEventListener('mouseenter',()=>set(+b.dataset.i));b.addEventListener('click',()=>set(+b.dataset.i))})})()</script>
 </body></html>`);
 
-/* ---------------- c: the magazine ---------------- */
-write('concepts/c/index.html', `${head('concept c — the magazine', `
-body{background:#f1ece2;color:#1d1a16}
-.mast{display:flex;justify-content:space-between;padding:16px 26px;font-size:13px;border-bottom:1px solid #1d1a16}
-.mast nav{display:flex;gap:20px}
-.cover{padding:16px 26px 0;position:relative}
-.cover h1{margin:0;font-size:22vw;line-height:.8;letter-spacing:-.07em;font-weight:700;text-align:center;color:#c2410c}
-.cover .issue{display:flex;justify-content:space-between;font-size:13px;padding:12px 0;border-bottom:1px solid #1d1a16}
-.spread{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:26px;padding:26px 0 0;align-items:start}
-.spread img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.lines p{margin:0 0 22px;font-size:15px;line-height:1.35}
-.lines p b{display:block;font-size:clamp(22px,2.2vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin-bottom:6px}
-.lines.r{text-align:right}
-.inside{padding:16vh 26px 0}
-.inside h2{font-size:13px;font-weight:500;border-bottom:1px solid #1d1a16;padding-bottom:10px;margin:0 0 40px;display:flex;justify-content:space-between}
-.art{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:0 0 14vh}
-.art:nth-child(even) .pic{order:2}
-.art .pic img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
-.art .no{font-size:clamp(80px,12vw,200px);line-height:.8;letter-spacing:-.06em;color:#c2410c;font-weight:700}
-.art h3{margin:12px 0 10px;font-size:clamp(32px,4vw,64px);letter-spacing:-.045em;line-height:.95;font-weight:600}
-.art p{margin:0 0 16px;font-size:17px;line-height:1.45;max-width:30em}
-.art a.more{font-size:14px;border-bottom:1px solid}
-.letter{margin:0 26px;padding:12vh 0;border-top:1px solid #1d1a16;display:grid;grid-template-columns:1fr 2fr;gap:40px}
-.letter p{margin:0;font-size:clamp(22px,2.4vw,38px);line-height:1.2;letter-spacing:-.02em}
-.letter p::first-letter{font-size:3.2em;float:left;line-height:.8;margin:6px 10px 0 0;color:#c2410c;font-weight:700}
-.end{margin:0 26px;padding:20px 0 90px;border-top:1px solid #1d1a16;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
-@media(max-width:800px){.mast nav{display:none}.spread{grid-template-columns:1fr}.lines.r{text-align:left}.art{grid-template-columns:1fr;gap:16px}.art:nth-child(even) .pic{order:0}.letter{grid-template-columns:1fr}}
+/* =========================================================
+   c — chip grid (fmportfolio)
+   ========================================================= */
+const feat = [[0, 'w'], [1, 'w'], [2, ''], [3, ''], [4, ''], [5, 'w'], [6, 'w']];
+write('concepts/c/index.html', `${head('concept c — chip grid', `
+body{background:#f7f7f7;color:#0f0f0f}
+.hdr{position:fixed;top:12px;left:12px;right:12px;display:flex;gap:6px;z-index:20;align-items:flex-start}
+.chip{height:34px;display:inline-flex;align-items:center;gap:10px;padding:0 12px;border-radius:6px;background:rgba(228,228,228,.8);backdrop-filter:blur(12px);font-size:13px;font-weight:600}
+.chip.logo{font-weight:800;letter-spacing:-.02em}
+.pages{width:220px;display:block;height:auto;padding:0;overflow:hidden}
+.pages > button{display:flex;justify-content:space-between;align-items:center;width:100%;height:34px;padding:0 12px}
+.pages ul{list-style:none;margin:0;padding:0 12px;max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.19,1,.22,1),padding .5s}
+.pages.open ul{max-height:260px;padding:10px 12px 14px}
+.pages li a{display:block;padding:5px 0;font-size:15px}
+.r{margin-left:auto;display:flex;gap:6px}
+.top{padding:58px 12px 0}
+.name{margin:0;white-space:nowrap;font-weight:700;letter-spacing:-.055em;line-height:.9;width:max-content}
+.rows{margin-top:6vh}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 34px}
+.row .k{font-size:11px;font-weight:600;letter-spacing:.04em}
+.row .v{font-size:11px;font-weight:500;letter-spacing:.04em;line-height:1.6;max-width:44em}
+.row .v .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-right:6px}
+.row .v a{text-decoration:underline;text-underline-offset:2px;margin-right:14px}
+.lbl{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:22px 12px;border-top:1px solid #dcdcdc;margin:0}
+.lbl::before{content:'';width:6px;height:6px;border-radius:50%;background:#0f0f0f}
+.feat{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:0 12px}
+.feat a{grid-column:span 2}
+.feat a.w{grid-column:span 3}
+.feat .ph{overflow:hidden;background:#e6e6e6;aspect-ratio:4/3}
+.feat a.w .ph{aspect-ratio:16/10}
+.feat img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.2s cubic-bezier(.19,1,.22,1),filter .6s;filter:grayscale(1)}
+.feat a:hover img{transform:scale(1.04);filter:none}
+.feat .cp{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 0 30px}
+.ix{list-style:none;margin:0;padding:0 12px}
+.ix li{display:grid;grid-template-columns:1fr 1fr 40px;align-items:center;border-bottom:1px solid #dcdcdc;padding:18px 0}
+.ix .n{font-size:11px;font-weight:600}
+.ix .t{font-size:clamp(28px,3.4vw,54px);font-weight:700;letter-spacing:-.045em;line-height:1;transition:transform .5s cubic-bezier(.19,1,.22,1)}
+.ix li:hover .t{transform:translateX(10px)}
+.ix .ar{justify-self:end;transition:transform .4s}
+.ix li:hover .ar{transform:rotate(-45deg)}
+.mq{overflow:hidden;padding:26px 0;border-top:1px solid #dcdcdc;border-bottom:1px solid #dcdcdc;margin-top:8vh}
+.mq-t{display:flex;width:max-content;gap:28px;animation:mq 34s linear infinite}
+.mq img{width:150px;height:110px;object-fit:cover;filter:grayscale(1)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.ftr{padding:8vh 12px 14px}
+.ftr .row{padding:0 0 10vh}
+.ftr .big{margin:0;white-space:nowrap;font-weight:700;letter-spacing:-.055em;line-height:.9;width:max-content}
+.base{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.04em;padding-top:10px}
+@media(max-width:800px){.row{grid-template-columns:1fr}.feat{grid-template-columns:1fr 1fr}.feat a,.feat a.w{grid-column:span 2}.ix li{grid-template-columns:40px 1fr 30px}.pages{width:auto;flex:1}.r .chip:not(.cta){display:none}}
 `)}
 <body>
-<header class="mast"><span>the benjamin review</span><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span data-clock>--:--:--</span></header>
-<section class="cover">
-<div class="issue"><span>issue no. ${pad(works.length)}</span><span>the travel tech issue</span><span>kaduna, ${new Date().getFullYear()}</span></div>
-<h1>benjamin</h1>
-<div class="spread">
-<div class="lines"><p><b>${STATEMENT[0]}</b>&amp; ${STATEMENT[1]} for ${STATEMENT[2]}.</p><p><b>seven brands</b>antarctica to japan, all built for tourground.</p></div>
-<img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" />
-<div class="lines r"><p><b>now in kaduna</b>packing for indonesia, laptop first.</p><p><b>inside →</b>${works.slice(0, 3).map((w) => lc(w.country)).join(', ')} and more.</p></div>
-</div>
+<header class="hdr"><a class="chip logo" href="/">b_j</a><div class="chip pages" data-pages><button type="button" aria-expanded="false">home <span>≡</span></button><ul>${NAVL.map(([n, h]) => `<li><a href="${h}">${n}</a></li>`).join('')}</ul></div><div class="r"><span class="chip">kaduna <span data-clock>--:--:--</span></span><a class="chip cta" href="/contact/">contact me ›</a></div></header>
+<section class="top"><h1 class="name" data-fit>benjamingjoel</h1></section>
+<section class="rows">
+<div class="row"><p class="k">you’ll like it:</p><p class="v">a designer and developer in travel tech. i sketch, code and ship the websites for tourground’s brands, so the idea in the first layout survives all the way to the live site.<br /><br /><span class="dot"></span>at tourground, full time</p></div>
+<div class="row"><p class="k">elsewhere:</p><p class="v"><a href="${GH}">github</a><a href="mailto:${EMAIL}">email</a><a href="/tourground/">at tourground</a></p></div>
 </section>
-<section class="inside"><h2><span>inside this issue</span><span>${pad(works.length)} features</span></h2>
-${works.map((w, i) => `<article class="art"><a class="pic" href="/work/${w.slug}/"><img src="/assets/work/${w.slug}.webp" alt="${lc(w.name)} homepage" loading="lazy" /></a><div><div class="no">${pad(i + 1)}</div><h3>${lc(w.name)}</h3><p>${lc(w.about)}</p><a class="more" href="/work/${w.slug}/">read the feature →</a></div></article>`).join('\n')}
-</section>
-<section class="letter"><span style="font-size:13px">a note from the editor</span><p>i spend my days making far-off places look worth the flight. most of it happens on a laptop in kaduna, and sometimes from wherever the wifi is.</p></section>
-<footer class="end"><a href="mailto:${EMAIL}">${EMAIL}</a><span>© ${new Date().getFullYear()} benjamingjoel</span><a href="#">back to the cover ↑</a></footer>
-${cbar('c')}${clock}
+<p class="lbl">featured projects:</p>
+<section class="feat">${feat.map(([i, cls]) => { const w = works[i]; return `<a class="${cls} rv" href="/work/${w.slug}/"><div class="ph"><img src="/assets/work/${w.slug}${cls ? '' : '-section'}.webp" alt="${lc(w.name)}" loading="lazy" /></div><div class="cp"><span>${lc(w.name)}</span><span>/ ${lc(w.country)}</span></div></a>`; }).join('')}</section>
+<p class="lbl" style="margin-top:6vh">index:</p>
+<ol class="ix">${works.map((w, i) => `<li><span class="n">${pad(i + 1)}.</span><a class="t" href="/work/${w.slug}/">${lc(w.name)}</a><span class="ar">↘</span></li>`).join('')}</ol>
+<div class="mq" aria-hidden="true"><div class="mq-t">${[0, 1].map(() => ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map((n) => `<img src="/assets/me/${n}.webp" alt="" />`).join('')).join('')}</div></div>
+<footer class="ftr"><div class="row"><p class="v">now that you got here, why not say hello? whether it’s travel tech, a site you love or a question about mine, my inbox is open.</p><p class="v" style="text-align:right"><a href="${GH}">github</a><a href="mailto:${EMAIL}">email</a></p></div><p class="big" data-fit>benjamingjoel</p><div class="base"><span>© ${YEAR} benjamingjoel</span><a href="#">↑ back to top</a><a href="mailto:${EMAIL}">→ ${EMAIL}</a></div></footer>
+${cbar('c')}${common}
+<script>(()=>{const p=document.querySelector('[data-pages]'),b=p.querySelector('button');b.onclick=()=>b.setAttribute('aria-expanded',p.classList.toggle('open'))})()</script>
 </body></html>`);
 
-/* ---------------- d: colour cards ---------------- */
-write('concepts/d/index.html', `${head('concept d — colour cards', `
-body{background:#fafafa;color:#111}
-.top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-size:14px}
-.top nav{display:flex;gap:6px}
-.top nav a{padding:8px 14px;border-radius:99px;background:#ececec}
-.top nav a:hover{background:#111;color:#fff}
-.hero{padding:8vh 20px 10vh}
-.hero h1{margin:0;font-size:clamp(46px,8.4vw,150px);line-height:.95;letter-spacing:-.055em;font-weight:500;max-width:12em}
-.hero h1 .pill{display:inline-flex;align-items:center;vertical-align:middle;height:.78em;padding:0 .3em;border-radius:99px;font-size:.55em;margin:0 .08em;letter-spacing:-.02em;transform:translateY(-.08em)}
-.hero h1 img{display:inline-block;vertical-align:middle;height:.8em;width:.8em;border-radius:50%;object-fit:cover;transform:translateY(-.06em)}
-.hero p{margin:30px 0 0;font-size:15px;color:#666}
-.stack{padding:0 20px}
-.cardx{position:sticky;top:20px;height:min(86vh,780px);border-radius:28px;padding:30px;display:grid;grid-template-columns:1fr 1.3fr;gap:30px;align-items:end;margin-bottom:24px;overflow:hidden;box-shadow:0 -20px 50px -30px rgba(0,0,0,.35)}
-.cardx .txt .n{font-size:14px;opacity:.7}
-.cardx h2{margin:10px 0 14px;font-size:clamp(44px,6.4vw,112px);line-height:.88;letter-spacing:-.055em;font-weight:600}
-.cardx p{margin:0 0 22px;font-size:17px;line-height:1.4;max-width:24em;opacity:.85}
-.cardx .go{display:inline-flex;padding:12px 18px;border-radius:99px;font-size:14px}
-.cardx .shot{align-self:center;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);transform:rotate(2deg)}
-.cardx .shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
-.bye{padding:18vh 20px 100px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
-.bye img{width:120px;height:120px;border-radius:50%;object-fit:cover}
-.bye a{font-size:clamp(36px,6vw,100px);letter-spacing:-.05em;font-weight:500}
-.bye p{grid-column:1/-1;font-size:14px;color:#777;margin:0}
-@media(max-width:800px){.top nav{display:none}.cardx{grid-template-columns:1fr;align-items:start;padding:22px;height:auto;min-height:80vh}.cardx .shot{order:-1}.bye{grid-template-columns:1fr}}
+/* =========================================================
+   d — dark showcase
+   ========================================================= */
+const aboutWords = 'i spend my days making far-off places look worth the flight. seven brands so far, antarctica to japan, designed, coded and shipped by me, usually from a laptop in kaduna.'.split(' ');
+write('concepts/d/index.html', `${head('concept d — dark showcase', `
+html{background:#0a0a0a}
+body{background:#0a0a0a;color:#ececec;cursor:none}
+a,button{cursor:none}
+.cur{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#ececec;z-index:1000;pointer-events:none;mix-blend-mode:difference;transition:width .35s,height .35s,margin .35s;display:grid;place-items:center;font-size:12px;color:#0a0a0a;font-weight:600}
+.cur.big{width:92px;height:92px;margin:-46px 0 0 -46px;mix-blend-mode:normal}
+.cur span{opacity:0;transition:opacity .2s}
+.cur.big span{opacity:1}
+@media(hover:none){body,a,button{cursor:auto}.cur{display:none}}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:20px 28px;font-size:12px;color:#8a8a8a;position:relative;z-index:2}
+.meta b{display:block;color:#ececec;font-weight:500}
+.meta a:hover b{text-decoration:underline}
+.hero{min-height:calc(100svh - 70px);display:flex;flex-direction:column;justify-content:center;padding:0 28px;position:relative;overflow:hidden}
+.hero h1{margin:0;font-size:clamp(54px,10.5vw,190px);font-weight:500;letter-spacing:-.06em;line-height:.88}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln > span{display:inline-block;transform:translateY(105%);animation:up 1.2s cubic-bezier(.19,1,.22,1) forwards}
+.hero h1 .ln:nth-child(2) > span{animation-delay:.12s}
+.hero h1 .ln:nth-child(3) > span{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero .pill{display:inline-block;width:1.8em;height:.78em;border-radius:99px;overflow:hidden;vertical-align:middle;margin:0 .12em;transform:translateY(-.05em)}
+.hero .pill img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.hero h1 .dim{color:#5a5a5a}
+.hero .foot{display:flex;justify-content:space-between;align-items:end;margin-top:8vh;font-size:12px;color:#8a8a8a}
+.hero .foot b{color:#ececec;font-weight:500}
+.reel{height:${works.length * 70 + 60}vh;position:relative}
+.reel .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.reel .hd{display:flex;justify-content:space-between;padding:0 28px 4vh;font-size:12px;color:#8a8a8a}
+.track{display:flex;gap:3vw;padding-left:28px;will-change:transform}
+.card{flex:none;width:min(62vw,980px);display:block}
+.card .ph{overflow:hidden;border-radius:6px;aspect-ratio:16/10;background:#161616}
+.card img{width:100%;height:100%;object-fit:cover;object-position:top;transform:scale(1.12);transition:transform 1.4s cubic-bezier(.19,1,.22,1)}
+.card:hover img{transform:scale(1.04)}
+.card .l{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px}
+.card .l b{font-size:clamp(26px,3vw,50px);font-weight:500;letter-spacing:-.045em}
+.card .l span{font-size:12px;color:#8a8a8a}
+.prog{position:absolute;left:28px;right:28px;bottom:28px;height:1px;background:#262626}
+.prog i{display:block;height:100%;width:0;background:#ececec}
+.about{padding:22vh 28px;max-width:1300px}
+.about p{margin:0;font-size:clamp(30px,4.2vw,72px);line-height:1.04;letter-spacing:-.045em;font-weight:500}
+.about p span{color:#2e2e2e;transition:color .4s}
+.about p span.on{color:#ececec}
+.pics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 28px}
+.pics img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;filter:grayscale(1) brightness(.85);transition:filter .6s}
+.pics img:hover{filter:none}
+.pics img:nth-child(even){margin-top:10vh}
+.end{padding:24vh 28px 90px;text-align:left}
+.end small{font-size:12px;color:#8a8a8a}
+.end a.mail{display:block;font-size:clamp(50px,11vw,200px);font-weight:500;letter-spacing:-.06em;line-height:.9;margin:20px 0 60px}
+.end a.mail:hover{color:#8a8a8a}
+.end .row{display:flex;justify-content:space-between;font-size:12px;color:#8a8a8a;border-top:1px solid #262626;padding-top:16px;flex-wrap:wrap;gap:10px}
+@media(max-width:800px){.hero .foot nav{display:none}.meta{grid-template-columns:1fr 1fr}.meta div:nth-child(3){display:none}.card{width:80vw}.pics{grid-template-columns:1fr 1fr}.reel{height:${works.length * 60 + 60}vh}}
 `)}
 <body>
-<header class="top"><a href="/"><b>benjamingjoel</b></a><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span>kaduna · <span data-clock>--:--:--</span></span></header>
-<section class="hero"><h1><img src="/assets/me/01.webp" alt="" /> benjamin sketches, codes &amp; ships websites for places like <span class="pill" style="background:${works[0].sw[0]};color:${works[0].sw[1]}">antarctica</span> <span class="pill" style="background:${works[5].sw[0]};color:${works[5].sw[1]}">japan</span> and <span class="pill" style="background:${works[3].sw[0]};color:${works[3].sw[1]}">iceland</span>.</h1><p>designer &amp; developer at tourground · scroll for the seven brands ↓</p></section>
-<section class="stack">${works.map((w, i) => `<article class="cardx" style="background:${w.sw[0]};color:${w.sw[1]};top:${20 + i * 14}px"><div class="txt"><span class="n">${pad(i + 1)} / ${pad(works.length)} · ${lc(w.country)}</span><h2>${lc(w.name)}</h2><p>${lc(w.desc)}.</p><a class="go" style="background:${w.sw[1]};color:${w.sw[0]}" href="/work/${w.slug}/">see the project →</a></div><a class="shot" href="/work/${w.slug}/"><img src="/assets/work/${w.slug}.webp" alt="${lc(w.name)} homepage" loading="lazy" /></a></article>`).join('\n')}</section>
-<section class="bye"><img src="/assets/me/01.webp" alt="portrait of benjamin" /><a href="mailto:${EMAIL}">say hello →</a><p>${EMAIL} · © ${new Date().getFullYear()} benjamingjoel</p></section>
-${cbar('d')}${clock}
+<div class="cur" aria-hidden="true"><span>view</span></div>
+<header class="meta"><div><b>benjamingjoel</b>designer &amp; developer</div><div><b>at tourground</b>travel tech</div><div><b>kaduna, ng</b><span data-clock>--:--:--</span></div><div style="text-align:right"><a href="mailto:${EMAIL}"><b>contact</b>${EMAIL}</a></div></header>
+<section class="hero"><h1><span class="ln"><span>sketches,</span></span><span class="ln"><span>codes <span class="pill"><img src="/assets/me/01.webp" alt="benjamin" /></span> &amp; ships</span></span><span class="ln"><span><span class="dim">websites.</span></span></span></h1>
+<div class="foot"><span>for places you’d fly to,<br /><b>seven so far.</b></span><span>scroll ↓</span><nav style="display:flex;gap:18px">${NAVL.slice(0, 4).map(([n, h]) => `<a href="${h}">${n}</a>`).join('')}</nav></div></section>
+<section class="reel" data-reel><div class="pin"><div class="hd"><span>selected work</span><span data-count>01 / ${pad(works.length)}</span></div><div class="track" data-track>${works.map((w, i) => `<a class="card" data-view href="/work/${w.slug}/"><div class="ph"><img src="/assets/work/${w.slug}.webp" alt="${lc(w.name)}" ${i > 1 ? 'loading="lazy"' : ''} /></div><div class="l"><b>${lc(w.name)}</b><span>${pad(i + 1)} · ${lc(w.country)}</span></div></a>`).join('')}</div><div class="prog"><i data-prog></i></div></div></section>
+<section class="about" data-words><p>${aboutWords.map((w) => `<span>${w}</span>`).join(' ')}</p></section>
+<section class="pics">${['02', '03', '07', '12'].map((n) => `<img class="rv" src="/assets/me/${n}.webp" alt="" loading="lazy" />`).join('')}</section>
+<footer class="end"><small>have something in mind?</small><a class="mail" data-view href="mailto:${EMAIL}">say hello</a><div class="row"><span>© ${YEAR} benjamingjoel</span><a href="${GH}">github</a><a href="/tourground/">at tourground</a><a href="#">back to top ↑</a></div></footer>
+${cbar('d')}${common}
+<script>(()=>{const cur=document.querySelector('.cur');let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});document.querySelectorAll('[data-view]').forEach(a=>{a.addEventListener('mouseenter',()=>cur.classList.add('big'));a.addEventListener('mouseleave',()=>cur.classList.remove('big'))});
+const reel=document.querySelector('[data-reel]'),track=document.querySelector('[data-track]'),prog=document.querySelector('[data-prog]'),cnt=document.querySelector('[data-count]'),N=${works.length};
+const words=[...document.querySelectorAll('[data-words] span')],ab=document.querySelector('[data-words]');
+const loop=()=>{cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px)';
+const r=reel.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));const max=track.scrollWidth-innerWidth+56;track.style.transform='translate3d('+(-p*max)+'px,0,0)';prog.style.width=(p*100)+'%';cnt.textContent=String(Math.min(N,Math.floor(p*N)+1)).padStart(2,'0')+' / '+String(N).padStart(2,'0');
+const a=ab.getBoundingClientRect(),q=Math.min(1,Math.max(0,(innerHeight*.85-a.top)/(a.height+innerHeight*.3)));const k=Math.floor(q*words.length);words.forEach((w,i)=>w.classList.toggle('on',i<k));
+requestAnimationFrame(loop)};loop()})()</script>
 </body></html>`);
 
 /* ---------------- picker ---------------- */
 write('concepts/index.html', `${head('design concepts — benjamin', `
-body{background:#111;color:#eee;padding:6vh 24px 100px}
+body{background:#0e0e0e;color:#eee;padding:6vh 24px 100px}
 h1{margin:0 0 6px;font-size:clamp(40px,6vw,96px);letter-spacing:-.05em;font-weight:500}
-.sub{color:#999;margin:0 0 6vh}
-.list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.list a{display:block;background:#1b1b1b;border-radius:18px;padding:26px;transition:background .3s}
-.list a:hover{background:#262626}
+.sub{color:#999;margin:0 0 6vh;max-width:40em;line-height:1.4}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.list a{display:block;background:#181818;border-radius:16px;padding:26px;transition:background .3s}
+.list a:hover{background:#232323}
 .list b{display:block;font-size:clamp(30px,3.4vw,56px);letter-spacing:-.04em;font-weight:500;margin:6px 0 10px}
-.list span{color:#999;font-size:14px}
-.list p{margin:0;font-size:16px;line-height:1.4;color:#ccc}
+.list span{color:#888;font-size:13px}
+.list p{margin:0;font-size:15px;line-height:1.45;color:#bbb}
 @media(max-width:800px){.list{grid-template-columns:1fr}}
 `)}
 <body>
-<h1>four directions</h1><p class="sub">same content, four different looks. open each, then tell me which letter you want (or what to mix).</p>
+<h1>four directions</h1><p class="sub">each one is led by a portfolio you sent at the start. same content, same font. open each and tell me the letter, or what to mix.</p>
 <div class="list">${CONCEPTS.map(([k, n, d]) => `<a href="/concepts/${k}/"><span>concept ${k}</span><b>${n}</b><p>${d}</p></a>`).join('')}</div>
 <p class="sub" style="margin-top:6vh"><a href="/" style="border-bottom:1px solid">← the current site</a></p>
 </body></html>`);

@@ -7,33 +7,37 @@
 <title>design concepts — benjamin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
-.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:999;display:flex;gap:2px;padding:4px;border-radius:99px;background:rgba(20,20,20,.9);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);backdrop-filter:blur(8px)}
 .cbar a{padding:7px 12px;border-radius:99px}
 .cbar a[aria-current]{background:#fff;color:#111}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1.2s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
-body{background:#111;color:#eee;padding:6vh 24px 100px}
+body{background:#0e0e0e;color:#eee;padding:6vh 24px 100px}
 h1{margin:0 0 6px;font-size:clamp(40px,6vw,96px);letter-spacing:-.05em;font-weight:500}
-.sub{color:#999;margin:0 0 6vh}
-.list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.list a{display:block;background:#1b1b1b;border-radius:18px;padding:26px;transition:background .3s}
-.list a:hover{background:#262626}
+.sub{color:#999;margin:0 0 6vh;max-width:40em;line-height:1.4}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.list a{display:block;background:#181818;border-radius:16px;padding:26px;transition:background .3s}
+.list a:hover{background:#232323}
 .list b{display:block;font-size:clamp(30px,3.4vw,56px);letter-spacing:-.04em;font-weight:500;margin:6px 0 10px}
-.list span{color:#999;font-size:14px}
-.list p{margin:0;font-size:16px;line-height:1.4;color:#ccc}
+.list span{color:#888;font-size:13px}
+.list p{margin:0;font-size:15px;line-height:1.45;color:#bbb}
 @media(max-width:800px){.list{grid-template-columns:1fr}}
 
 </style>
 </head>
 <body>
-<h1>four directions</h1><p class="sub">same content, four different looks. open each, then tell me which letter you want (or what to mix).</p>
-<div class="list"><a href="/concepts/a/"><span>concept a</span><b>the index</b><p>swiss and light. your projects are the hero, as a big list with a floating preview.</p></a><a href="/concepts/b/"><span>concept b</span><b>cinema</b><p>dark and full-screen. your sites play like film stills, one after another.</p></a><a href="/concepts/c/"><span>concept c</span><b>the magazine</b><p>warm paper, a cover, and each project laid out as a spread.</p></a><a href="/concepts/d/"><span>concept d</span><b>colour cards</b><p>each brand in its own colours, cards that stack as you scroll.</p></a></div>
+<h1>four directions</h1><p class="sub">each one is led by a portfolio you sent at the start. same content, same font. open each and tell me the letter, or what to mix.</p>
+<div class="list"><a href="/concepts/a/"><span>concept a</span><b>swiss rule</b><p>after bleibtgleich. white, one hairline down the page, big staggered type, a rotating ring of work.</p></a><a href="/concepts/b/"><span>concept b</span><b>card stack</b><p>after huyml. grey, a fanned 3d stack of your screens, then a work viewer with meta on the left and the list on the right.</p></a><a href="/concepts/c/"><span>concept c</span><b>chip grid</b><p>after fmportfolio. chip header, the name full width, labelled rows, a featured-project grid, giant name footer.</p></a><a href="/concepts/d/"><span>concept d</span><b>dark showcase</b><p>black, a custom cursor, a pinned sideways reel of projects and a word-by-word reveal.</p></a></div>
 <p class="sub" style="margin-top:6vh"><a href="/" style="border-bottom:1px solid">← the current site</a></p>
 </body></html>

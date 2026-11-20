@@ -4,70 +4,85 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
-<title>concept c — the magazine</title>
+<title>concept c — chip grid</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-weight='700' font-size='24' fill='%23fff'%3Eb%3C/text%3E%3C/svg%3E" />
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-transform:lowercase;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
-.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(17,17,17,.92);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.cbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:999;display:flex;gap:2px;padding:4px;border-radius:99px;background:rgba(20,20,20,.9);color:#fff;font-size:13px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);backdrop-filter:blur(8px)}
 .cbar a{padding:7px 12px;border-radius:99px}
 .cbar a[aria-current]{background:#fff;color:#111}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1.2s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
-body{background:#f1ece2;color:#1d1a16}
-.mast{display:flex;justify-content:space-between;padding:16px 26px;font-size:13px;border-bottom:1px solid #1d1a16}
-.mast nav{display:flex;gap:20px}
-.cover{padding:16px 26px 0;position:relative}
-.cover h1{margin:0;font-size:22vw;line-height:.8;letter-spacing:-.07em;font-weight:700;text-align:center;color:#c2410c}
-.cover .issue{display:flex;justify-content:space-between;font-size:13px;padding:12px 0;border-bottom:1px solid #1d1a16}
-.spread{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:26px;padding:26px 0 0;align-items:start}
-.spread img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.lines p{margin:0 0 22px;font-size:15px;line-height:1.35}
-.lines p b{display:block;font-size:clamp(22px,2.2vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin-bottom:6px}
-.lines.r{text-align:right}
-.inside{padding:16vh 26px 0}
-.inside h2{font-size:13px;font-weight:500;border-bottom:1px solid #1d1a16;padding-bottom:10px;margin:0 0 40px;display:flex;justify-content:space-between}
-.art{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:0 0 14vh}
-.art:nth-child(even) .pic{order:2}
-.art .pic img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
-.art .no{font-size:clamp(80px,12vw,200px);line-height:.8;letter-spacing:-.06em;color:#c2410c;font-weight:700}
-.art h3{margin:12px 0 10px;font-size:clamp(32px,4vw,64px);letter-spacing:-.045em;line-height:.95;font-weight:600}
-.art p{margin:0 0 16px;font-size:17px;line-height:1.45;max-width:30em}
-.art a.more{font-size:14px;border-bottom:1px solid}
-.letter{margin:0 26px;padding:12vh 0;border-top:1px solid #1d1a16;display:grid;grid-template-columns:1fr 2fr;gap:40px}
-.letter p{margin:0;font-size:clamp(22px,2.4vw,38px);line-height:1.2;letter-spacing:-.02em}
-.letter p::first-letter{font-size:3.2em;float:left;line-height:.8;margin:6px 10px 0 0;color:#c2410c;font-weight:700}
-.end{margin:0 26px;padding:20px 0 90px;border-top:1px solid #1d1a16;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
-@media(max-width:800px){.mast nav{display:none}.spread{grid-template-columns:1fr}.lines.r{text-align:left}.art{grid-template-columns:1fr;gap:16px}.art:nth-child(even) .pic{order:0}.letter{grid-template-columns:1fr}}
+body{background:#f7f7f7;color:#0f0f0f}
+.hdr{position:fixed;top:12px;left:12px;right:12px;display:flex;gap:6px;z-index:20;align-items:flex-start}
+.chip{height:34px;display:inline-flex;align-items:center;gap:10px;padding:0 12px;border-radius:6px;background:rgba(228,228,228,.8);backdrop-filter:blur(12px);font-size:13px;font-weight:600}
+.chip.logo{font-weight:800;letter-spacing:-.02em}
+.pages{width:220px;display:block;height:auto;padding:0;overflow:hidden}
+.pages > button{display:flex;justify-content:space-between;align-items:center;width:100%;height:34px;padding:0 12px}
+.pages ul{list-style:none;margin:0;padding:0 12px;max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.19,1,.22,1),padding .5s}
+.pages.open ul{max-height:260px;padding:10px 12px 14px}
+.pages li a{display:block;padding:5px 0;font-size:15px}
+.r{margin-left:auto;display:flex;gap:6px}
+.top{padding:58px 12px 0}
+.name{margin:0;white-space:nowrap;font-weight:700;letter-spacing:-.055em;line-height:.9;width:max-content}
+.rows{margin-top:6vh}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 34px}
+.row .k{font-size:11px;font-weight:600;letter-spacing:.04em}
+.row .v{font-size:11px;font-weight:500;letter-spacing:.04em;line-height:1.6;max-width:44em}
+.row .v .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-right:6px}
+.row .v a{text-decoration:underline;text-underline-offset:2px;margin-right:14px}
+.lbl{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:22px 12px;border-top:1px solid #dcdcdc;margin:0}
+.lbl::before{content:'';width:6px;height:6px;border-radius:50%;background:#0f0f0f}
+.feat{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:0 12px}
+.feat a{grid-column:span 2}
+.feat a.w{grid-column:span 3}
+.feat .ph{overflow:hidden;background:#e6e6e6;aspect-ratio:4/3}
+.feat a.w .ph{aspect-ratio:16/10}
+.feat img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.2s cubic-bezier(.19,1,.22,1),filter .6s;filter:grayscale(1)}
+.feat a:hover img{transform:scale(1.04);filter:none}
+.feat .cp{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 0 30px}
+.ix{list-style:none;margin:0;padding:0 12px}
+.ix li{display:grid;grid-template-columns:1fr 1fr 40px;align-items:center;border-bottom:1px solid #dcdcdc;padding:18px 0}
+.ix .n{font-size:11px;font-weight:600}
+.ix .t{font-size:clamp(28px,3.4vw,54px);font-weight:700;letter-spacing:-.045em;line-height:1;transition:transform .5s cubic-bezier(.19,1,.22,1)}
+.ix li:hover .t{transform:translateX(10px)}
+.ix .ar{justify-self:end;transition:transform .4s}
+.ix li:hover .ar{transform:rotate(-45deg)}
+.mq{overflow:hidden;padding:26px 0;border-top:1px solid #dcdcdc;border-bottom:1px solid #dcdcdc;margin-top:8vh}
+.mq-t{display:flex;width:max-content;gap:28px;animation:mq 34s linear infinite}
+.mq img{width:150px;height:110px;object-fit:cover;filter:grayscale(1)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.ftr{padding:8vh 12px 14px}
+.ftr .row{padding:0 0 10vh}
+.ftr .big{margin:0;white-space:nowrap;font-weight:700;letter-spacing:-.055em;line-height:.9;width:max-content}
+.base{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.04em;padding-top:10px}
+@media(max-width:800px){.row{grid-template-columns:1fr}.feat{grid-template-columns:1fr 1fr}.feat a,.feat a.w{grid-column:span 2}.ix li{grid-template-columns:40px 1fr 30px}.pages{width:auto;flex:1}.r .chip:not(.cta){display:none}}
 
 </style>
 </head>
 <body>
-<header class="mast"><span>the benjamin review</span><nav><a href="/work/">work</a><a href="/tourground/">at tourground</a><a href="/about/">about</a><a href="/contact/">contact</a></nav><span data-clock>--:--:--</span></header>
-<section class="cover">
-<div class="issue"><span>issue no. 07</span><span>the travel tech issue</span><span>kaduna, 2026</span></div>
-<h1>benjamin</h1>
-<div class="spread">
-<div class="lines"><p><b>sketches, codes</b>&amp; ships websites for places you’d fly to.</p><p><b>seven brands</b>antarctica to japan, all built for tourground.</p></div>
-<img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" />
-<div class="lines r"><p><b>now in kaduna</b>packing for indonesia, laptop first.</p><p><b>inside →</b>antarctica, australia, italy and more.</p></div>
-</div>
+<header class="hdr"><a class="chip logo" href="/">b_j</a><div class="chip pages" data-pages><button type="button" aria-expanded="false">home <span>≡</span></button><ul><li><a href="/work/">work</a></li><li><a href="/tourground/">at tourground</a></li><li><a href="/gallery/">gallery</a></li><li><a href="/about/">about</a></li><li><a href="/contact/">contact</a></li></ul></div><div class="r"><span class="chip">kaduna <span data-clock>--:--:--</span></span><a class="chip cta" href="/contact/">contact me ›</a></div></header>
+<section class="top"><h1 class="name" data-fit>benjamingjoel</h1></section>
+<section class="rows">
+<div class="row"><p class="k">you’ll like it:</p><p class="v">a designer and developer in travel tech. i sketch, code and ship the websites for tourground’s brands, so the idea in the first layout survives all the way to the live site.<br /><br /><span class="dot"></span>at tourground, full time</p></div>
+<div class="row"><p class="k">elsewhere:</p><p class="v"><a href="https://github.com/benjamingjoel2">github</a><a href="mailto:hello@benjamin.design">email</a><a href="/tourground/">at tourground</a></p></div>
 </section>
-<section class="inside"><h2><span>inside this issue</span><span>07 features</span></h2>
-<article class="art"><a class="pic" href="/work/seventhcontinent/"><img src="/assets/work/seventhcontinent.webp" alt="seventh continent homepage" loading="lazy" /></a><div><div class="no">01</div><h3>seventh continent</h3><p>independent antarctica expedition specialists. we match you with the right iaato-member ship, route and season, and one polar specialist plans every detail.</p><a class="more" href="/work/seventhcontinent/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/outbackandreef/"><img src="/assets/work/outbackandreef.webp" alt="outback & reef homepage" loading="lazy" /></a><div><div class="no">02</div><h3>outback & reef</h3><p>australia planned as three or four regions in the right season, with the lodges, guides and flights that make the distances worth it.</p><a class="more" href="/work/outbackandreef/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/campaniletravel/"><img src="/assets/work/campaniletravel.webp" alt="campanile travel homepage" loading="lazy" /></a><div><div class="no">03</div><h3>campanile travel</h3><p>tailor-made journeys in italy beyond rome, florence and venice: small towns, agriturismi, regional food and quieter alternatives to the crowded icons.</p><a class="more" href="/work/campaniletravel/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/edgeofnorth/"><img src="/assets/work/edgeofnorth.webp" alt="edge of north homepage" loading="lazy" /></a><div><div class="no">04</div><h3>edge of north</h3><p>where the map runs out. iceland at its most extraordinary, privately guided and planned by one dedicated specialist.</p><a class="more" href="/work/edgeofnorth/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/barjeeljourneys/"><img src="/assets/work/barjeeljourneys.webp" alt="barjeel journeys homepage" loading="lazy" /></a><div><div class="no">05</div><h3>barjeel journeys</h3><p>private journeys across all seven emirates of the uae: old creek quarters, oasis towns, the empty quarter, the mountains and the east coast, timed to the cool months and ramadan.</p><a class="more" href="/work/barjeeljourneys/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/komorebi/"><img src="/assets/work/komorebi.webp" alt="komorebi homepage" loading="lazy" /></a><div><div class="no">06</div><h3>komorebi</h3><p>private, slow journeys in japan, planned around the seasons and away from the crowds. ryokan nights, quiet temples at opening time, craft, food and the 72 seasons.</p><a class="more" href="/work/komorebi/">read the feature →</a></div></article>
-<article class="art"><a class="pic" href="/work/escalevoyages/"><img src="/assets/work/escalevoyages.webp" alt="escale voyages homepage" loading="lazy" /></a><div><div class="no">07</div><h3>escale voyages</h3><p>the whole of benin, at your pace: small-group and private journeys from the atlantic coast to the pendjari savannah, planned and run from cotonou.</p><a class="more" href="/work/escalevoyages/">read the feature →</a></div></article>
-</section>
-<section class="letter"><span style="font-size:13px">a note from the editor</span><p>i spend my days making far-off places look worth the flight. most of it happens on a laptop in kaduna, and sometimes from wherever the wifi is.</p></section>
-<footer class="end"><a href="mailto:hello@benjamin.design">hello@benjamin.design</a><span>© 2026 benjamingjoel</span><a href="#">back to the cover ↑</a></footer>
-<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/">a</a><a href="/concepts/b/">b</a><a href="/concepts/c/" aria-current="page">c</a><a href="/concepts/d/">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000)})()</script>
+<p class="lbl">featured projects:</p>
+<section class="feat"><a class="w rv" href="/work/seventhcontinent/"><div class="ph"><img src="/assets/work/seventhcontinent.webp" alt="seventh continent" loading="lazy" /></div><div class="cp"><span>seventh continent</span><span>/ antarctica</span></div></a><a class="w rv" href="/work/outbackandreef/"><div class="ph"><img src="/assets/work/outbackandreef.webp" alt="outback & reef" loading="lazy" /></div><div class="cp"><span>outback & reef</span><span>/ australia</span></div></a><a class=" rv" href="/work/campaniletravel/"><div class="ph"><img src="/assets/work/campaniletravel-section.webp" alt="campanile travel" loading="lazy" /></div><div class="cp"><span>campanile travel</span><span>/ italy</span></div></a><a class=" rv" href="/work/edgeofnorth/"><div class="ph"><img src="/assets/work/edgeofnorth-section.webp" alt="edge of north" loading="lazy" /></div><div class="cp"><span>edge of north</span><span>/ iceland</span></div></a><a class=" rv" href="/work/barjeeljourneys/"><div class="ph"><img src="/assets/work/barjeeljourneys-section.webp" alt="barjeel journeys" loading="lazy" /></div><div class="cp"><span>barjeel journeys</span><span>/ united arab emirates</span></div></a><a class="w rv" href="/work/komorebi/"><div class="ph"><img src="/assets/work/komorebi.webp" alt="komorebi" loading="lazy" /></div><div class="cp"><span>komorebi</span><span>/ japan</span></div></a><a class="w rv" href="/work/escalevoyages/"><div class="ph"><img src="/assets/work/escalevoyages.webp" alt="escale voyages" loading="lazy" /></div><div class="cp"><span>escale voyages</span><span>/ benin</span></div></a></section>
+<p class="lbl" style="margin-top:6vh">index:</p>
+<ol class="ix"><li><span class="n">01.</span><a class="t" href="/work/seventhcontinent/">seventh continent</a><span class="ar">↘</span></li><li><span class="n">02.</span><a class="t" href="/work/outbackandreef/">outback & reef</a><span class="ar">↘</span></li><li><span class="n">03.</span><a class="t" href="/work/campaniletravel/">campanile travel</a><span class="ar">↘</span></li><li><span class="n">04.</span><a class="t" href="/work/edgeofnorth/">edge of north</a><span class="ar">↘</span></li><li><span class="n">05.</span><a class="t" href="/work/barjeeljourneys/">barjeel journeys</a><span class="ar">↘</span></li><li><span class="n">06.</span><a class="t" href="/work/komorebi/">komorebi</a><span class="ar">↘</span></li><li><span class="n">07.</span><a class="t" href="/work/escalevoyages/">escale voyages</a><span class="ar">↘</span></li></ol>
+<div class="mq" aria-hidden="true"><div class="mq-t"><img src="/assets/me/02.webp" alt="" /><img src="/assets/me/03.webp" alt="" /><img src="/assets/me/04.webp" alt="" /><img src="/assets/me/05.webp" alt="" /><img src="/assets/me/06.webp" alt="" /><img src="/assets/me/07.webp" alt="" /><img src="/assets/me/08.webp" alt="" /><img src="/assets/me/09.webp" alt="" /><img src="/assets/me/10.webp" alt="" /><img src="/assets/me/11.webp" alt="" /><img src="/assets/me/12.webp" alt="" /><img src="/assets/me/02.webp" alt="" /><img src="/assets/me/03.webp" alt="" /><img src="/assets/me/04.webp" alt="" /><img src="/assets/me/05.webp" alt="" /><img src="/assets/me/06.webp" alt="" /><img src="/assets/me/07.webp" alt="" /><img src="/assets/me/08.webp" alt="" /><img src="/assets/me/09.webp" alt="" /><img src="/assets/me/10.webp" alt="" /><img src="/assets/me/11.webp" alt="" /><img src="/assets/me/12.webp" alt="" /></div></div>
+<footer class="ftr"><div class="row"><p class="v">now that you got here, why not say hello? whether it’s travel tech, a site you love or a question about mine, my inbox is open.</p><p class="v" style="text-align:right"><a href="https://github.com/benjamingjoel2">github</a><a href="mailto:hello@benjamin.design">email</a></p></div><p class="big" data-fit>benjamingjoel</p><div class="base"><span>© 2026 benjamingjoel</span><a href="#">↑ back to top</a><a href="mailto:hello@benjamin.design">→ hello@benjamin.design</a></div></footer>
+<nav class="cbar" aria-label="design concepts"><a href="/concepts/">all</a><a href="/concepts/a/">a</a><a href="/concepts/b/">b</a><a href="/concepts/c/" aria-current="page">c</a><a href="/concepts/d/">d</a></nav><script>(()=>{const f=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});const t=()=>document.querySelectorAll('[data-clock]').forEach(e=>e.textContent=f.format(new Date()));t();setInterval(t,1000);const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));document.querySelectorAll('[data-fit]').forEach(el=>{const fit=()=>{el.style.fontSize='100px';const w=el.parentElement.clientWidth-parseFloat(getComputedStyle(el.parentElement).paddingLeft)-parseFloat(getComputedStyle(el.parentElement).paddingRight);for(let i=0;i<4;i++){el.style.fontSize=(parseFloat(el.style.fontSize)*w/el.scrollWidth)+'px'}};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener('resize',fit)})})()</script>
+<script>(()=>{const p=document.querySelector('[data-pages]'),b=p.querySelector('button');b.onclick=()=>b.setAttribute('aria-expanded',p.classList.toggle('open'))})()</script>
 </body></html>
