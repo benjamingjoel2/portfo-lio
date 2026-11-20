@@ -332,19 +332,31 @@ const about = page({
       </div>
     </section>
 
-    <section class="ab-sec" aria-labelledby="bt-h">
-      <h2 class="ab-h" id="bt-h">building for travel</h2>
-      <div class="ab-cols">
-        <div><p>every site starts with one destination and the specialists who plan it. my job is to make that place feel worth the trip before anyone reads a word.</p><p>so the photos lead, the type stays quiet, and the trip pages read like a conversation with the planner.</p></div>
-        <div><p>travellers browse on phones, often on slow connections, often far from home. the pages are static, light and quick, and they work for everyone.</p><p>i write the front end by hand and ship it myself, so nothing gets lost between the design and the live site.</p></div>
-        <div><p>so far that’s ${works.length} brands: antarctica, australia, italy, iceland, the uae, japan and benin.</p><p>each one is in <a class="u" href="/work/">my work</a>.</p></div>
-        <a class="ab-box" href="/tourground/">my work at tourground →</a>
-      </div>
+    <section class="oc" aria-labelledby="oc-h" data-par>
+      <h2 class="oc-h" id="oc-h">off the clock</h2>
+      <figure class="oc-p p1" data-speed="-.18"><img src="/assets/me/02.webp" alt="long lunch outside with friends" width="640" height="800" loading="lazy" /></figure>
+      <figure class="oc-p p2" data-speed=".22"><img src="/assets/me/04.webp" alt="clouds from a plane window" width="640" height="800" loading="lazy" /></figure>
+      <figure class="oc-p p3" data-speed="-.08"><img src="/assets/me/07.webp" alt="three of us at the bar" width="640" height="800" loading="lazy" /></figure>
+      <figure class="oc-p p4" data-speed=".3"><img src="/assets/me/08.webp" alt="mirror selfie, racket in hand" width="640" height="800" loading="lazy" /></figure>
+      <p class="oc-t s">most weekends there’s a long lunch with friends somewhere, a racket if there’s a free court, and a window seat whenever there’s a flight.</p>
     </section>
 
-    <section class="ab-mosaic" aria-label="photos">
-${mosaic.map(([src, alt, cls]) => `      <figure class="${cls}"><img src="${src}" alt="${alt}" width="640" height="800" loading="lazy" decoding="async" /></figure>`).join('\n')}
+    <section class="mw" aria-labelledby="mw-h" data-mw>
+      <p class="s mw-l">mostly, i work on…</p>
+      <div class="mw-stage"><img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" data-mw-img /><h2 class="mw-h" id="mw-h"><span>design</span><span>development</span></h2></div>
     </section>
+
+    <section class="sv" aria-label="my services">
+      <article class="sv-c"><div class="sv-hd"><h3>design<sup>(my services)</sup></h3><a class="sv-go" href="/work/" aria-label="see the work">(→)</a></div><img src="/assets/work/seventhcontinent-section.webp" alt="seventh continent, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">making travel websites that are clear, useful and good to look at. photos first, quiet type, and enough room for a place to breathe.</p></article>
+      <article class="sv-c"><div class="sv-hd"><h3>development<sup>(my services)</sup></h3><a class="sv-go" href="/tourground/" aria-label="my work at tourground">(→)</a></div><img src="/assets/work/komorebi-section.webp" alt="komorebi, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">building them so they load fast, read well on a phone and work for everyone. clean code, small details, and true to the design.</p></article>
+    </section>
+
+    <section class="cr" aria-labelledby="cr-h">
+      <ul class="cr-tags">${['layout & typography', 'responsive design', 'design systems', 'html', 'css', 'javascript', 'fast static sites', 'accessibility', 'performance', 'seo basics', 'deployment & hosting'].map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+      <div class="cr-side"><p class="s">a small collection of what i use, from layout and type to getting a site live.</p><h2 class="cr-h" id="cr-h">my craft</h2></div>
+    </section>
+
+    <script>(()=>{const red=matchMedia('(prefers-reduced-motion: reduce)').matches;const par=document.querySelector('[data-par]'),ps=[...document.querySelectorAll('[data-speed]')],mw=document.querySelector('[data-mw]'),mi=document.querySelector('[data-mw-img]');const f=()=>{if(!red){const r=par.getBoundingClientRect(),c=(r.top+r.height/2-innerHeight/2);ps.forEach(e=>{e.style.transform='translate3d(0,'+(c*+e.dataset.speed)+'px,0)'});const m=mw.getBoundingClientRect(),q=Math.min(1,Math.max(0,(innerHeight-m.top)/(innerHeight+m.height)));mi.style.transform='scale('+(1.25-q*.25)+')';mi.style.clipPath='inset('+(18-q*18)+'% '+(30-q*30)+'% round 12px)'}requestAnimationFrame(f)};f()})()</script>
 
     <section class="ab-band" aria-labelledby="band-h">
       <img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />

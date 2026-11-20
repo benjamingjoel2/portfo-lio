@@ -963,3 +963,48 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
   .wo3-c { grid-template-columns: 1fr; height: auto; min-height: 76vh; padding: 22px; align-content: start; } .wo3-c img { order: -1; }
   .wo4-pin { padding: 0 10px; } .wo4-c { width: 80vw; } .wo4-hd { padding: 0 18px 3vh; } .wo4-tr { padding-left: 18px; }
 }
+
+/* ---------- about: ideas from douglus ---------- */
+/* off the clock: overlapping photos at different speeds */
+.oc { position: relative; height: 150vh; margin-top: 14vh; background: var(--tile); overflow: hidden; }
+.oc-h { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); margin: 0; text-align: center; font-size: clamp(64px, 9vw, 170px); font-weight: 500; letter-spacing: -0.06em; line-height: .9; z-index: 2; mix-blend-mode: multiply; pointer-events: none; }
+.oc-p { position: absolute; margin: 0; z-index: 1; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); }
+.oc-p img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.oc-p.p1 { width: 21vw; left: 54%; top: 8%; } .oc-p.p1 img { aspect-ratio: 4 / 3; }
+.oc-p.p2 { width: 13vw; left: 72%; top: 24%; }
+.oc-p.p3 { width: 22vw; left: 12%; top: 58%; } .oc-p.p3 img { aspect-ratio: 4 / 3; }
+.oc-p.p4 { width: 11vw; left: 30%; top: 70%; }
+.oc-t { position: absolute; right: var(--m); top: 62%; width: min(320px, 30vw); margin: 0; z-index: 2; line-height: 1.4; }
+/* mostly, i work on… */
+.mw { background: #151515; color: #ececec; padding: 10vh var(--m) 16vh var(--ml); text-align: center; }
+.mw-l { margin: 0 0 8vh; color: #a3a3a3; }
+.mw-stage { position: relative; height: 80vh; display: grid; place-items: center; overflow: hidden; }
+.mw-stage img { position: absolute; width: min(40vw, 560px); height: 100%; object-fit: cover; border-radius: 12px; will-change: transform, clip-path; }
+.mw-h { position: relative; margin: 0; font-size: clamp(56px, 9.4vw, 180px); font-weight: 500; letter-spacing: -0.06em; line-height: .86; mix-blend-mode: difference; color: #fff; }
+.mw-h span { display: block; }
+/* services: cards that stack */
+.sv { padding: 12vh var(--m) 4vh var(--ml); }
+.sv-c { position: sticky; top: 90px; background: var(--paper); border-top: 1px solid var(--hair); padding: 26px 0 40px calc(var(--col) * 2); }
+.sv-c + .sv-c { top: 130px; }
+.sv-hd { display: flex; justify-content: space-between; align-items: flex-start; }
+.sv-hd h3 { margin: 0 0 22px; font-size: clamp(44px, 5.4vw, 96px); font-weight: 500; letter-spacing: -0.055em; line-height: .9; }
+.sv-hd sup { font-size: 12px; letter-spacing: 0; font-weight: 400; color: var(--muted); margin-left: 8px; vertical-align: top; }
+.sv-go { font-size: clamp(28px, 3vw, 48px); font-weight: 300; transition: transform .4s var(--ease); }
+.sv-go:hover, .sv-go:focus-visible { transform: translateX(8px); }
+.sv-c img { width: min(100%, 860px); aspect-ratio: 16 / 9; object-fit: cover; object-position: top; background: var(--img-bg); }
+.sv-c p { margin: 16px 0 0; max-width: 36em; line-height: 1.45; }
+/* my craft */
+.cr { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; padding: 16vh var(--m) 6vh var(--ml); }
+.cr-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cr-tags li { border: 1px solid var(--hair); border-radius: 99px; padding: 9px 16px; font-size: 15px; transition: background .3s, color .3s; }
+.cr-tags li:hover { background: var(--ink); color: var(--paper); }
+.cr-side p { margin: 0 0 14px; max-width: 24em; color: var(--muted); }
+.cr-h { margin: 0; font-size: clamp(56px, 8vw, 150px); font-weight: 500; letter-spacing: -0.06em; line-height: .86; }
+@media (max-width: 767px) {
+  .oc { height: 120vh; }
+  .oc-p.p1 { width: 52vw; left: 40%; top: 6%; } .oc-p.p2 { width: 30vw; left: 6%; top: 18%; } .oc-p.p3 { width: 54vw; left: 6%; top: 66%; } .oc-p.p4 { width: 26vw; left: 66%; top: 72%; }
+  .oc-t { left: var(--ml); right: var(--m); width: auto; top: 58%; }
+  .mw-stage { height: 60vh; } .mw-stage img { width: 70vw; }
+  .sv-c { padding-left: 0; top: 76px; } .sv-c + .sv-c { top: 100px; }
+  .cr { grid-template-columns: 1fr; } .cr-side { order: -1; }
+}
