@@ -870,3 +870,27 @@ body:has(.cx) main { height: calc(100svh - 76px); }
   .cx-coffee { font-size: 21px; }
   .cx-em { font-size: 15px; }
 }
+
+/* contact: details shifted left a little */
+@media (min-width: 768px) { .cx-info { grid-column: 2 / span 3; } }
+
+/* tourground: one screen, no scrolling */
+html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavior: none; }
+.tg { height: calc(100svh - 76px); padding-top: 1vh; padding-bottom: 20px; box-sizing: border-box; align-items: stretch; }
+.tg-side { position: static; min-height: 0; height: 100%; overflow: hidden; gap: 0; justify-content: flex-start; }
+.tg-title { margin-bottom: 4vh; font-size: clamp(44px, 4.6vw, 76px); }
+.tg-dl { row-gap: 12px; font-size: 14px; }
+.tg-pics { height: 100%; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 1fr 1fr; gap: 12px; }
+.tg-pics figure, .tg-pics figure.wide, .tg-pics figure.wide:nth-of-type(n+2) { aspect-ratio: auto; height: 100%; min-height: 0; }
+.tg-pics figure.wide { grid-column: span 2; }
+@media (max-height: 760px) and (min-width: 768px) { .tg-dl { font-size: 13px; row-gap: 9px; } .tg-title { margin-bottom: 2.5vh; } }
+@media (max-width: 767px) {
+  .tg { height: calc(100svh - 66px); display: flex; flex-direction: column; padding-top: 2vh; }
+  .tg-side { height: auto; flex: 1; }
+  .tg-title { font-size: 40px; margin-bottom: 2.5vh; }
+  .tg-dl { font-size: 13px; row-gap: 8px; }
+  .tg-dl div { grid-template-columns: 76px 1fr; row-gap: 0; }
+  .tg-pics { height: 92px; flex: none; margin-top: 12px; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 1fr; gap: 6px; }
+  .tg-pics figure.wide { grid-column: span 1; }
+  .tg-pics .logo-tile, .tg-pics figure:nth-child(6) { display: none; }
+}
