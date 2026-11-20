@@ -175,6 +175,18 @@ const home = page({
       </div>
     </section>
 
+    <section class="st" aria-label="statement">
+      <div class="st-rule" aria-hidden="true"></div>
+      <p class="st-big">
+        <span class="st-l"><span class="ln"><span>the</span></span></span>
+        <span class="st-r"><span class="ln"><span>details</span></span><span class="ln"><span>are the whole</span></span><span class="ln"><span>job.</span></span></span>
+      </p>
+      <div class="st-foot">
+        <p class="s st-c">© ’${String(new Date().getFullYear()).slice(2)} · ${LOCATION.city}</p>
+        <p class="s st-small">i design and build websites for tourground’s travel brands, with a focus on clear layouts, fast pages and type that reads well on a phone.</p>
+      </div>
+    </section>
+
     <div class="work-head"><h2 id="work-h">selected work</h2><p class="s">${pad(works.length)} projects</p></div>
     <section class="work" id="work" aria-labelledby="work-h" data-work>
       <div class="stage">
