@@ -152,9 +152,9 @@ const home = page({
         <figure class="now">
           <a href="/about/" aria-label="about benjamin">${Array.from({ length: 12 }, (_, i) => `<img src="/assets/me/${pad(i + 1)}.webp" ${i === 0 ? 'alt="portrait of benjamin" class="on" fetchpriority="high"' : 'alt="" loading="lazy"'} width="640" height="800" />`).join('')}</a>        </figure>
         <div class="state">
-          <p class="k">benjamin</p><p class="v">is a designer</p>
-          <p class="k"></p><p class="v">&amp; developer,</p>
-          <p class="k">run</p><p class="v">from everywhere</p>
+          <p class="k">benjamin</p><p class="v">sketches, codes</p>
+          <p class="k">&amp;</p><p class="v">ships websites</p>
+          <p class="k">for</p><p class="v">places you’d fly to</p>
           <dl class="kv">
             <div><dt>location</dt><dd>currently ${LOCATION.city} / ${LOCATION.country}${NEXT ? ',' : ''}</dd></div>
             ${NEXT ? `<div><dt></dt><dd>${NEXT.text} ${flagImg(NEXT.countryCode)}</dd></div>` : ''}
