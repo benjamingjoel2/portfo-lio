@@ -829,3 +829,8 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .cx-side p:nth-child(2) { align-self: start; }
 .cx-side p:nth-child(3) { grid-row: 1; align-self: end; margin-top: 0; }
 @media (max-width: 767px) { .cx-side p:nth-child(3) { margin-top: 6px; } }
+
+/* contact photo: smaller */
+.cx-pic { grid-column: 7 / span 2; width: min(100%, 340px); }
+@media (max-width: 1023px) { .cx-pic { grid-column: 6 / span 3; } }
+@media (max-width: 767px) { .cx-pic { width: 72%; } }
