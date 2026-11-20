@@ -342,21 +342,24 @@ const about = page({
     </section>
 
     <section class="mw" aria-labelledby="mw-h" data-mw>
-      <p class="s mw-l">mostly, i work on…</p>
-      <div class="mw-stage"><img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" data-mw-img /><h2 class="mw-h" id="mw-h"><span>design</span><span>development</span></h2></div>
+      <div class="mw-pin">
+        <p class="s mw-l">mostly, i work on…</p>
+        <div class="mw-stage"><img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" data-mw-img /><h2 class="mw-h" id="mw-h"><span>design</span><span>development</span></h2></div>
+      </div>
     </section>
 
-    <section class="sv" aria-label="my services">
-      <article class="sv-c"><div class="sv-hd"><h3>design<sup>(my services)</sup></h3><a class="sv-go" href="/work/" aria-label="see the work">(→)</a></div><img src="/assets/work/seventhcontinent-section.webp" alt="seventh continent, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">making travel websites that are clear, useful and good to look at. photos first, quiet type, and enough room for a place to breathe.</p></article>
-      <article class="sv-c"><div class="sv-hd"><h3>development<sup>(my services)</sup></h3><a class="sv-go" href="/tourground/" aria-label="my work at tourground">(→)</a></div><img src="/assets/work/komorebi-section.webp" alt="komorebi, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">building them so they load fast, read well on a phone and work for everyone. clean code, small details, and true to the design.</p></article>
+    <section class="sv" aria-label="my services" data-sv>
+      <article class="sv-c"><a class="sv-go" href="/work/" aria-label="see the work">(→)</a><div class="sv-b"><h3>design<sup>(my services)</sup></h3><img src="/assets/work/seventhcontinent-section.webp" alt="seventh continent, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">making travel websites that are clear, useful and good to look at. photos first, quiet type, and enough room for a place to breathe.</p></div></article>
+      <article class="sv-c"><a class="sv-go" href="/tourground/" aria-label="my work at tourground">(→)</a><div class="sv-b"><h3>development<sup>(my services)</sup></h3><img src="/assets/work/komorebi-section.webp" alt="komorebi, a section of the site" width="1200" height="750" loading="lazy" /><p class="s">building them so they load fast, read well on a phone and work for everyone. clean code, small details, and true to the design.</p></div></article>
     </section>
+    <script>(()=>{const cs=[...document.querySelectorAll('[data-sv] .sv-c')];const f=()=>{cs.forEach((c,i)=>{const n=cs[i+1];c.classList.toggle('under',!!n&&n.getBoundingClientRect().top<innerHeight*.55)});requestAnimationFrame(f)};f()})()</script>
 
     <section class="cr" aria-labelledby="cr-h">
       <ul class="cr-tags">${['layout & typography', 'responsive design', 'design systems', 'html', 'css', 'javascript', 'fast static sites', 'accessibility', 'performance', 'seo basics', 'deployment & hosting'].map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
       <div class="cr-side"><p class="s">a small collection of what i use, from layout and type to getting a site live.</p><h2 class="cr-h" id="cr-h">my craft</h2></div>
     </section>
 
-    <script>(()=>{const red=matchMedia('(prefers-reduced-motion: reduce)').matches;const par=document.querySelector('[data-par]'),ps=[...document.querySelectorAll('[data-speed]')],mw=document.querySelector('[data-mw]'),mi=document.querySelector('[data-mw-img]');const f=()=>{if(!red){const r=par.getBoundingClientRect(),c=(r.top+r.height/2-innerHeight/2);ps.forEach(e=>{e.style.transform='translate3d(0,'+(c*+e.dataset.speed)+'px,0)'});const m=mw.getBoundingClientRect(),q=Math.min(1,Math.max(0,(innerHeight-m.top)/(innerHeight+m.height)));mi.style.transform='scale('+(1.25-q*.25)+')';mi.style.clipPath='inset('+(18-q*18)+'% '+(30-q*30)+'% round 12px)'}requestAnimationFrame(f)};f()})()</script>
+    <script>(()=>{const red=matchMedia('(prefers-reduced-motion: reduce)').matches;const par=document.querySelector('[data-par]'),ps=[...document.querySelectorAll('[data-speed]')],mw=document.querySelector('[data-mw]'),mi=document.querySelector('[data-mw-img]');const f=()=>{if(!red){const r=par.getBoundingClientRect(),c=(r.top+r.height/2-innerHeight/2);ps.forEach(e=>{e.style.transform='translate3d(0,'+(c*+e.dataset.speed)+'px,0)'});}requestAnimationFrame(f)};f()})()</script>
 
     <section class="ab-band" aria-labelledby="band-h">
       <img src="/assets/me/sky.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />

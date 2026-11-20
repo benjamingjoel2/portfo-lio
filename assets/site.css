@@ -1008,3 +1008,28 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
   .sv-c { padding-left: 0; top: 76px; } .sv-c + .sv-c { top: 100px; }
   .cr { grid-template-columns: 1fr; } .cr-side { order: -1; }
 }
+
+/* ---------- about: "mostly, i work on…" and "(my services)" closer to the original ---------- */
+.mw { background: #262422; color: #ececec; padding: 0; text-align: center; height: 160vh; position: relative; }
+.mw-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+.mw-l { position: absolute; top: 14vh; left: 0; right: 0; margin: 0; color: #cfcfcf; }
+.mw-stage { position: relative; height: auto; width: 100%; display: grid; place-items: center; overflow: visible; }
+.mw-stage img { position: relative; grid-area: 1 / 1; width: min(21vw, 320px); height: auto; aspect-ratio: 2 / 3; object-fit: cover; object-position: 70% 50%; border-radius: 0; filter: grayscale(1) brightness(.62) contrast(1.15); transform: none !important; clip-path: none !important; }
+.mw-h { grid-area: 1 / 1; font-size: clamp(56px, 8.2vw, 150px); font-weight: 400; letter-spacing: -0.035em; line-height: .86; mix-blend-mode: difference; color: #e9e6df; }
+.sv { padding: 0; }
+.sv-c { position: sticky; top: 76px; min-height: calc(100vh - 76px); min-height: calc(100svh - 76px); display: grid; grid-template-columns: 9vw 1fr; align-items: end; padding: 8vh var(--m) 9vh var(--ml); background: var(--paper); border-top: 0; transition: background .5s; box-sizing: border-box; }
+.sv-c + .sv-c { top: 76px; }
+.sv-c.under { background: var(--tile); }
+.sv-go { grid-column: 1; grid-row: 1; align-self: center; font-size: clamp(30px, 3.2vw, 54px); font-weight: 300; letter-spacing: -0.02em; }
+.sv-b { grid-column: 2; grid-row: 1; align-self: center; padding-left: 9vw; }
+.sv-b h3 { margin: 0 0 18px; font-size: clamp(48px, 5vw, 92px); font-weight: 400; letter-spacing: -0.045em; line-height: .9; }
+.sv-b sup { font-size: 11px; letter-spacing: 0; color: var(--ink); margin-left: 6px; vertical-align: top; position: relative; top: .4em; }
+.sv-b img { display: block; width: min(100%, 720px); aspect-ratio: 5 / 2; object-fit: cover; object-position: center; background: var(--img-bg); }
+.sv-b p { margin: 18px 0 0; max-width: 44em; line-height: 1.4; }
+@media (max-width: 767px) {
+  .mw { height: 130vh; } .mw-stage img { width: 52vw; }
+  .sv-c { grid-template-columns: 1fr; align-items: start; padding-top: 6vh; top: 66px; min-height: calc(100svh - 66px); }
+  .sv-c + .sv-c { top: 66px; }
+  .sv-b { grid-row: 1; padding-left: 0; } .sv-go { grid-row: 2; align-self: start; margin-top: 24px; }
+  .sv-b img { aspect-ratio: 16 / 9; }
+}
