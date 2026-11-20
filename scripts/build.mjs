@@ -391,14 +391,14 @@ ${postcards.map(([n, cap, r]) => `        <li style="--r:${r}deg"><figure><img s
 
 /* ---------------- contact ---------------- */
 const contact = page({
-  path: '/contact/', current: 'contact', title: 'contact — benjamin',
+  path: '/contact/', current: 'contact', footer: false, title: 'contact — benjamin',
   description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
   body: `    <section class="cx" aria-labelledby="h">
-      <figure class="cx-pic fade"><img src="/assets/me/05.webp" alt="benjamin and a colleague in suits" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
-      <div class="cx-side s fade">
-        <p class="muted cx-gap">write directly to:</p>
-        <p><a class="cx-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a></p>
-        <p class="cx-gap">around ${LOCATION.city}?<br />the coffee’s on me.</p>
+      <figure class="cx-pic fade"><img src="/assets/me/01.webp" alt="portrait of benjamin" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
+      <div class="cx-info fade">
+        <p class="cx-coffee">around ${LOCATION.city}?<br />the coffee’s on me.</p>
+        <p class="s muted cx-lab">write directly to:</p>
+        <p class="cx-em"><a class="cx-mail" href="mailto:${EMAIL}" data-copy="${EMAIL}">${EMAIL}</a></p>
       </div>
       <h1 class="cx-big" id="h"><span class="ln a"><span>say</span></span><span class="ln b"><span>hello.</span></span><span class="ln c"><span>coffee’s</span></span><span class="ln d"><span>on me.</span></span></h1>
     </section>`,

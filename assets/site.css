@@ -846,3 +846,11 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .cx-side p:nth-child(2) { font-size: clamp(17px, 1.35vw, 22px); letter-spacing: -0.01em; }
 .cx-side { grid-column: 3 / span 4; }
 @media (max-width: 767px) { .cx-side p:nth-child(3) { font-size: 26px; } .cx-side p:nth-child(2) { font-size: 18px; } }
+
+/* contact details: one stack, coffee line first, email under it */
+.cx-info { grid-column: 3 / span 3; grid-row: 2; align-self: start; }
+.cx-info p { margin: 0; }
+.cx-coffee { font-size: clamp(22px, 2.1vw, 34px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 500; }
+.cx-lab { margin-top: 28px !important; }
+.cx-em { margin-top: 6px !important; font-size: clamp(17px, 1.35vw, 22px); letter-spacing: -0.01em; font-weight: 500; }
+@media (max-width: 767px) { .cx-info { order: 2; } .cx-coffee { font-size: 26px; } .cx-em { font-size: 18px; } }
