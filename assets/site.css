@@ -854,3 +854,19 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .cx-lab { margin-top: 28px !important; }
 .cx-em { margin-top: 6px !important; font-size: clamp(17px, 1.35vw, 22px); letter-spacing: -0.01em; font-weight: 500; }
 @media (max-width: 767px) { .cx-info { order: 2; } .cx-coffee { font-size: 26px; } .cx-em { font-size: 18px; } }
+
+/* contact: one screen, no scrolling */
+html:has(.cx), body:has(.cx) { height: 100%; overflow: hidden; overscroll-behavior: none; }
+body:has(.cx) main { height: calc(100svh - 76px); }
+.cx { height: 100%; min-height: 0; padding-top: 4vh; padding-bottom: 6vh; box-sizing: border-box; }
+.cx-pic > img { max-height: calc(100svh - 220px); width: auto; max-width: 100%; }
+@media (max-width: 767px) {
+  body:has(.cx) main { height: calc(100svh - 66px); }
+  .cx { display: grid; grid-template-columns: 1fr 34vw; grid-template-rows: 1fr auto; column-gap: 16px; row-gap: 0; padding: 3vh var(--m) 5vh var(--ml); align-items: end; }
+  .cx-big { grid-column: 1 / -1; grid-row: 1; align-self: center; font-size: 15vw; }
+  .cx-info { grid-column: 1; grid-row: 2; align-self: end; }
+  .cx-pic { grid-column: 2; grid-row: 2; align-self: end; width: 100%; }
+  .cx-pic > img { width: 100%; max-height: none; }
+  .cx-coffee { font-size: 21px; }
+  .cx-em { font-size: 15px; }
+}
