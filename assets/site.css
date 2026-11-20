@@ -810,3 +810,22 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
   .cx-pic { order: 3; } .cx-pic > img { max-width: 70%; }
 }
 @media (max-width: 767px) { .cx > * { align-self: stretch; } .cx-big { font-size: 15vw; } .cx-big .b { padding-left: .7em; } .cx-big .c { padding-left: 1.1em; } .cx-big .d { padding-left: .5em; } }
+
+/* contact, per the sketch: text left, details below, a bigger photo on the right */
+.cx { align-items: center; grid-template-rows: auto auto; row-gap: 5vh; }
+.cx-big { grid-column: 1 / span 5; grid-row: 1; align-self: end; font-size: clamp(56px, 7vw, 128px); }
+.cx-big .b { padding-left: 1.1em; } .cx-big .c { padding-left: .5em; margin-top: .35em; } .cx-big .d { padding-left: 1.6em; }
+.cx-side { grid-column: 3 / span 3; grid-row: 2; align-self: start; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 18px; }
+.cx-side .cx-gap { margin-top: 0; }
+.cx-pic { grid-column: 6 / span 3; grid-row: 1 / span 2; align-self: center; justify-self: end; width: 100%; }
+.cx-pic > img { max-width: none; width: 100%; aspect-ratio: 4 / 5; }
+@media (max-width: 1023px) { .cx-big { grid-column: 1 / span 5; } .cx-side { grid-column: 1 / span 5; } .cx-pic { grid-column: 6 / span 3; } }
+@media (max-width: 767px) { .cx-side { display: block; } .cx-side .cx-gap { margin-top: 22px; } .cx-pic > img { width: 100%; } .cx-pic { width: 100%; } }
+.cx-side p:nth-child(1) { grid-column: 1; grid-row: 1; }
+.cx-side p:nth-child(2) { grid-column: 2; grid-row: 1; }
+.cx-side p:nth-child(3) { grid-column: 2; grid-row: 2; margin-top: -12px; }
+.cx-side p:nth-child(4) { grid-column: 1; grid-row: 2; }
+@media (max-width: 767px) { .cx > * { align-self: stretch; } .cx-big { font-size: 15vw; } .cx-big .b { padding-left: .7em; } .cx-big .c { padding-left: .3em; } .cx-big .d { padding-left: 1em; } .cx-side p:nth-child(3) { margin-top: 0; } }
+.cx-side p:nth-child(2) { align-self: start; }
+.cx-side p:nth-child(3) { grid-row: 1; align-self: end; margin-top: 0; }
+@media (max-width: 767px) { .cx-side p:nth-child(3) { margin-top: 6px; } }

@@ -394,7 +394,7 @@ const contact = page({
   path: '/contact/', current: 'contact', title: 'contact — benjamin',
   description: `get in touch with benjamin, designer and developer, currently in ${LOCATION.city}.`,
   body: `    <section class="cx" aria-labelledby="h">
-      <figure class="cx-pic fade"><img src="/assets/me/08.webp" alt="benjamin, phone in hand" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
+      <figure class="cx-pic fade"><img src="/assets/me/05.webp" alt="benjamin and a colleague in suits" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
       <div class="cx-side s fade">
         <p>travel tech<br />at tourground</p>
         <p class="muted cx-gap">write directly to:</p>
