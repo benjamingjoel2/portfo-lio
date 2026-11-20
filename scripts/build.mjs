@@ -42,7 +42,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const pad = (n) => String(n).padStart(2, '0');
 const lines = (arr) => arr.map((t) => `<span class="line${typeof t === 'object' ? ' ' + t.c : ''}"><span>${typeof t === 'object' ? t.t : t}</span></span>`).join('');
 
-const NAV = [['work', '/work/'], ['at tourground', '/tourground/'], ['gallery', '/gallery/'], ['about', '/about/'], ['contact', '/contact/']];
+const NAV = [['work', '/work/'], ['at tourground', '/tourground/'], ['about', '/about/'], ['contact', '/contact/']];
 const PAGES =[['home', '/'], ...NAV];
 
 function page({ path: p, title, description, body, current = '', jsonld = '', dark = false, footer = true }) {
@@ -104,7 +104,6 @@ ${footer ? `  <footer class="fx" aria-label="footer">
       <div class="fx-cols s">
         <div><p class="fx-h">pages</p><ul>${PAGES.map(([n, href]) => `<li><a href="${href}">${n}</a></li>`).join('')}</ul></div>
         <div><p class="fx-h">elsewhere</p><ul><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul></div>
-        <div><p class="fx-h">right now</p><ul>${NEXT ? `<li>${NEXT.text} ${flagImg(NEXT.countryCode)}</li>` : ''}<li>© ${new Date().getFullYear()} benjamingjoel</li></ul></div>
       </div>
       <div class="fx-name-wrap" aria-hidden="true"><p class="fx-name" data-fit>benjamingjoel</p></div>
     </div>
@@ -275,33 +274,6 @@ const projectPages = works.map((w, i) => {
   })];
 });
 
-/* ---------------- gallery ---------------- */
-// my photos and the website screens, mixed so neighbours differ
-const views = [['', 'homepage', 960, 600], ['-m1', 'phone', 540, 919], ['-section', 'section', 1200, 750], ['-m2', 'phone, scrolled', 540, 919]];
-const screens = [];
-views.forEach(([suf, label, wd, ht]) => works.forEach((w) => screens.push({ src: `/assets/work/${w.slug}${suf}.webp`, alt: `${w.name}, ${label}`, wd, ht })));
-const photos = Array.from({ length: 12 }, (_, i) => ({ src: `/assets/me/${pad(i + 1)}.webp`, alt: i === 0 ? 'portrait of benjamin' : `photo ${pad(i + 1)} from benjamin’s camera roll`, wd: 640, ht: 800 }));
-const archive = [];
-for (let i = 0, a = 0, b = 0; a < screens.length || b < photos.length; i++) {
-  if (i % 10 === 0 || i % 10 === 4 || i % 10 === 7) { if (b < photos.length) archive.push(photos[b++]); else archive.push(screens[a++]); }
-  else if (a < screens.length) archive.push(screens[a++]); else archive.push(photos[b++]);
-}
-const galleryItems = archive.map((it, k) => `      <figure><button type="button" aria-label="open ${esc(it.alt)}"><img src="${it.src}" alt="${esc(it.alt)}" width="${it.wd}" height="${it.ht}"${k > 13 ? ' loading="lazy"' : ''} decoding="async" /></button><figcaption class="sr">${esc(it.alt)}</figcaption></figure>`).join('\n');
-const gallery = page({
-  path: '/gallery/', current: 'gallery', dark: true, title: 'gallery — benjamin',
-  description: 'photos and screens from websites designed and built by benjamin.',
-  body: `    <h1 class="sr">gallery</h1>
-    <div class="archive" data-gallery>
-${galleryItems}
-    </div>
-    <p class="archive-note s">${archive.length} images · hover for colour, click to open</p>
-    <div class="lightbox" role="dialog" aria-modal="true" aria-label="image viewer">
-      <button class="close" type="button">close</button>
-      <img src="" alt="" />
-      <div class="bar"><span class="s" data-cap></span><div class="ctrl"><button type="button" data-prev>← prev</button><button type="button" data-next>next →</button></div></div>
-    </div>`,
-});
-
 /* ---------------- about ---------------- */
 const shots = [
   ['session', 'late work session with the laptops out', 1200, 800, 'wide'],
@@ -413,7 +385,7 @@ const notFound = page({
     <div class="g about-body"><p>try the <a class="u" href="/">home page</a> or <a class="u" href="/work/">my work</a>.</p></div>`,
 });
 
-const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['gallery/index.html', gallery], ['tourground/index.html', tgPage], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound]];
+const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['tourground/index.html', tgPage], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound]];
 for (const [f, html] of out) {
   fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true });
   fs.writeFileSync(path.join(root, f), html);

@@ -894,3 +894,7 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
   .tg-pics figure.wide { grid-column: span 1; }
   .tg-pics .logo-tile, .tg-pics figure:nth-child(6) { display: none; }
 }
+
+/* footer: two columns now */
+.fx-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; }
+@media (max-width: 767px) { .fx-cols { grid-template-columns: 1fr 1fr; } }

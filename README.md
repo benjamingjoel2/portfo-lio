@@ -17,7 +17,6 @@ Everything is set in lowercase.
 
 - `/` home: name + reel hero, the pinned selected-work index, a short about, the local clock and contact
 - `/work/` all selected projects (hover shows a preview), and `/work/<project>/` one page per project with desktop, full-scroll and phone screenshots
-- `/gallery/` a dark black-and-white archive of photos and screens; colour shows on hover, click opens a lightbox
 - `/about/` and `/contact/`
 
 ## Editing
