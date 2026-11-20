@@ -774,3 +774,9 @@ a.chip:hover, a.chip:focus-visible, button.chip:hover, button.chip:focus-visible
 .fx-name, .fx-in:hover .fx-name { color: var(--ink); }
 @media (max-width: 767px) { .fx-mail { font-size: 7.6vw; } .fx-mail span { white-space: nowrap; overflow-wrap: normal; } }
 .tg-dl dd p + p { margin-top: .7em; }
+
+/* contact: a photo beside the heading */
+.ct-pic { grid-column: 7 / span 2; grid-row: 1 / span 2; align-self: end; justify-self: end; margin: 0; width: min(100%, 300px); }
+.ct-pic > img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--img-bg); }
+.ct-pic figcaption { margin-top: 8px; }
+@media (max-width: 767px) { .ct-pic { grid-column: 1 / span 5; grid-row: auto; justify-self: start; width: 70%; margin-top: 5vh; } }

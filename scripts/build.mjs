@@ -36,7 +36,7 @@ const V = {
   js: ver(fs.readFileSync(path.join(root, 'assets/site.js'))),
   works: ver(WORKS_JS),
 };
-const EMAIL = 'hello@benjamin.design';
+const EMAIL = 'hi@benjamingjoel.com';
 const GITHUB = 'https://github.com/benjamingjoel2';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
@@ -396,9 +396,8 @@ const contact = page({
   body: `    <section class="g phead" aria-labelledby="h">
       <p class="s count muted">travel tech<br />at tourground</p>
       <h1 class="c3w big reveal" id="h">${lines(['say', { t: 'hello.', c: 'ind' }])}</h1>
+      <figure class="ct-pic fade"><img src="/assets/me/08.webp" alt="benjamin, phone in hand" width="640" height="800" decoding="async" /><figcaption class="s muted">${HERE} ${FLAG}</figcaption></figure>
     </section>
-${clockBlock(['it’s always', 'a good time', 'to start', 'something.'])}
-
 ${contactBlock}`,
 });
 
