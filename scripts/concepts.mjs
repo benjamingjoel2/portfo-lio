@@ -22,7 +22,7 @@ const POST = home.slice(home.indexOf('  </main>'));
 
 const CONCEPTS = [
   ['1', 'ring first', 'your hero, then the turning ring of work straight after it, then about, selected work and a brands table with a hover preview.'],
-  ['2', 'on the line', 'a statement hung on one hairline, selected work, then the turning ring of work.'],
+  ['2', 'on the line', 'your hero, about, a statement hung on one hairline, then selected work.'],
   ['3', 'camera roll', 'the ring after the hero, counters that tick up, and a draggable strip of your photos. pale corner words like concept a.'],
   ['4', 'ring in the hero', 'the ring turns behind your name in the hero itself, then the statement, selected work, brands table and “right now”.'],
 ];
@@ -263,7 +263,7 @@ const build = (k, sections, extra = '') => {
 };
 
 build('1', [HERO, RING, ABOUT, WORK, TABLE]);
-build('2', [HERO, ABOUT, STATEMENT, WORK, RING]);
+build('2', [HERO, ABOUT, STATEMENT, WORK]);
 build('3', [HERO, RING, ABOUT, WORK, COUNTERS, PHOTOS], GHOST);
 build('4', [HERO_WITH_RING, ABOUT, STATEMENT, WORK, TABLE, NOW]);
 
