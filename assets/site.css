@@ -1063,3 +1063,9 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
   .sv-go:hover, .sv-go:focus-visible { transform: translateX(6px); }
 }
 .sv-go { letter-spacing: .14em; font-weight: 200; }
+
+/* about: bigger body text */
+.ab-copy p { font-size: clamp(18px, 1.5vw, 24px); line-height: 1.38; letter-spacing: -0.01em; max-width: 30em; }
+.oc-t { font-size: clamp(16px, 1.25vw, 20px); width: min(380px, 32vw); }
+.cr-side p { font-size: clamp(16px, 1.25vw, 20px); }
+@media (max-width: 767px) { .ab-copy p { font-size: 18px; } .oc-t { font-size: 16px; width: auto; } }
