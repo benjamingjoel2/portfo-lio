@@ -76,7 +76,7 @@ function page({ path: p, title, description, body, current = '', jsonld = '', da
       <button class="pages-btn" type="button" aria-expanded="false" aria-controls="pages-panel"><span class="cur">${current || 'home'}</span><span class="sr">, open menu</span><span class="ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
       <div class="pages-panel" id="pages-panel">
         <div class="pages-inner">
-          <nav aria-label="main"><ul class="plist">${PAGES.map(([n, href]) => `<li><a href="${href}"${(current || 'home') === n ? ' aria-current="page"' : ''}><span>${n}</span>${(current || 'home') === n ? '<i class="live" aria-hidden="true"></i>' : ''}</a></li>`).join('')}</ul></nav>
+          <nav aria-label="main"><ul class="plist">${PAGES.filter(([n]) => n !== 'contact').map(([n, href]) => `<li><a href="${href}"${(current || 'home') === n ? ' aria-current="page"' : ''}><span>${n}</span>${(current || 'home') === n ? '<i class="live" aria-hidden="true"></i>' : ''}</a></li>`).join('')}</ul></nav>
           <p class="follow">follow me</p>
           <ul class="frow"><li><a href="${GITHUB}">github</a></li><li><a href="mailto:${EMAIL}">email</a></li><li><a href="https://tourground.com">tourground</a></li></ul>
         </div>
