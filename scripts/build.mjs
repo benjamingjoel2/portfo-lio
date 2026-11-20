@@ -385,7 +385,61 @@ const notFound = page({
     <div class="g about-body"><p>try the <a class="u" href="/">home page</a> or <a class="u" href="/work/">my work</a>.</p></div>`,
 });
 
-const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['tourground/index.html', tgPage], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound]];
+/* ---------------- work page options (temporary, to choose a design) ---------------- */
+const optBar = (k) => `<nav class="obar" aria-label="work page options"><a href="/work-options/">all</a>${[1, 2, 3, 4].map((n) => `<a href="/work-options/${n}/"${n === k ? ' aria-current="page"' : ''}>${n}</a>`).join('')}<a href="/work/">current</a></nav>`;
+const optHead = (h) => `    <section class="wo-head"><h1 class="wo-h">${h}</h1><p class="s muted">${pad(works.length)} projects · all for tourground</p></section>`;
+const opt1 = page({
+  path: '/work-options/1/', current: 'work', title: 'work, option 1 — benjamin', description: 'work page option 1',
+  body: `${optHead('work')}
+    <ol class="wo1">
+${works.map((w, i) => `      <li class="fade"><a href="/work/${w.slug}/"><div class="ph"><img src="/assets/work/${w.slug}.webp" alt="${esc(w.name)} homepage" width="960" height="600" loading="${i < 2 ? 'eager' : 'lazy'}" /><span class="go s">view project →</span></div><div class="cap"><span class="s muted">${pad(i + 1)}</span><span class="nm">${esc(w.name)}</span><span class="s muted">${esc(w.country)}</span></div><p class="s ds">${esc(w.desc)}</p></a></li>`).join('\n')}
+    </ol>
+${optBar(1)}`,
+});
+const opt2 = page({
+  path: '/work-options/2/', current: 'work', title: 'work, option 2 — benjamin', description: 'work page option 2',
+  body: `    <section class="st wo2-top" aria-label="work">
+      <div class="st-rule" aria-hidden="true"></div>
+      <h1 class="st-big"><span class="st-l"><span class="ln"><span>all</span></span></span><span class="st-r"><span class="ln"><span>the</span></span><span class="ln"><span>work.</span></span></span></h1>
+      <div class="st-foot"><p class="s st-c">${pad(works.length)} brands</p><p class="s st-small">every site below is a tourground travel brand, designed, built and shipped by me.</p></div>
+    </section>
+    <ol class="wo2">
+${works.map((w, i) => `      <li><a href="/work/${w.slug}/" data-peek="/assets/work/${w.slug}.webp"><span class="n s">’${pad(i + 1)}</span><span class="t">${esc(w.name)}</span><span class="c s">${esc(w.country)}</span><span class="d s">${esc(w.desc)}</span><span class="a">→</span></a></li>`).join('\n')}
+    </ol>
+    <div class="peek" aria-hidden="true"><img src="/assets/work/${works[0].slug}.webp" alt="" width="960" height="600" /></div>
+${optBar(2)}`,
+});
+const opt3 = page({
+  path: '/work-options/3/', current: 'work', title: 'work, option 3 — benjamin', description: 'work page option 3',
+  body: `${optHead('work')}
+    <div class="wo3">
+${works.map((w, i) => `      <a class="wo3-c" href="/work/${w.slug}/" style="top:${84 + i * 10}px;background:${w.sw[0]};color:${w.sw[1]}"><div class="tx"><span class="s">${pad(i + 1)} / ${pad(works.length)} · ${esc(w.country)}</span><h2>${esc(w.name)}</h2><p>${esc(w.desc)}</p><span class="s go">view project →</span></div><img src="/assets/work/${w.slug}.webp" alt="${esc(w.name)} homepage" width="960" height="600" loading="lazy" /></a>`).join('\n')}
+    </div>
+${optBar(3)}`,
+});
+const opt4 = page({
+  path: '/work-options/4/', current: 'work', title: 'work, option 4 — benjamin', description: 'work page option 4',
+  body: `${optHead('work')}
+    <section class="wo4" data-reel style="height:${works.length * 60 + 60}vh">
+      <div class="wo4-pin"><div class="wo4-in">
+        <div class="wo4-hd s"><span>scroll to move sideways</span><span data-rc>01 / ${pad(works.length)}</span></div>
+        <div class="wo4-tr" data-tr>${works.map((w, i) => `<a class="wo4-c" href="/work/${w.slug}/"><div class="ph"><img src="/assets/work/${w.slug}.webp" alt="${esc(w.name)} homepage" width="960" height="600" ${i > 1 ? 'loading="lazy"' : ''} /></div><div class="l"><b>${esc(w.name)}</b><span class="s">${pad(i + 1)} · ${esc(w.country)}</span></div></a>`).join('')}</div>
+        <div class="wo4-bar"><i data-rb></i></div>
+      </div></div>
+    </section>
+    <script>(()=>{const s=document.querySelector('[data-reel]'),t=document.querySelector('[data-tr]'),b=document.querySelector('[data-rb]'),c=document.querySelector('[data-rc]'),N=${works.length};const f=()=>{const r=s.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight))),m=t.scrollWidth-t.parentElement.clientWidth;t.style.transform='translate3d('+(-p*m)+'px,0,0)';b.style.width=(p*100)+'%';c.textContent=String(Math.min(N,Math.floor(p*N)+1)).padStart(2,'0')+' / '+String(N).padStart(2,'0');requestAnimationFrame(f)};f()})()</script>
+${optBar(4)}`,
+});
+const optIndex = page({
+  path: '/work-options/', current: 'work', title: 'work page options — benjamin', description: 'pick a work page design',
+  body: `${optHead('pick a work page')}
+    <ol class="wo-pick">
+${[['1', 'big image grid', 'large screenshot cards, two per row, the right column sits lower. name, country and a line under each.'], ['2', 'hairline table', '“all the work.” on the vertical line like your statement section, then a clean table; a screenshot follows your cursor.'], ['3', 'stacking cards', 'one project per screen in its own brand colours; each card slides up and stacks over the last.'], ['4', 'sideways reel', 'a dark frame where the projects slide sideways as you scroll down, with a progress line.']].map(([k, n, d]) => `      <li><a href="/work-options/${k}/"><span class="s muted">option ${k}</span><b>${n}</b><p class="s">${d}</p></a></li>`).join('\n')}
+    </ol>
+${optBar(0)}`,
+});
+
+const out = [['index.html', home], ['work/index.html', workIndex], ...projectPages, ['tourground/index.html', tgPage], ['about/index.html', about], ['contact/index.html', contact], ['404.html', notFound], ['work-options/index.html', optIndex], ['work-options/1/index.html', opt1], ['work-options/2/index.html', opt2], ['work-options/3/index.html', opt3], ['work-options/4/index.html', opt4]];
 for (const [f, html] of out) {
   fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true });
   fs.writeFileSync(path.join(root, f), html);
