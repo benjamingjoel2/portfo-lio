@@ -44,9 +44,14 @@ const RING = `
 const STATEMENT = `
     <section class="st" aria-label="statement">
       <div class="st-rule" aria-hidden="true"></div>
-      <p class="st-big"><span class="ln l"><span>the</span></span><span class="ln"><span>details</span></span><span class="ln"><span>are the whole</span></span><span class="ln"><span>job.</span></span></p>
-      <p class="s st-small">i design and build websites for tourground’s travel brands, with a focus on clear layouts, fast pages and type that reads well on a phone.</p>
-      <p class="s st-c">© ’${String(new Date().getFullYear()).slice(2)}</p>
+      <p class="st-big">
+        <span class="st-l"><span class="ln"><span>the</span></span></span>
+        <span class="st-r"><span class="ln"><span>details</span></span><span class="ln"><span>are the whole</span></span><span class="ln"><span>job.</span></span></span>
+      </p>
+      <div class="st-foot">
+        <p class="s st-c">© ’${String(new Date().getFullYear()).slice(2)} · kaduna</p>
+        <p class="s st-small">i design and build websites for tourground’s travel brands, with a focus on clear layouts, fast pages and type that reads well on a phone.</p>
+      </div>
     </section>
 `;
 
@@ -112,17 +117,24 @@ const CSS = `
 @media (max-width: 767px) { .rg-c.l { width: 104px; height: 65px; left: -52px; top: -32px; } .rg-c.p { width: 54px; height: 92px; left: -27px; top: -46px; } .rg-h { gap: 18vw; } }
 
 /* statement on a hairline */
-.st { position: relative; padding: 20vh var(--m) 18vh calc(37% + 12px); }
+.st { position: relative; padding: 16vh var(--m) 14vh var(--ml); }
 .st-rule { position: absolute; left: 37%; top: 0; bottom: 0; width: 1px; background: var(--hair); }
-.st-big { margin: 0; font-size: clamp(44px, 5.4vw, 92px); font-weight: 600; letter-spacing: -0.055em; line-height: .96; }
-.st-big .ln { display: block; overflow: hidden; }
-.st-big .ln > span { display: inline-block; transform: translateY(105%); transition: transform 1.1s var(--ease); }
-.st-big .ln:nth-child(2) > span { transition-delay: .08s; } .st-big .ln:nth-child(3) > span { transition-delay: .16s; } .st-big .ln:nth-child(4) > span { transition-delay: .24s; }
+.st-big { margin: 0; display: grid; grid-template-columns: calc(37% - var(--ml)) 1fr; font-size: clamp(52px, 7vw, 128px); font-weight: 600; letter-spacing: -0.055em; line-height: .94; }
+.st-l { text-align: right; padding-right: .22em; }
+.st-r { padding-left: .18em; }
+.st-big .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+.st-big .ln > span { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease); }
+.st-r .ln:nth-child(1) > span { transition-delay: .08s; } .st-r .ln:nth-child(2) > span { transition-delay: .16s; } .st-r .ln:nth-child(3) > span { transition-delay: .24s; }
 .st.in .st-big .ln > span { transform: none; }
-.st-big .ln.l { margin-left: calc(-37vw + 14vw); }
-.st-small { max-width: 24em; margin: 7vh 0 0; line-height: 1.4; }
-.st-c { margin: 12vh 0 0; color: var(--muted); }
-@media (max-width: 767px) { .st { padding-left: 34px; } .st-rule { left: 20px; } .st-big .ln.l { margin-left: 0; } }
+.st-foot { display: grid; grid-template-columns: calc(37% - var(--ml)) 1fr; margin-top: 7vh; align-items: start; }
+.st-c { text-align: right; padding-right: 18px; color: var(--muted); margin: 0; }
+.st-small { max-width: 26em; margin: 0; padding-left: 18px; line-height: 1.45; font-size: 15px; }
+@media (max-width: 767px) {
+  .st { padding: 12vh var(--m) 10vh 34px; } .st-rule { left: 20px; }
+  .st-big, .st-foot { grid-template-columns: 1fr; font-size: 15vw; }
+  .st-l { text-align: left; padding-right: 0; } .st-r { padding-left: 0; }
+  .st-c { text-align: left; order: 2; margin-top: 18px; padding: 0; } .st-small { padding: 0; }
+}
 
 /* brands table with hover preview */
 .tb { padding: 18vh var(--m) 4vh var(--ml); position: relative; }
