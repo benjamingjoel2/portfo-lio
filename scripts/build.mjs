@@ -319,10 +319,10 @@ const tgPage = page({
         <dl class="tg-dl">
           <div><dt>role</dt><dd>designer<span>developer</span></dd></div>
           <div><dt>work</dt><dd>full time</dd></div>
-          <div><dt>field</dt><dd>travel tech<span>destination brands</span></dd></div>
+          <div><dt>field</dt><dd>travel tech<span>tour commerce infrastructure</span></dd></div>
           <div><dt>location</dt><dd>remote<span>currently ${LOCATION.city} / ${LOCATION.country}</span></dd></div>
-          <div><dt>about</dt><dd><p>i design, build and ship the websites for tourground’s travel brands. each brand is one destination, planned by specialists, and each site is mine from the first layout to the live page: the design, the front end, the hosting and the speed.</p></dd></div>
-          <div><dt>highlights</dt><dd>${works.length} brand sites live<span class="ink">from antarctica to japan</span></dd></div>
+          <div><dt>about</dt><dd><p>tourground is the modern infrastructure for travel agents, dmcs and tour operators. it gives them the network, the technology and the distribution to run a tour operation: a verified profile, one inbox for every inquiry, quotes and payments in a link, and reach across websites, ai chats and whatsapp.</p><p>for travellers it works the other way round: tourground matches you with a trusted local agent, and your agent plans the trip.</p></dd></div>
+          <div><dt>highlights</dt><dd>150+ destinations<span class="ink">thousands of agents and suppliers listed</span><span class="ink">tourground os, ai and pay</span></dd></div>
         </dl>
       </div>
       <div class="tg-pics">
