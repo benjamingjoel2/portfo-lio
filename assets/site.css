@@ -1069,3 +1069,13 @@ html:has(.tg), body:has(.tg) { height: 100%; overflow: hidden; overscroll-behavi
 .oc-t { font-size: clamp(16px, 1.25vw, 20px); width: min(380px, 32vw); }
 .cr-side p { font-size: clamp(16px, 1.25vw, 20px); }
 @media (max-width: 767px) { .ab-copy p { font-size: 18px; } .oc-t { font-size: 16px; width: auto; } }
+
+/* contact: size the statement by width AND height so it always fits the screen */
+@media (min-width: 768px) {
+  .cx-big { font-size: min(7vw, 10.5vh, 128px); }
+  .cx-coffee { font-size: min(2.1vw, 3.6vh, 34px); }
+  .cx-em { font-size: min(1.35vw, 2.5vh, 22px); }
+  .cx-lab { margin-top: min(28px, 3vh) !important; }
+  .cx { row-gap: 3.5vh; padding-top: 5vh; padding-bottom: 5vh; }
+  .cx-pic > img { max-height: calc(100svh - 240px); }
+}
